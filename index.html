@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Révision SQL</title>
+<meta name="description" content="Application de révision SQL (R5.04) : cours illustré, labo SQL interactif, exercices corrigés automatiquement, quiz, flashcards et examen blanc.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f4f0;--surface:#ffffff;--surface2:#efede7;--ink:#1c1a17;--muted:#6a655c;--line:#e0dcd2;
+  --acc:#7b1f79;--acc-soft:#f4e6f3;--acc2:#0e8fa3;--acc2-soft:#e2f4f6;
+  --ok:#1d7f46;--ok-soft:#e3f3e8;--bad:#bf3228;--bad-soft:#fbe7e4;--warn:#a86a12;--warn-soft:#fbf0dc;
+  --code-bg:#1e1d24;--code-ink:#e8e6f0;--kw:#ff9ad5;--str:#9be2a0;--num:#ffcf7a;--fn:#8fd3ff;--com:#8b879a;
+  --nullc:#b1aca2;
+  --shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.05);
+  --r:14px;--mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141317;--surface:#1d1c21;--surface2:#26252c;--ink:#ecebe7;--muted:#a19d95;--line:#34323a;
+    --acc:#e08fdd;--acc-soft:#3a2439;--acc2:#4ccadd;--acc2-soft:#193338;
+    --ok:#5cc98a;--ok-soft:#1b3326;--bad:#f07a70;--bad-soft:#3b2120;--warn:#e6b25a;--warn-soft:#382d18;
+    --code-bg:#111015;--nullc:#6d6873;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141317;--surface:#1d1c21;--surface2:#26252c;--ink:#ecebe7;--muted:#a19d95;--line:#34323a;
+  --acc:#e08fdd;--acc-soft:#3a2439;--acc2:#4ccadd;--acc2-soft:#193338;
+  --ok:#5cc98a;--ok-soft:#1b3326;--bad:#f07a70;--bad-soft:#3b2120;--warn:#e6b25a;--warn-soft:#382d18;
+  --code-bg:#111015;--nullc:#6d6873;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15.5px/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--acc)}
+button,textarea,select{font:inherit;color:inherit}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em}
+h1{font-size:clamp(1.6rem,4vw,2.3rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:1.45rem;font-weight:750;letter-spacing:-.01em}
+h3{font-size:1.12rem;font-weight:700;margin-top:1.6em}
+h4{margin:1.2em 0 .4em}
+p{margin:.45em 0 .8em}
+ul,ol{margin:.3em 0 .9em;padding-left:1.25em}
+li{margin:.25em 0}
+b,strong{font-weight:650}
+.muted{color:var(--muted)}
+.small{font-size:.86rem}
+code,pre,textarea,table.dt,kbd{font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0}
+code{font-family:var(--mono);font-size:.86em;background:var(--surface2);padding:1px 5px;border-radius:5px}
+
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topin{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:10px 16px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;text-decoration:none;color:var(--ink);white-space:nowrap}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs a{padding:7px 12px;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:600;font-size:.92rem;white-space:nowrap}
+nav.tabs a:hover{background:var(--surface2);color:var(--ink)}
+nav.tabs a.on{background:var(--acc);color:#fff}
+:root[data-theme="dark"] nav.tabs a.on,:root[data-theme="dark"] .btn.pri{color:#1a0f1a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) nav.tabs a.on,:root:not([data-theme="light"]) .btn.pri{color:#1a0f1a}}
+.iconbtn{border:1px solid var(--line);background:var(--surface);border-radius:10px;width:36px;height:36px;display:grid;place-items:center;cursor:pointer;flex:none}
+@media (max-width:720px){.brand span{display:none}}
+
+main{max-width:1180px;margin:0 auto;padding:22px 16px 80px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.grid>*,.course>*,.hero>*,.exo>*{min-width:0}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);padding:9px 16px;border-radius:10px;cursor:pointer;font-weight:600;text-decoration:none;color:var(--ink)}
+.btn:hover{border-color:var(--acc)}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:#fff}
+.btn.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.btn.ghost{background:transparent}
+.btn.sm{padding:5px 11px;font-size:.85rem}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:.78rem;font-weight:650;background:var(--surface2);color:var(--muted)}
+.pill.acc{background:var(--acc-soft);color:var(--acc)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+select{padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface)}
+kbd{font:600 .78rem var(--mono);border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 5px;background:var(--surface2)}
+
+/* code */
+pre.code{background:var(--code-bg);color:var(--code-ink);font:13.5px/1.55 var(--mono);padding:14px 16px;border-radius:12px;overflow-x:auto;margin:12px 0;position:relative;white-space:pre}
+pre.code .k{color:var(--kw);font-weight:600}.code .s{color:var(--str)}.code .n{color:var(--num)}.code .f{color:var(--fn)}.code .c{color:var(--com);font-style:italic}
+.codewrap{position:relative}
+.codewrap .try{position:absolute;top:8px;right:8px;font:600 .75rem Inter,sans-serif;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:4px 9px;cursor:pointer}
+.codewrap .try:hover{background:rgba(255,255,255,.22)}
+
+/* home */
+.hero{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:18px}
+@media (max-width:820px){.hero{grid-template-columns:minmax(0,1fr)}}
+.hero .card:first-child{background:linear-gradient(135deg,var(--acc-soft),var(--surface) 70%)}
+.stat{display:flex;flex-direction:column;gap:4px}
+.stat .v{font-size:1.6rem;font-weight:800}
+.bar{height:8px;border-radius:99px;background:var(--surface2);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--acc);border-radius:99px;transition:width .4s}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.steps li::before{content:counter(s);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--acc-soft);color:var(--acc);font-weight:800}
+.steps li.done::before{content:"✓";background:var(--ok-soft);color:var(--ok)}
+
+/* course */
+.course{display:grid;grid-template-columns:250px minmax(0,1fr);gap:22px;align-items:start}
+.side{position:sticky;top:74px;display:flex;flex-direction:column;gap:4px}
+.side a{display:flex;gap:8px;align-items:center;padding:9px 12px;border-radius:10px;text-decoration:none;color:var(--ink);font-weight:550;font-size:.93rem;border:1px solid transparent}
+.side a:hover{background:var(--surface)}
+.side a.on{background:var(--surface);border-color:var(--line);box-shadow:var(--shadow);color:var(--acc)}
+.side a .ck{margin-left:auto;color:var(--ok);font-weight:800}
+.side .num{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:var(--surface2);font-size:.78rem;font-weight:750;flex:none}
+@media (max-width:900px){
+  .course{grid-template-columns:minmax(0,1fr)}
+  .side{position:static;flex-direction:row;overflow-x:auto;padding-bottom:6px}
+  .side a{white-space:nowrap;background:var(--surface);border-color:var(--line)}
+}
+.lesson h3{color:var(--acc)}
+.box{border-radius:12px;padding:12px 16px;margin:14px 0;border:1px solid}
+.box>:first-child{margin-top:0}.box>:last-child{margin-bottom:0}
+.box .bt{font-weight:750;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:4px}
+.key{background:var(--acc2-soft);border-color:color-mix(in srgb,var(--acc2) 35%,transparent)}.key .bt{color:var(--acc2)}
+.trap{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 35%,transparent)}.trap .bt{color:var(--bad)}
+.tip{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 35%,transparent)}.tip .bt{color:var(--warn)}
+.memo-tag{display:inline-block;font-size:.72rem;font-weight:700;background:var(--warn-soft);color:var(--warn);padding:2px 8px;border-radius:99px;vertical-align:middle;margin-left:6px}
+figure{margin:16px 0;padding:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow-x:auto}
+figure svg{display:block;margin:0 auto;max-width:100%;height:auto}
+figcaption{font-size:.84rem;color:var(--muted);margin-top:8px;text-align:center}
+.tw{overflow-x:auto}
+table.t{width:100%;border-collapse:collapse;font-size:.92rem;margin:12px 0}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+table.t th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700}
+.nav2{display:flex;justify-content:space-between;gap:10px;margin-top:26px;flex-wrap:wrap}
+.readbtn.done{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+
+/* data tables */
+table.dt{border-collapse:collapse;font:13px/1.4 var(--mono);background:var(--surface)}
+table.dt th{background:var(--surface2);font-weight:700;text-align:left;padding:6px 10px;border:1px solid var(--line);white-space:nowrap}
+table.dt td{padding:5px 10px;border:1px solid var(--line);white-space:nowrap}
+table.dt td.null{color:var(--nullc);font-style:italic}
+table.dt tr.off td{opacity:.35;text-decoration:line-through}
+table.dt tr.hit td{background:var(--ok-soft)}
+table.dt tr.miss td{background:var(--warn-soft)}
+table.dt caption{caption-side:top;text-align:left;font:700 .82rem Inter,sans-serif;padding:0 0 6px;color:var(--acc)}
+.dtwrap{overflow:auto;max-height:420px;border-radius:10px}
+.vis{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;margin:12px 0}
+.vis .arrow{font-size:1.6rem;color:var(--muted);align-self:center}
+.seg{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.seg button{border:1px solid var(--line);background:var(--surface);padding:6px 12px;border-radius:9px;cursor:pointer;font-weight:600;font-size:.88rem}
+.seg button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.explain{padding:10px 14px;border-radius:10px;background:var(--surface2);font-size:.93rem}
+.hl-line{background:rgba(255,154,213,.18);display:inline-block;width:100%;border-left:3px solid var(--kw);margin-left:-16px;padding-left:13px}
+
+/* labo */
+.lab{display:grid;grid-template-columns:240px minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:900px){.lab{grid-template-columns:minmax(0,1fr)}}
+.schema{display:flex;flex-direction:column;gap:8px;font-size:.86rem}
+.schema details{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:6px 10px}
+.schema summary{cursor:pointer;font-weight:700;color:var(--acc)}
+.schema .col{font-family:var(--mono);font-size:.8rem;padding:1px 0;cursor:pointer}
+.schema .col:hover{color:var(--acc)}
+.schema .pk{text-decoration:underline;font-weight:700}
+.schema .fk{font-style:italic}
+textarea.ed{width:100%;min-height:150px;resize:vertical;background:var(--code-bg);color:var(--code-ink);font:14px/1.55 var(--mono);border:1px solid var(--line);border-radius:12px;padding:14px;outline:none;tab-size:2}
+textarea.ed:focus{border-color:var(--acc)}
+.res{margin-top:12px}
+.err{padding:10px 14px;border-radius:10px;background:var(--bad-soft);color:var(--bad);font:13px/1.5 var(--mono);white-space:pre-wrap}
+.okmsg{padding:10px 14px;border-radius:10px;background:var(--ok-soft);color:var(--ok);font-weight:600}
+.engine{font-size:.8rem}
+
+/* exercises */
+.exo{display:grid;grid-template-columns:270px minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:900px){.exo{grid-template-columns:minmax(0,1fr)}}
+.exlist{display:flex;flex-direction:column;gap:3px;max-height:calc(100vh - 110px);overflow:auto;position:sticky;top:74px}
+@media (max-width:900px){.exlist{position:static;max-height:260px}}
+.exlist .grp{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700;margin:10px 4px 2px}
+.exlist a{display:flex;gap:8px;align-items:center;padding:6px 10px;border-radius:9px;text-decoration:none;color:var(--ink);font-size:.88rem}
+.exlist a:hover{background:var(--surface)}
+.exlist a.on{background:var(--surface);box-shadow:var(--shadow);color:var(--acc);font-weight:650}
+.exlist .st{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);flex:none;display:grid;place-items:center;font-size:.7rem}
+.exlist .st.done{background:var(--ok);border-color:var(--ok);color:#fff}
+.lvl{font-size:.75rem;color:var(--warn)}
+
+/* quiz */
+.qwrap{max-width:820px;margin:0 auto}
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.qtxt{font-size:1.12rem;font-weight:650;margin:6px 0 14px}
+.opts{display:grid;gap:9px}
+.opt{text-align:left;border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 14px;cursor:pointer;display:flex;gap:12px;align-items:flex-start;line-height:1.45}
+.opt:hover:not(:disabled){border-color:var(--acc)}
+.opt .l{flex:none;width:26px;height:26px;border-radius:8px;background:var(--surface2);display:grid;place-items:center;font-weight:750;font-size:.85rem}
+.opt.good{border-color:var(--ok);background:var(--ok-soft)}.opt.good .l{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}.opt.wrong .l{background:var(--bad);color:#fff}
+.opt.sel{border-color:var(--acc);background:var(--acc-soft)}
+.opt:disabled{cursor:default}
+.exp{margin-top:14px;padding:12px 16px;border-radius:12px;background:var(--surface2);border-left:4px solid var(--acc2)}
+.score{font-size:3rem;font-weight:800;color:var(--acc);line-height:1}
+.review{display:grid;gap:10px;margin-top:16px}
+.review .it{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--surface)}
+.review .it.ko{border-left:4px solid var(--bad)}.review .it.okk{border-left:4px solid var(--ok)}
+.timer{font:700 1.05rem var(--mono);padding:4px 10px;border-radius:8px;background:var(--surface2)}
+.timer.low{background:var(--bad-soft);color:var(--bad)}
+.dots{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0}
+.dots button{width:30px;height:28px;border-radius:8px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:.75rem;font-weight:650}
+.dots button.ans{background:var(--acc-soft);border-color:var(--acc)}
+.dots button.cur{outline:2px solid var(--acc);outline-offset:1px}
+
+/* flashcards */
+.fc-wrap{max-width:640px;margin:0 auto}
+.fc{perspective:1400px;height:330px;cursor:pointer;margin:14px 0}
+.fc-in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.fc.flip .fc-in{transform:rotateY(180deg)}
+.fc-f,.fc-b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:18px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:26px;text-align:center;overflow:auto}
+.fc-b{transform:rotateY(180deg);background:linear-gradient(160deg,var(--acc-soft),var(--surface) 65%)}
+.fc-f .q{font-size:1.25rem;font-weight:700}
+.fc-b .a{font-size:1rem;color:var(--ink)}
+.fc .hint{position:absolute;bottom:12px;font-size:.78rem;color:var(--muted)}
+.fc pre.code{text-align:left;font-size:12.5px;max-width:100%}
+
+/* traps */
+.traps{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.trapc{border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.trapc .f{padding:10px 14px;background:var(--bad-soft);color:var(--bad);font-weight:600;font-size:.92rem}
+.trapc .f::before{content:"✗ ";font-weight:800}
+.trapc .v{padding:10px 14px;font-size:.93rem}
+.trapc .v::before{content:"✓ ";color:var(--ok);font-weight:800}
+.trapc pre.code{margin:0 14px 12px;font-size:12.5px}
+
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:10px;font-weight:600;font-size:.9rem;opacity:0;transition:opacity .25s;pointer-events:none;z-index:50}
+.toast.on{opacity:1}
+svg.dg text{font-family:Inter,system-ui,sans-serif;fill:var(--ink)}
+@media (max-width:560px){main{padding:16px 16px 70px}.card{padding:16px}.fc{height:380px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="topin">
+    <a class="brand" href="#home" aria-label="Accueil">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="8" fill="var(--acc)"/><ellipse cx="15" cy="9.5" rx="7" ry="2.6" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M8 9.5v11c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-11M8 15c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6" fill="none" stroke="#fff" stroke-width="1.8"/></svg>
+      <span>SQL · Révision</span>
+    </a>
+    <nav class="tabs" id="tabs">
+      <a href="#home" data-v="home">Accueil</a>
+      <a href="#cours" data-v="cours">Cours</a>
+      <a href="#labo" data-v="labo">Labo SQL</a>
+      <a href="#exos" data-v="exos">Exercices</a>
+      <a href="#quiz" data-v="quiz">Quiz</a>
+      <a href="#cartes" data-v="cartes">Flashcards</a>
+      <a href="#pieges" data-v="pieges">Pièges</a>
+      <a href="#examen" data-v="examen">Examen blanc</a>
+    </nav>
+    <button class="iconbtn" id="themeBtn" title="Changer de thème" aria-label="Changer de thème">◐</button>
+  </div>
+</header>
+<main id="app"></main>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.12.0/sql-wasm.js"></script>
+<script>
+"use strict";
+/* =========================================================
+   Utilitaires
+   ========================================================= */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const fmt = s => esc(s).replace(/`([^`]+)`/g, '<code>$1</code>');
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('sqlrev_' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('sqlrev_' + k, JSON.stringify(v)); } catch (e) { } },
+  del(k) { try { localStorage.removeItem('sqlrev_' + k); } catch (e) { } }
+};
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('on'), 1800); }
+
+/* Coloration syntaxique SQL */
+const KW = new Set(('SELECT FROM WHERE GROUP BY HAVING ORDER LIMIT OFFSET DISTINCT AS AND OR NOT IN IS NULL LIKE BETWEEN JOIN INNER LEFT RIGHT FULL OUTER CROSS NATURAL ON USING UNION ALL INTERSECT EXCEPT MINUS EXISTS ANY ' +
+  'CREATE TABLE VIEW DROP ALTER ADD MODIFY COLUMN INSERT INTO VALUES UPDATE SET DELETE TRUNCATE PRIMARY KEY FOREIGN REFERENCES UNIQUE CHECK CONSTRAINT DEFAULT ' +
+  'GRANT REVOKE TO WITH OPTION COMMIT ROLLBACK BEGIN TRANSACTION CASE WHEN THEN ELSE END ASC DESC IF RENAME CASCADE PUBLIC ' +
+  'INTEGER REAL TEXT BLOB VARCHAR CHAR DATE TIME TIMESTAMP NUMBER SMALLINT FLOAT AUTOINCREMENT').split(' '));
+const FN = new Set('COUNT SUM AVG MIN MAX UPPER LOWER ROUND LENGTH SUBSTR COALESCE'.split(' '));
+function hl(sql) {
+  const re = /('(?:[^']|'')*')|(--[^\n]*)|(\b\d+(?:\.\d+)?\b)|([A-Za-zÀ-ÿ_][A-Za-zÀ-ÿ_0-9]*)/g;
+  let out = '', last = 0, m;
+  while ((m = re.exec(sql))) {
+    out += esc(sql.slice(last, m.index));
+    if (m[1]) out += `<span class="s">${esc(m[1])}</span>`;
+    else if (m[2]) out += `<span class="c">${esc(m[2])}</span>`;
+    else if (m[3]) out += `<span class="n">${m[3]}</span>`;
+    else { const u = m[4].toUpperCase(); out += KW.has(u) ? `<span class="k">${esc(m[4])}</span>` : FN.has(u) ? `<span class="f">${esc(m[4])}</span>` : esc(m[4]); }
+    last = re.lastIndex;
+  }
+  return out + esc(sql.slice(last));
+}
+let codeId = 0;
+const TRY = {};
+/* bloc de code ; try=true ajoute un bouton « Essayer dans le labo » */
+function code(sql, tryIt) {
+  sql = sql.replace(/^\n+|\s+$/g, '');
+  if (!tryIt) return `<pre class="code">${hl(sql)}</pre>`;
+  const id = 'c' + (++codeId); TRY[id] = sql;
+  return `<div class="codewrap"><pre class="code">${hl(sql)}</pre><button class="try" data-try="${id}">▶ Essayer</button></div>`;
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-try]');
+  if (b) { store.set('labPending', TRY[b.dataset.try]); location.hash = 'labo'; }
+});
+
+/* =========================================================
+   Base de données d'entraînement (d'après le MCD/MLD du cours)
+   ========================================================= */
+const DB_SQL = `
+CREATE TABLE Client (Code_Client TEXT PRIMARY KEY, Raison_Sociale TEXT NOT NULL, Adresse TEXT, Ville TEXT, Telephone TEXT);
+CREATE TABLE Produit (Num_Produit INTEGER PRIMARY KEY, Designation TEXT NOT NULL, Categorie TEXT, Prix_Unitaire REAL, Quantite_Stock INTEGER);
+CREATE TABLE Commande (Num_Commande INTEGER PRIMARY KEY, Date_Commande TEXT, Code_Client TEXT REFERENCES Client(Code_Client));
+CREATE TABLE Detail_Commande (Num_Commande INTEGER REFERENCES Commande(Num_Commande), Num_Produit INTEGER REFERENCES Produit(Num_Produit), Qte_Commandee INTEGER, PRIMARY KEY (Num_Commande, Num_Produit));
+CREATE TABLE Livraison (Num_Livraison INTEGER PRIMARY KEY, Date_Livraison TEXT, Num_Commande INTEGER REFERENCES Commande(Num_Commande));
+CREATE TABLE Sortie_Stock (Num_Livraison INTEGER REFERENCES Livraison(Num_Livraison), Num_Produit INTEGER REFERENCES Produit(Num_Produit), Qte_Sortie INTEGER, PRIMARY KEY (Num_Livraison, Num_Produit));
+CREATE TABLE Eleve (Num_Eleve INTEGER PRIMARY KEY, Nom TEXT, Prenom TEXT, Ville TEXT);
+CREATE TABLE Prof (Num_Prof INTEGER PRIMARY KEY, Nom TEXT, Prenom TEXT, Ville TEXT, Bureau TEXT);
+CREATE TABLE Employe (Num_Empl INTEGER PRIMARY KEY, Nom TEXT, Fonction TEXT, Salaire REAL, Num_Chef INTEGER REFERENCES Employe(Num_Empl));
+INSERT INTO Client VALUES
+ ('C01','Boulangerie Martin','12 rue de la République','Lyon','0478123456'),
+ ('C02','Garage Dupont','5 avenue Foch','Paris','0145678901'),
+ ('C03','Café du Port','2 quai du Vieux-Port','Marseille','0491234567'),
+ ('C04','Librairie Lemoine','8 place Bellecour','Lyon','0472345678'),
+ ('C05','Fleurs & Co','17 allée Jean-Jaurès','Toulouse',NULL),
+ ('C06','Pharmacie Bernard','40 boulevard Voltaire','Paris','0143219876'),
+ ('C07','Atelier Durand','3 rue Crébillon','Nantes','0240112233'),
+ ('C08','Hôtel Bellevue','1 promenade des Anglais','Nice',NULL);
+INSERT INTO Produit VALUES
+ (1,'Stylo bille','Bureau',1.5,500),(2,'Cahier A4','Bureau',3.2,250),(3,'Agrafeuse','Bureau',12.9,40),
+ (4,'Ramette papier','Papier',5.5,180),(5,'Classeur','Bureau',4.8,120),(6,'Enveloppes x50','Papier',6.0,75),
+ (7,'Calculatrice','Informatique',24.9,30),(8,'Clé USB 32 Go','Informatique',9.9,0),(9,'Souris sans fil','Informatique',19.5,60),
+ (10,'Post-it','Papier',2.4,300);
+INSERT INTO Commande VALUES
+ (101,'2024-01-15','C01'),(102,'2024-02-03','C02'),(103,'2024-02-20','C01'),(104,'2024-03-11','C03'),(105,'2024-04-02','C04'),
+ (106,'2024-04-18','C02'),(107,'2024-05-09','C05'),(108,'2024-06-21','C06'),(109,'2024-06-30','C01'),(110,'2024-07-12','C03');
+INSERT INTO Detail_Commande VALUES
+ (101,1,100),(101,2,20),(102,7,2),(102,9,3),(103,1,50),(103,4,10),(103,5,5),(104,2,30),(105,4,25),(105,6,10),(105,3,2),
+ (106,8,5),(106,9,2),(107,1,200),(108,7,1),(108,5,8),(108,2,15),(109,4,40),(110,6,4),(110,3,1);
+INSERT INTO Livraison VALUES
+ (1,'2024-01-18',101),(2,'2024-02-07',102),(3,'2024-02-23',103),(4,'2024-03-15',104),(5,'2024-04-05',105),(6,'2024-04-25',106),(7,'2024-05-12',107),(8,'2024-07-02',109);
+INSERT INTO Sortie_Stock VALUES
+ (1,1,100),(1,2,20),(2,7,2),(2,9,3),(3,1,50),(3,4,10),(3,5,5),(4,2,30),(5,4,25),(5,6,10),(5,3,2),(6,9,2),(7,1,200),(8,4,40);
+INSERT INTO Eleve VALUES
+ (1,'Durand','Léa','Lyon'),(2,'Martin','Hugo','Paris'),(3,'Petit','Inès','Lyon'),(4,'Moreau','Tom','Grenoble'),
+ (5,'Roux','Chloé','Lille'),(6,'Fournier','Noah','Paris'),(7,'Girard','Emma','Annecy'),(8,'Bonnet','Lucas','Grenoble');
+INSERT INTO Prof VALUES
+ (1,'Garnier','Paul','Lyon','B12'),(2,'Faure','Anne','Villeurbanne','B12'),(3,'Rousseau','Marc','Paris','B15'),
+ (4,'Blanc','Julie','Lyon','B15'),(5,'Guérin','Luc','Lille','B15'),(6,'Muller','Sarah','Bron','B20'),(7,'Henry',NULL,'Annecy','B15');
+INSERT INTO Employe VALUES
+ (1,'Leroy','Directeur',5200,NULL),(2,'Simon','Analyste',3400,1),(3,'Laurent','Analyste',3100,2),(4,'Michel','Programmeur',2600,2),
+ (5,'Garcia','Programmeur',2450,2),(6,'David','Secrétaire',2100,1),(7,'Bertrand','Secrétaire',2250,1),(8,'Roux','Développeur',2800,2);
+`;
+const SCHEMA = [
+  ['Client', [['Code_Client', 'pk'], ['Raison_Sociale'], ['Adresse'], ['Ville'], ['Telephone']]],
+  ['Commande', [['Num_Commande', 'pk'], ['Date_Commande'], ['Code_Client', 'fk']]],
+  ['Detail_Commande', [['Num_Commande', 'pk fk'], ['Num_Produit', 'pk fk'], ['Qte_Commandee']]],
+  ['Produit', [['Num_Produit', 'pk'], ['Designation'], ['Categorie'], ['Prix_Unitaire'], ['Quantite_Stock']]],
+  ['Livraison', [['Num_Livraison', 'pk'], ['Date_Livraison'], ['Num_Commande', 'fk']]],
+  ['Sortie_Stock', [['Num_Livraison', 'pk fk'], ['Num_Produit', 'pk fk'], ['Qte_Sortie']]],
+  ['Eleve', [['Num_Eleve', 'pk'], ['Nom'], ['Prenom'], ['Ville']]],
+  ['Prof', [['Num_Prof', 'pk'], ['Nom'], ['Prenom'], ['Ville'], ['Bureau']]],
+  ['Employe', [['Num_Empl', 'pk'], ['Nom'], ['Fonction'], ['Salaire'], ['Num_Chef', 'fk']]]
+];
+
+/* Moteur SQL (SQLite via sql.js) */
+let SQL = null, engineErr = null;
+const engineReady = (typeof initSqlJs === 'function'
+  ? initSqlJs({ locateFile: f => 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.12.0/' + f }).then(s => { SQL = s; return s; })
+  : Promise.reject(new Error('sql.js non chargé'))
+).catch(e => { engineErr = e; return null; });
+function freshDb() { const db = new SQL.Database(); db.run(DB_SQL); return db; }
+let labDb = null;
+function lastResult(db, sql) {
+  const res = db.exec(sql);
+  return res.length ? res[res.length - 1] : null;
+}
+function friendlyError(msg, sql = '') {
+  let tip = '';
+  if (/near "(ALL|ANY)"/i.test(msg) || /[=<>]\s*(ANY|ALL)\s*\(/i.test(sql)) tip = '\nSQLite ne connaît pas ANY / ALL : remplace « > ALL (SELECT x …) » par « > (SELECT MAX(x) …) » et « > ANY » par « > (SELECT MIN(x) …) ».';
+  if (/near "MINUS"/i.test(msg) || /\bMINUS\b/i.test(sql)) tip = '\nMINUS est la syntaxe Oracle : en SQLite (et en SQL standard) on écrit EXCEPT.';
+  if (/no such column/i.test(msg)) tip = '\nVérifie l’orthographe de la colonne (sans accent ici : Designation, Quantite_Stock…) et préfixe-la par sa table si elle existe dans deux tables.';
+  if (/ambiguous column/i.test(msg)) tip = '\nCette colonne existe dans plusieurs tables de ta jointure : écris Table.Colonne.';
+  if (/no such table/i.test(msg)) tip = '\nTables disponibles : ' + SCHEMA.map(t => t[0]).join(', ') + '.';
+  if (/misuse of aggregate/i.test(msg)) tip = '\nUne fonction d’agrégat (SUM, COUNT…) ne peut pas aller dans le WHERE : utilise HAVING après GROUP BY.';
+  if (/MODIFY/i.test(msg)) tip = '\nSQLite ne gère pas ALTER TABLE … MODIFY (syntaxe Oracle/MySQL du mémo) : ADD COLUMN, RENAME et DROP COLUMN fonctionnent.';
+  return msg + tip;
+}
+function resultTable(r, max = 200) {
+  if (!r) return '<div class="okmsg">Requête exécutée (aucun résultat à afficher).</div>';
+  const rows = r.values.slice(0, max);
+  return `<div class="muted small" style="margin-bottom:6px">${r.values.length} ligne${r.values.length > 1 ? 's' : ''} · ${r.columns.length} colonne${r.columns.length > 1 ? 's' : ''}</div>
+<div class="dtwrap"><table class="dt"><thead><tr>${r.columns.map(c => `<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${row.map(v => v === null ? '<td class="null">NULL</td>' : `<td>${esc(typeof v === 'number' && !Number.isInteger(v) ? +v.toFixed(4) : v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>${r.values.length > max ? `<div class="muted small">… ${r.values.length - max} lignes non affichées</div>` : ''}`;
+}
+const normCell = v => v === null || v === undefined ? '∅' : typeof v === 'number' ? (Math.round(v * 100) / 100).toString() : String(v).trim();
+function sameResult(a, b, ordered) {
+  if (!a || !b) return { ok: !a && !b, why: 'Ta requête ne renvoie aucun résultat.' };
+  if (a.columns.length !== b.columns.length) return { ok: false, why: `Nombre de colonnes : ${a.columns.length} au lieu de ${b.columns.length} attendue${b.columns.length > 1 ? 's' : ''}.` };
+  if (a.values.length !== b.values.length) return { ok: false, why: `Nombre de lignes : ${a.values.length} au lieu de ${b.values.length} attendue${b.values.length > 1 ? 's' : ''}.` };
+  const ra = a.values.map(r => r.map(normCell).join('\u0001')), rb = b.values.map(r => r.map(normCell).join('\u0001'));
+  if (ordered) {
+    const same = ra.every((x, i) => x === rb[i]);
+    if (same) return { ok: true };
+    const sa = ra.slice().sort().join('\n') === rb.slice().sort().join('\n');
+    return { ok: false, why: sa ? 'Les bonnes lignes sont là, mais pas dans le bon ordre (ORDER BY ?).' : 'Le contenu des lignes diffère du résultat attendu.' };
+  }
+  return ra.slice().sort().join('\n') === rb.slice().sort().join('\n') ? { ok: true } : { ok: false, why: 'Le contenu des lignes diffère du résultat attendu (même nombre de lignes et de colonnes).' };
+}
+/* vérifie un exercice ; renvoie {ok, why, user, expected} */
+function checkExercise(ex, userSql) {
+  const dbU = freshDb(), dbS = freshDb();
+  try {
+    let u, s;
+    if (ex.check) {
+      dbU.exec(userSql); dbS.exec(ex.sol);
+      u = lastResult(dbU, ex.check); s = lastResult(dbS, ex.check);
+    } else { u = lastResult(dbU, userSql); s = lastResult(dbS, ex.sol); }
+    const c = sameResult(u, s, ex.ordered);
+    return Object.assign(c, { user: u, expected: s });
+  } catch (e) { return { ok: false, err: friendlyError(e.message, userSql) }; }
+  finally { dbU.close(); dbS.close(); }
+}
+
+/* =========================================================
+   Schéma MLD (SVG)
+   ========================================================= */
+function mld() {
+  const B = { Client: [20, 30], Commande: [250, 30], Livraison: [480, 30], Detail_Commande: [250, 210], Sortie_Stock: [480, 210], Produit: [365, 330] };
+  const W = 165, rowH = 18;
+  const pos = {};
+  let s = '';
+  SCHEMA.slice(0, 6).forEach(([name, cols]) => {
+    const [x, y] = B[name], h = 28 + cols.length * rowH;
+    pos[name] = { x, y, w: W, h, cx: x + W / 2, cy: y + h / 2 };
+  });
+  const link = (a, b, side) => {
+    const A = pos[a], Bb = pos[b];
+    let p;
+    if (side === 'h') p = `M${A.x + A.w} ${A.y + 40} H${Bb.x}`;
+    if (side === 'v') p = `M${A.cx} ${A.y + A.h} V${Bb.y}`;
+    if (side === 'vb') p = `M${A.cx} ${A.y + A.h} V${Bb.y + 30} H${Bb.x}`;
+    if (side === 'vc') p = `M${A.cx} ${A.y + A.h} V${Bb.y + 30} H${Bb.x + Bb.w}`;
+    return `<path d="${p}" fill="none" stroke="var(--acc2)" stroke-width="1.6"/>`;
+  };
+  s += link('Client', 'Commande', 'h') + link('Commande', 'Livraison', 'h') + link('Commande', 'Detail_Commande', 'v') + link('Livraison', 'Sortie_Stock', 'v') + link('Detail_Commande', 'Produit', 'vb') + link('Sortie_Stock', 'Produit', 'vc');
+  SCHEMA.slice(0, 6).forEach(([name, cols]) => {
+    const { x, y, w, h } = pos[name];
+    s += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="8" fill="var(--surface)" stroke="var(--acc2)" stroke-width="1.6"/><rect x="${x}" y="${y}" width="${w}" height="24" rx="8" fill="var(--acc2-soft)"/><text x="${x + w / 2}" y="${y + 16}" text-anchor="middle" font-size="12" font-weight="700">${name.toUpperCase().replace('_', ' ')}</text>`;
+    cols.forEach(([c, k], i) => {
+      const ty = y + 42 + i * rowH, isPk = k && k.includes('pk'), isFk = k && k.includes('fk');
+      s += `<text x="${x + 10}" y="${ty}" font-size="11.5" ${isPk ? 'text-decoration="underline" font-weight="650"' : ''} ${isFk ? 'font-style="italic"' : ''}>${isFk ? '#' : ''}${c}</text>`;
+    });
+  });
+  s += `<text x="20" y="470" font-size="11" fill="var(--muted)">Souligné = clé primaire · # en italique = clé étrangère</text>`;
+  return `<svg class="dg" viewBox="0 0 660 480" width="660" height="480" role="img" aria-label="Modèle logique des données">${s}</svg>`;
+}
+
+/* =========================================================
+   Visualiseurs interactifs
+   ========================================================= */
+const MINI_CLIENT = [['A', 'Adresse de A'], ['B', 'Adresse de B'], ['C', 'Adresse de C']];
+const MINI_CMD = [[1, 'A'], [2, 'B'], [3, 'B'], [4, 'D']];
+const JOINS = {
+  cross: { lab: 'CROSS JOIN', sql: `SELECT Adresse, N_Commande\nFROM Client CROSS JOIN Commande;\n-- équivalent : FROM Client, Commande`, txt: 'Produit cartésien : chaque client est associé à CHAQUE commande. 3 × 4 = 12 lignes. Attention aux temps de calcul !' },
+  inner: { lab: 'INNER JOIN', sql: `SELECT Adresse, N_Commande\nFROM Client INNER JOIN Commande\n  ON Client.Code_Client = Commande.Code_Client;`, txt: 'Seules les lignes qui ont une correspondance des deux côtés. C (aucune commande) et la commande 4 (client D inconnu) disparaissent.' },
+  left: { lab: 'LEFT JOIN', sql: `SELECT Adresse, N_Commande\nFROM Client LEFT JOIN Commande\n  ON Client.Code_Client = Commande.Code_Client;`, txt: 'La table de GAUCHE (Client) est complète. C n’a pas de commande : ses colonnes côté Commande valent NULL.' },
+  right: { lab: 'RIGHT JOIN', sql: `SELECT Adresse, N_Commande\nFROM Client RIGHT JOIN Commande\n  ON Client.Code_Client = Commande.Code_Client;`, txt: 'Symétrique du LEFT : la table de DROITE (Commande) est complète. La commande 4 (client D) apparaît avec une adresse NULL.' },
+  full: { lab: 'FULL JOIN', sql: `SELECT Adresse, N_Commande\nFROM Client FULL JOIN Commande\n  ON Client.Code_Client = Commande.Code_Client;`, txt: 'Les DEUX tables complètes : C sans commande ET la commande 4 sans client. 5 lignes.' },
+  neg: { lab: 'LEFT JOIN … IS NULL', sql: `SELECT Adresse, N_Commande\nFROM Client LEFT JOIN Commande\n  ON Client.Code_Client = Commande.Code_Client\nWHERE Commande.Code_Client IS NULL;`, txt: '« Négation » : on garde uniquement les lignes où la partie droite est NULL → les clients SANS commande. Équivalent à NOT IN (SELECT Code_Client FROM Commande).' }
+};
+function joinRows(type) {
+  const rows = [], usedC = new Set(), usedK = new Set();
+  if (type === 'cross') { MINI_CLIENT.forEach(c => MINI_CMD.forEach(k => rows.push([c[1], k[0]]))); return { rows, usedC: new Set([0, 1, 2]), usedK: new Set([0, 1, 2, 3]) }; }
+  MINI_CLIENT.forEach((c, i) => MINI_CMD.forEach((k, j) => { if (c[0] === k[1]) { rows.push([c[1], k[0]]); usedC.add(i); usedK.add(j); } }));
+  if (type === 'left' || type === 'full' || type === 'neg') MINI_CLIENT.forEach((c, i) => { if (!usedC.has(i)) rows.push([c[1], null]); });
+  if (type === 'right' || type === 'full') MINI_CMD.forEach((k, j) => { if (!usedK.has(j)) rows.push([null, k[0]]); });
+  if (type === 'neg') return { rows: rows.filter(r => r[1] === null), usedC: new Set([...MINI_CLIENT.keys()].filter(i => !usedC.has(i))), usedK: new Set() };
+  return { rows, usedC, usedK };
+}
+function miniTable(caption, cols, rows, cls) {
+  return `<table class="dt"><caption>${caption}</caption><thead><tr>${cols.map(c => `<th>${c}</th>`).join('')}</tr></thead><tbody>${rows.map((r, i) => `<tr class="${cls ? cls(i) : ''}">${r.map(v => v === null ? '<td class="null">NULL</td>' : `<td>${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+}
+function joinVisu(type) {
+  const J = JOINS[type], { rows, usedC, usedK } = joinRows(type);
+  return `<div class="seg" data-joinseg>${Object.entries(JOINS).map(([k, j]) => `<button data-join="${k}" class="${k === type ? 'on' : ''}">${j.lab}</button>`).join('')}</div>
+${code(J.sql)}
+<div class="vis">
+  ${miniTable('CLIENT', ['Code_Client', 'Adresse'], MINI_CLIENT, i => usedC.has(i) ? 'hit' : 'miss')}
+  ${miniTable('COMMANDE', ['N_Commande', 'Code_Client'], MINI_CMD, i => usedK.has(i) ? 'hit' : 'miss')}
+  <span class="arrow">→</span>
+  ${miniTable(`RÉSULTAT (${rows.length} ligne${rows.length > 1 ? 's' : ''})`, ['Adresse', 'N_Commande'], rows)}
+</div>
+<div class="explain">${J.txt}</div>
+<p class="small muted">Vert = ligne utilisée dans le résultat · orange = ligne sans correspondance.</p>`;
+}
+const GB_ROWS = [['A', 4], ['A', 4], ['A', 6], ['B', 6], ['B', 6]];
+const GB_STEPS = [
+  { line: 2, t: '1. FROM : on part de toutes les lignes de Détail_commandes.' },
+  { line: 3, t: '2. WHERE : on élimine les LIGNES dont la quantité est < 5 (avant tout regroupement).' },
+  { line: 4, t: '3. GROUP BY : on forme un groupe par référence (A et B).' },
+  { line: 0, t: '4. SUM : on calcule l’agrégat pour chaque groupe : A = 6, B = 6 + 6 = 12.' },
+  { line: 5, t: '5. HAVING : on élimine les GROUPES dont la somme est < 10 → A disparaît.' },
+  { line: 0, t: '6. SELECT : on affiche la référence et la somme → B | 12.' }
+];
+const GB_SQL = ['SELECT reference, SUM(quantite_commande)', 'FROM Detail_commandes', 'WHERE quantite_commande >= 5', 'GROUP BY reference', 'HAVING SUM(quantite_commande) >= 10;'];
+function gbVisu(step) {
+  const st = GB_STEPS[step];
+  const codeHtml = GB_SQL.map((l, i) => (st.line === i + 1 || (step === 3 && i === 0) || (step === 5 && i === 0)) ? `<span class="hl-line">${hl(l)}</span>` : hl(l)).join('\n');
+  let right = '';
+  if (step <= 1) right = miniTable('Détail_commandes', ['Référence', 'Quantité'], GB_ROWS, i => step >= 1 && GB_ROWS[i][1] < 5 ? 'off' : '');
+  else if (step === 2) right = miniTable('Groupes', ['Référence', 'Quantités du groupe'], [['A', '6'], ['B', '6, 6']]);
+  else if (step === 3) right = miniTable('Agrégat', ['Référence', 'SUM'], [['A', 6], ['B', 12]]);
+  else if (step === 4) right = miniTable('Après HAVING', ['Référence', 'SUM'], [['A', 6], ['B', 12]], i => i === 0 ? 'off' : 'hit');
+  else right = miniTable('RÉSULTAT', ['Référence', 'SUM(quantité)'], [['B', 12]]);
+  return `<div class="vis" style="align-items:stretch"><pre class="code" style="flex:1 1 320px;margin:0">${codeHtml}</pre><div>${right}</div></div>
+<div class="explain">${st.t}</div>
+<div class="row" style="margin-top:10px"><button class="btn sm" data-gb="${step - 1}" ${step === 0 ? 'disabled' : ''}>← Étape précédente</button><button class="btn sm pri" data-gb="${step + 1}" ${step === GB_STEPS.length - 1 ? 'disabled' : ''}>Étape suivante →</button><span class="muted small">${step + 1} / ${GB_STEPS.length}</span></div>`;
+}
+const V_EL = ['Lyon', 'Paris', 'Lyon', 'Grenoble', 'Lille', 'Paris', 'Annecy', 'Grenoble'];
+const V_PR = ['Lyon', 'Villeurbanne', 'Paris', 'Lyon', 'Lille', 'Bron', 'Annecy'];
+const SETS = {
+  union: { lab: 'UNION', t: 'Toutes les villes, doublons supprimés (A ∪ B).' },
+  unionall: { lab: 'UNION ALL', t: 'Union complète : toutes les lignes des deux requêtes, doublons conservés.' },
+  intersect: { lab: 'INTERSECT', t: 'Villes présentes dans les deux résultats (A ∩ B).' },
+  except: { lab: 'EXCEPT', t: 'Villes des élèves qui ne sont PAS des villes de profs (A − B). MINUS en Oracle.' }
+};
+function setResult(op) {
+  const A = [...new Set(V_EL)], B = [...new Set(V_PR)];
+  if (op === 'union') return [...new Set([...V_EL, ...V_PR])].sort();
+  if (op === 'unionall') return [...V_EL, ...V_PR];
+  if (op === 'intersect') return A.filter(x => B.includes(x)).sort();
+  return A.filter(x => !B.includes(x)).sort();
+}
+function vennVisu(op) {
+  const fillA = op === 'union' || op === 'unionall' || op === 'except', fillB = op === 'union' || op === 'unionall', inter = op === 'intersect';
+  const res = setResult(op);
+  const svg = `<svg class="dg" viewBox="0 0 300 190" width="300" height="190" role="img" aria-label="Diagramme de Venn ${SETS[op].lab}">
+<defs><clipPath id="vclipB"><circle cx="185" cy="95" r="70"/></clipPath><mask id="vmaskB"><rect width="300" height="190" fill="#fff"/><circle cx="185" cy="95" r="70" fill="#000"/></mask></defs>
+${fillA ? `<circle cx="115" cy="95" r="70" fill="var(--acc)" fill-opacity=".35" ${op === 'except' ? 'mask="url(#vmaskB)"' : ''}/>` : ''}
+${fillB ? `<circle cx="185" cy="95" r="70" fill="var(--acc)" fill-opacity=".35"/>` : ''}
+${inter ? `<circle cx="115" cy="95" r="70" fill="var(--acc)" fill-opacity=".45" clip-path="url(#vclipB)"/>` : ''}
+<circle cx="115" cy="95" r="70" fill="none" stroke="var(--acc2)" stroke-width="2"/><circle cx="185" cy="95" r="70" fill="none" stroke="var(--acc2)" stroke-width="2"/>
+<text x="70" y="22" font-size="13" font-weight="700">A : élèves</text><text x="190" y="22" font-size="13" font-weight="700">B : profs</text></svg>`;
+  return `<div class="seg">${Object.entries(SETS).map(([k, s]) => `<button data-set="${k}" class="${k === op ? 'on' : ''}">${s.lab}</button>`).join('')}</div>
+${code(`SELECT Ville FROM Eleve\n${SETS[op].lab}\nSELECT Ville FROM Prof;`, true)}
+<div class="vis">${svg}${miniTable(`RÉSULTAT (${res.length} ligne${res.length > 1 ? 's' : ''})`, ['Ville'], res.map(v => [v]))}</div>
+<div class="explain">${SETS[op].t}</div>`;
+}
+document.addEventListener('click', e => {
+  const j = e.target.closest('[data-join]'); if (j) { $('#joinvis').innerHTML = joinVisu(j.dataset.join); return; }
+  const g = e.target.closest('[data-gb]'); if (g && !g.disabled) { $('#gbvis').innerHTML = gbVisu(+g.dataset.gb); return; }
+  const s = e.target.closest('[data-set]'); if (s) { $('#vennvis').innerHTML = vennVisu(s.dataset.set); }
+});
+
+/* =========================================================
+   Cours
+   ========================================================= */
+const key = h => `<div class="box key"><span class="bt">À retenir</span>${h}</div>`;
+const trap = h => `<div class="box trap"><span class="bt">Piège d’examen</span>${h}</div>`;
+const tip = h => `<div class="box tip"><span class="bt">Astuce</span>${h}</div>`;
+const memo = '<span class="memo-tag">mémo</span>';
+
+const CHAPTERS = [
+  { id: 'voc', n: '0', t: 'Vocabulaire & modèle', html: () => `
+<h2>Vocabulaire, sous-langages et modèle de données</h2>
+<h3>Vocabulaire</h3>
+<div class="tw"><table class="t">
+<tr><th>Sigle</th><th>Signification</th><th>Définition</th></tr>
+<tr><td><b>BD</b></td><td>Base de Données</td><td>Stockage des données</td></tr>
+<tr><td><b>BDR</b></td><td>Base de Données Relationnelle</td><td>Données organisées <b>en tables</b> ; les liens entre tables se font via les données (<b>clés primaires et étrangères</b>)</td></tr>
+<tr><td><b>SGBD</b></td><td>Système de Gestion de Base de Données</td><td>Éléments mis à disposition pour <b>manipuler les données</b></td></tr>
+<tr><td><b>SGBDR</b></td><td>SGBD Relationnel</td><td>Oracle, SQL Server (Microsoft), PostgreSQL, MySQL, DB2 (IBM), SQLite…</td></tr>
+<tr><td><b>SQL</b></td><td>Structured Query Language</td><td>Langage de requête structuré</td></tr>
+</table></div>
+<h3>Les 4 sous-langages de SQL</h3>
+<div class="tw"><table class="t">
+<tr><th>Sous-langage</th><th>Rôle</th><th>Instructions</th></tr>
+<tr><td><b>DDL</b> (Data Definition Language) = LDD</td><td><b>Créer, modifier, supprimer les structures</b> de la base</td><td><code>CREATE</code>, <code>ALTER</code>, <code>DROP</code></td></tr>
+<tr><td><b>DML</b> (Data Manipulation Language) = LMD</td><td><b>Manipuler les données</b> contenues dans la base</td><td><code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></td></tr>
+<tr><td><b>DCL</b> (Data Control Language) = LCD</td><td>Gérer la <b>sécurité des accès</b> aux données</td><td><code>GRANT</code>, <code>REVOKE</code></td></tr>
+<tr><td><b>TCL</b> (Transaction Control Language)</td><td>Gérer la <b>validation ou non des mises à jour</b></td><td><code>COMMIT</code>, <code>ROLLBACK</code></td></tr>
+</table></div>
+${tip('<b>D</b>éfinition = structure (DDL) · <b>M</b>anipulation = données (DML) · <b>C</b>ontrôle = droits (DCL) · <b>T</b>ransaction = valider/annuler (TCL).')}
+<h3>Ce que permet le DDL</h3>
+<ul>
+<li>Création, modification et suppression de <b>tables</b></li>
+<li><b>Types de données</b> (en SQLite : <code>INTEGER</code>, <code>REAL</code>, <code>TEXT</code>, <code>BLOB</code>)</li>
+<li><b>Intégrité</b> des données : clés primaires, étrangères, unicité…</li>
+<li>Création d’<b>index</b>, de <b>vues</b></li>
+</ul>
+<h3>Le modèle utilisé dans le cours (et dans cette appli)</h3>
+<p><b>MCD</b> : CLIENT <i>passe</i> COMMANDE (1,n – 1,1) · COMMANDE <i>concerne</i> PRODUIT (1,n – 0,n) avec <b>Qté commandée</b> · COMMANDE <i>correspond</i> à LIVRAISON (1,n – 1,1) · LIVRAISON <i>sort du stock</i> PRODUIT (1,n – 0,n) avec <b>Qté sortie</b>.</p>
+<p><b>MLD</b> : les associations porteuses de données deviennent des tables (<b>Détail commande</b>, <b>Sortie stock</b>) dont la clé primaire est <b>composée</b> des deux clés étrangères.</p>
+<figure>${mld()}<figcaption>Modèle logique de la base d’entraînement (noms sans accents pour faciliter la saisie). Tables bonus pour les exercices : Eleve, Prof, Employe.</figcaption></figure>
+${key('Une <b>clé primaire</b> identifie chaque ligne (unique, jamais NULL). Une <b>clé étrangère</b> reprend la clé primaire d’une autre table : c’est elle qui sert aux <b>jointures</b>.')}` },
+
+  { id: 'select', n: '1', t: 'SELECT : projeter, trier', html: () => `
+<h2>1. Sélection des données (sans jointure)</h2>
+<h3>Structure complète d’une requête</h3>
+${code(`SELECT [DISTINCT] éléments d'extraction
+FROM tables sources
+[WHERE conditions ou restrictions]
+[GROUP BY regroupements]
+[HAVING conditions sur les regroupements]
+[ORDER BY tris]
+[LIMIT nombre [OFFSET nombre]];`)}
+${key('L’<b>ordre des clauses est imposé</b> : SELECT → FROM → WHERE → GROUP BY → HAVING → ORDER BY → LIMIT. Les crochets [ ] = clauses facultatives.')}
+${code(`SELECT Raison_Sociale FROM Client;`, true)}
+<h3>Éléments d’extraction (après SELECT)</h3>
+<ul>
+<li><b>Des colonnes</b> et des <b>champs calculés</b> :</li>
+</ul>
+${code(`SELECT Designation, Prix_Unitaire * 1.2 FROM Produit;`, true)}
+<ul><li><b>*</b> = l’ensemble des colonnes :</li></ul>
+${code(`SELECT * FROM Produit;`, true)}
+<ul><li>Des <b>fonctions d’agrégat</b> : <code>COUNT</code> (comptage), <code>AVG</code> (moyenne), <code>MAX</code>, <code>MIN</code>, <code>SUM</code> (somme)</li></ul>
+${code(`SELECT MAX(Quantite_Stock) FROM Produit;`, true)}
+<h3>Renommer : AS ${memo}</h3>
+<p><code>AS</code> renomme une colonne <b>seulement pour l’affichage</b> du résultat (très utile pour un calcul) :</p>
+${code(`SELECT Designation, Prix_Unitaire * 1.2 AS Prix_TTC FROM Produit;`, true)}
+<p>On peut aussi donner un <b>alias à une table</b> : <code>FROM Produit p</code> puis <code>p.Designation</code>.</p>
+<h3>Doublons, tris et limites</h3>
+<ul>
+<li><b>DISTINCT</b> « supprime » les doublons du résultat.</li>
+<li><b>ORDER BY</b> trie : <b>ASC</b> (croissant, <b>par défaut</b>) ou <b>DESC</b> (décroissant). Tri possible sur plusieurs colonnes.</li>
+<li><b>LIMIT</b> limite le nombre de lignes affichées, <b>OFFSET</b> décale le début.</li>
+</ul>
+${code(`SELECT DISTINCT Ville FROM Client;`, true)}
+${code(`-- par ville, puis par raison sociale en cas d'égalité
+SELECT Raison_Sociale, Ville FROM Client
+ORDER BY Ville, Raison_Sociale;`, true)}
+${code(`SELECT * FROM Client LIMIT 3 OFFSET 2;
+-- 3 clients à partir du TROISIÈME (on saute les 2 premiers)`, true)}
+${trap('<code>LIMIT 10 OFFSET 2</code> = 10 lignes <b>à partir de la 3ᵉ</b> (OFFSET 2 saute 2 lignes). Et sans ORDER BY, l’ordre des lignes n’est pas garanti : pour « les 3 plus chers », il faut <code>ORDER BY Prix DESC LIMIT 3</code>.')}` },
+
+  { id: 'where', n: '2', t: 'WHERE : conditions', html: () => `
+<h2>Conditions ou restrictions : WHERE</h2>
+<p><b>WHERE</b> ajoute des conditions booléennes : seules les <b>lignes</b> qui respectent les conditions sont sélectionnées.</p>
+<div class="tw"><table class="t">
+<tr><th>Opérateurs</th><th>Sens</th></tr>
+<tr><td><code>=  &lt;  &lt;=  &gt;=  &gt;  &lt;&gt;</code></td><td>Comparaisons (<code>&lt;&gt;</code> ou <code>!=</code> = différent)</td></tr>
+<tr><td><code>BETWEEN a AND b</code></td><td>Appartenance à un intervalle, <b>bornes incluses</b></td></tr>
+<tr><td><code>IN (…)</code> / <code>NOT IN (…)</code></td><td>Appartenance (ou non) à un ensemble de valeurs ou à une sous-requête</td></tr>
+<tr><td><code>LIKE</code> / <code>NOT LIKE</code></td><td>Comparaison de chaînes avec jokers</td></tr>
+<tr><td><code>IS NULL</code> / <code>IS NOT NULL</code></td><td>Valeur non renseignée (ou renseignée)</td></tr>
+<tr><td><code>AND</code>, <code>OR</code>, <code>NOT</code></td><td>Combinaison logique des conditions</td></tr>
+</table></div>
+${code(`SELECT Designation FROM Produit
+WHERE (Prix_Unitaire >= 10 AND Quantite_Stock >= 40);`, true)}
+<h3>BETWEEN</h3>
+${code(`SELECT Num_Commande FROM Commande
+WHERE Date_Commande BETWEEN '2024-02-01' AND '2024-04-30';`, true)}
+<h3>IN / NOT IN</h3>
+${code(`SELECT Raison_Sociale FROM Client
+WHERE Ville IN ('Paris', 'Lyon', 'Marseille');`, true)}
+<p><code>Ville IN ('Paris','Lyon')</code> équivaut à <code>Ville = 'Paris' OR Ville = 'Lyon'</code>.</p>
+<h3>LIKE et les jokers</h3>
+<ul><li><code>%</code> correspond à <b>n’importe quelle chaîne</b> (y compris vide)</li><li><code>_</code> correspond à <b>un et un seul caractère</b></li></ul>
+${code(`SELECT Raison_Sociale FROM Client WHERE Raison_Sociale LIKE '_a%';
+-- 2e lettre = a : Garage Dupont, Café du Port`, true)}
+<div class="tw"><table class="t"><tr><th>Motif</th><th>Signifie</th></tr>
+<tr><td><code>'DE%'</code></td><td>commence par DE</td></tr><tr><td><code>'%son'</code></td><td>se termine par son</td></tr>
+<tr><td><code>'%USB%'</code></td><td>contient USB</td></tr><tr><td><code>'_a%'</code></td><td>2ᵉ caractère = a</td></tr><tr><td><code>'___'</code></td><td>exactement 3 caractères</td></tr></table></div>
+<h3>NULL ${memo}</h3>
+<p>NULL = valeur <b>non définie</b> (non renseignée). <b>0 n’est pas NULL</b>, une chaîne vide non plus. On teste avec <code>IS NULL</code> / <code>IS NOT NULL</code>, <b>jamais avec =</b>.</p>
+${code(`SELECT Raison_Sociale FROM Client WHERE Telephone IS NULL;`, true)}
+<h3>Autres outils du mémo ${memo}</h3>
+<ul>
+<li>Les <b>quotes</b> sont obligatoires autour des <b>chaînes</b> et des <b>dates</b> : <code>WHERE Ville = 'Lyon'</code>.</li>
+<li><code>UPPER(col)</code> / <code>LOWER(col)</code> pour comparer sans se soucier de la casse : <code>WHERE UPPER(Categorie) = 'BUREAU'</code>.</li>
+<li>Commentaires : <code>-- commentaire</code> (tout SGBD).</li>
+</ul>
+${trap('<code>WHERE Telephone = NULL</code> ne renvoie <b>rien</b> (une comparaison avec NULL n’est jamais vraie) : il faut <code>IS NULL</code>.')}
+${trap('<b>AND est prioritaire sur OR</b> : <code>WHERE Ville = \'Lyon\' OR Ville = \'Paris\' AND Telephone IS NULL</code> se lit <code>Lyon OR (Paris AND tél NULL)</code>. Mets des <b>parenthèses</b> !')}` },
+
+  { id: 'group', n: '3', t: 'Agrégats, GROUP BY, HAVING', html: () => `
+<h2>Agrégats, regroupements et leurs restrictions</h2>
+<h3>Les fonctions d’agrégat</h3>
+<div class="tw"><table class="t">
+<tr><th>Fonction</th><th>Renvoie</th></tr>
+<tr><td><code>COUNT(*)</code></td><td>le nombre de <b>lignes</b></td></tr>
+<tr><td><code>COUNT(col)</code></td><td>le nombre de lignes où <b>col n’est pas NULL</b></td></tr>
+<tr><td><code>COUNT(DISTINCT col)</code></td><td>le nombre de valeurs <b>différentes</b></td></tr>
+<tr><td><code>SUM(col)</code></td><td>la <b>somme</b> (à ne pas confondre avec COUNT !)</td></tr>
+<tr><td><code>AVG(col)</code></td><td>la <b>moyenne</b></td></tr>
+<tr><td><code>MIN(col)</code> / <code>MAX(col)</code></td><td>le minimum / maximum</td></tr>
+</table></div>
+${code(`SELECT COUNT(*) AS Nb_Lyonnais FROM Client WHERE Ville = 'Lyon';`, true)}
+${code(`SELECT COUNT(*), COUNT(Telephone) FROM Client;  -- 8 et 6 (2 téléphones NULL)`, true)}
+<h3>GROUP BY et HAVING</h3>
+<ul>
+<li><b>GROUP BY</b> regroupe les lignes ayant la même valeur (utilisé avec les fonctions d’agrégat) → <b>une ligne de résultat par groupe</b>.</li>
+<li><b>HAVING</b> met une condition sur une <b>fonction d’agrégat</b> → filtre les <b>groupes</b>.</li>
+</ul>
+<h3>L’exemple du cours, pas à pas</h3>
+<div id="gbvis" class="card">${gbVisu(0)}</div>
+${key('<b>WHERE</b> filtre les <b>lignes AVANT</b> le regroupement ; <b>HAVING</b> filtre les <b>groupes APRÈS</b>. Ordre d’exécution : FROM → WHERE → GROUP BY → agrégats → HAVING → SELECT → ORDER BY.')}
+<h3>La même chose sur la base d’entraînement</h3>
+${code(`SELECT Num_Produit, SUM(Qte_Commandee)
+FROM Detail_Commande
+WHERE Qte_Commandee >= 5
+GROUP BY Num_Produit
+HAVING SUM(Qte_Commandee) >= 10;`, true)}
+${code(`-- Nombre de professeurs par bureau
+SELECT Bureau, COUNT(*) FROM Prof GROUP BY Bureau;`, true)}
+${code(`-- Bureaux qui accueillent plus de 2 professeurs
+SELECT Bureau FROM Prof GROUP BY Bureau HAVING COUNT(*) > 2;`, true)}
+${trap('Règle du mémo : avec GROUP BY, chaque colonne du SELECT doit être soit <b>dans le GROUP BY</b>, soit <b>dans une fonction d’agrégat</b>. <code>SELECT Ville, Raison_Sociale, COUNT(*) … GROUP BY Ville</code> est faux (Raison_Sociale n’est ni groupée ni agrégée).')}
+${trap('Une condition sur un agrégat ne va <b>jamais dans le WHERE</b> : <code>WHERE SUM(x) > 10</code> est une erreur → <code>HAVING SUM(x) > 10</code>.')}` },
+
+  { id: 'join', n: '4', t: 'Jointures', html: () => `
+<h2>2. Jointures : sélection sur plusieurs tables</h2>
+<p>Dans la clause FROM, on peut effectuer un <b>produit cartésien</b>, une <b>jointure interne</b>, une <b>jointure gauche</b> (ou droite) et une <b>jointure pleine</b>.</p>
+<h3>Visualiseur (exemple des diapos)</h3>
+<p class="small muted">Client : A, B, C. Commande : 1→A, 2→B, 3→B, 4→D (client D inexistant). Clique sur chaque type de jointure.</p>
+<div id="joinvis" class="card">${joinVisu('inner')}</div>
+<h3>Produit cartésien</h3>
+<p>Croisement de 2 tables en affichant <b>toutes les possibilités</b> : nombre de lignes = l₁ × l₂, nombre de colonnes = c₁ + c₂.</p>
+${code(`SELECT Adresse, Num_Commande FROM Client CROSS JOIN Commande;
+-- équivalent :
+SELECT Adresse, Num_Commande FROM Client, Commande;`, true)}
+<h3>Jointure interne (INNER JOIN)</h3>
+<p>Joint 2 tables en <b>établissant une relation</b> entre elles (en général clé étrangère = clé primaire). <code>INNER</code> est facultatif : <code>JOIN</code> seul = jointure interne.</p>
+${code(`SELECT Adresse, Num_Commande
+FROM Client INNER JOIN Commande
+  ON Client.Code_Client = Commande.Code_Client;`, true)}
+<h4>Équivalence entre INNER JOIN et WHERE</h4>
+<p>La jointure interne est équivalente à une <b>restriction</b> sur le produit cartésien :</p>
+${code(`SELECT Adresse, Num_Commande
+FROM Client, Commande
+WHERE Client.Code_Client = Commande.Code_Client;`, true)}
+<h4>USING : quand les colonnes portent le même nom</h4>
+${code(`SELECT Adresse, Num_Commande
+FROM Client JOIN Commande USING (Code_Client);`, true)}
+<p>${memo} <code>NATURAL JOIN</code> joint automatiquement sur <b>toutes</b> les colonnes de même nom.</p>
+<h3>Jointure gauche (LEFT JOIN)</h3>
+<p>Joint 2 tables en prenant la table de <b>gauche complète</b> ; les colonnes de droite sans correspondance valent <b>NULL</b>. ${memo} <code>RIGHT JOIN</code> fait l’inverse (table de droite complète). On peut écrire <code>LEFT OUTER JOIN</code>.</p>
+${code(`SELECT Raison_Sociale, Num_Commande
+FROM Client LEFT JOIN Commande
+  ON Client.Code_Client = Commande.Code_Client;`, true)}
+<h3>Jointure pleine (FULL JOIN)</h3>
+<p>Joint 2 tables en prenant les <b>deux tables complètes</b>. USING est possible aussi.</p>
+${code(`SELECT Raison_Sociale, Num_Commande
+FROM Client FULL JOIN Commande
+  ON Client.Code_Client = Commande.Code_Client;`, true)}
+<h3>La « négation » : ce qui n’a PAS de correspondance</h3>
+<p>En ajoutant une restriction sur les colonnes vides (NULL), on fait une <b>soustraction</b> :</p>
+${code(`SELECT Raison_Sociale
+FROM Client LEFT JOIN Commande
+  ON Client.Code_Client = Commande.Code_Client
+WHERE Commande.Code_Client IS NULL;`, true)}
+<p>Même résultat avec <b>NOT IN</b> et une sous-requête :</p>
+${code(`SELECT Raison_Sociale FROM Client
+WHERE Code_Client NOT IN (SELECT Code_Client FROM Commande);`, true)}
+<h3>Jointure sur 3 tables</h3>
+${code(`SELECT DISTINCT c.Raison_Sociale
+FROM Client c
+  JOIN Commande co ON c.Code_Client = co.Code_Client
+  JOIN Detail_Commande d ON co.Num_Commande = d.Num_Commande
+  JOIN Produit p ON d.Num_Produit = p.Num_Produit
+WHERE p.Designation = 'Calculatrice';`, true)}
+<h3>Auto-jointure ${memo}</h3>
+<p>On joint une table <b>avec elle-même</b> : il faut <b>obligatoirement un alias</b> pour distinguer les deux occurrences.</p>
+${code(`SELECT e.Nom AS Employe, c.Nom AS Chef
+FROM Employe e JOIN Employe c ON e.Num_Chef = c.Num_Empl;`, true)}
+${key('Mémo : une jointure = un <b>produit cartésien suivi d’une sélection</b> selon le critère de jointure (le plus souvent une <b>équi-jointure</b> « = »). Toujours <b>une condition de jointure par table ajoutée</b> (n tables → n − 1 conditions).')}
+${trap('Oublier la condition de jointure (<code>FROM Client, Commande</code> sans WHERE) → <b>produit cartésien</b> : 8 × 10 = 80 lignes au lieu de 10 !')}
+${trap('Une colonne présente dans les deux tables (<code>Code_Client</code>) doit être <b>préfixée</b> : <code>Client.Code_Client</code>, sinon erreur « ambiguous column ».')}` },
+
+  { id: 'set', n: '5', t: 'Opérations ensemblistes', html: () => `
+<h2>3. Opérations ensemblistes</h2>
+<p>SQL propose les opérateurs ensemblistes classiques <b>entre 2 requêtes</b> :</p>
+<div class="tw"><table class="t">
+<tr><th>Opération</th><th>Mot-clé</th><th>Résultat</th></tr>
+<tr><td>Intersection</td><td><code>INTERSECT</code></td><td>A ∩ B : lignes présentes dans les deux</td></tr>
+<tr><td>Union</td><td><code>UNION</code></td><td>A ∪ B : toutes les lignes, <b>doublons éliminés</b></td></tr>
+<tr><td>Union complète</td><td><code>UNION ALL</code></td><td>toutes les lignes, <b>doublons conservés</b></td></tr>
+<tr><td>Différence</td><td><code>EXCEPT</code> (<code>MINUS</code> en Oracle)</td><td>A − B : lignes de A absentes de B</td></tr>
+</table></div>
+<div id="vennvis" class="card">${vennVisu('union')}</div>
+<h3>Exemples du mémo</h3>
+${code(`-- Villes où habitent à la fois des élèves et des professeurs
+SELECT DISTINCT Ville FROM Eleve
+INTERSECT
+SELECT DISTINCT Ville FROM Prof;`, true)}
+${code(`-- Villes où habitent seulement des élèves (pas de professeur)
+SELECT Ville FROM Eleve
+EXCEPT
+SELECT Ville FROM Prof;`, true)}
+${key('Les deux requêtes doivent avoir le <b>même nombre de colonnes</b>, de <b>types compatibles</b>, dans le <b>même ordre</b>. Mémo : A ∪ B = A + B − A ∩ B.')}
+${trap('<code>A EXCEPT B</code> ≠ <code>B EXCEPT A</code> : l’ordre compte (c’est une soustraction). <code>MINUS</code> n’existe pas en SQLite/PostgreSQL : on écrit <code>EXCEPT</code>.')}
+${tip('Une différence peut aussi s’écrire avec <code>NOT IN</code> ou <code>LEFT JOIN … IS NULL</code>, et une intersection avec <code>IN</code>.')}` },
+
+  { id: 'sub', n: '6', t: 'Sous-requêtes', html: () => `
+<h2>Sous-requêtes ${memo}</h2>
+<p>Le critère d’une clause WHERE (ou HAVING) peut être <b>le résultat d’un SELECT</b>, écrit entre parenthèses.</p>
+<h3>Sous-requête qui renvoie UNE valeur</h3>
+<p>Avec un opérateur classique (=, &lt;, &gt;…), la sous-requête doit ramener <b>une seule ligne et une seule colonne</b>.</p>
+${code(`-- Produits plus chers que le prix moyen
+SELECT Designation, Prix_Unitaire FROM Produit
+WHERE Prix_Unitaire > (SELECT AVG(Prix_Unitaire) FROM Produit);`, true)}
+<h3>IN / NOT IN : la sous-requête renvoie une liste</h3>
+${code(`SELECT Designation FROM Produit
+WHERE Num_Produit IN (SELECT Num_Produit FROM Detail_Commande WHERE Num_Commande = 105);`, true)}
+<h3>EXISTS / NOT EXISTS</h3>
+<p><code>EXISTS (sous-requête)</code> est <b>vrai si la sous-requête renvoie au moins une ligne</b> (même remplie de NULL), faux sinon. <code>NOT EXISTS</code> teste l’absence de données. La sous-requête utilise en général une colonne de la requête principale (sous-requête <b>corrélée</b>).</p>
+${code(`SELECT Raison_Sociale FROM Client c
+WHERE EXISTS (SELECT * FROM Commande co WHERE co.Code_Client = c.Code_Client);`, true)}
+${code(`SELECT Raison_Sociale FROM Client c
+WHERE NOT EXISTS (SELECT * FROM Commande co WHERE co.Code_Client = c.Code_Client);`, true)}
+<h3>ANY et ALL</h3>
+<div class="tw"><table class="t">
+<tr><th>Mot-clé</th><th>La comparaison est vraie si…</th><th>Ensemble vide</th><th>Équivalent</th></tr>
+<tr><td><code>&gt; ANY (…)</code></td><td>vraie pour <b>au moins un</b> élément</td><td>faux</td><td><code>&gt; (SELECT MIN …)</code></td></tr>
+<tr><td><code>&gt; ALL (…)</code></td><td>vraie pour <b>tous</b> les éléments</td><td>vrai</td><td><code>&gt; (SELECT MAX …)</code></td></tr>
+</table></div>
+${code(`-- Mémo (syntaxe Oracle / PostgreSQL) : le bureau qui accueille le plus de profs
+SELECT Bureau FROM Prof
+GROUP BY Bureau
+HAVING COUNT(*) >= ALL (SELECT COUNT(*) FROM Prof GROUP BY Bureau);`)}
+<p>SQLite ne connaît pas ANY/ALL ; l’équivalent exécutable dans le labo :</p>
+${code(`SELECT Bureau FROM Prof
+GROUP BY Bureau
+HAVING COUNT(*) = (SELECT MAX(nb) FROM (SELECT COUNT(*) AS nb FROM Prof GROUP BY Bureau));`, true)}
+${tip('<code>= ANY (…)</code> est équivalent à <code>IN (…)</code>. <code>&lt;&gt; ALL (…)</code> est équivalent à <code>NOT IN (…)</code>.')}
+${trap('<code>WHERE Prix = (SELECT Prix FROM Produit)</code> plante si la sous-requête renvoie plusieurs lignes : utilise <code>IN</code>, <code>ANY</code>/<code>ALL</code> ou un agrégat (MAX, MIN, AVG).')}` },
+
+  { id: 'ddl', n: '7', t: 'Créer & modifier (DDL/DML)', html: () => `
+<h2>Créer et modifier : tables, données, vues, droits ${memo}</h2>
+<h3>CREATE TABLE et contraintes</h3>
+${code(`CREATE TABLE Fournisseur (
+  Num_Fournisseur INTEGER PRIMARY KEY,
+  Nom VARCHAR(50) NOT NULL,
+  Ville VARCHAR(30),
+  Email VARCHAR(80) UNIQUE,
+  Note INTEGER CHECK (Note BETWEEN 0 AND 20)
+);`, true)}
+<div class="tw"><table class="t">
+<tr><th>Contrainte</th><th>Rôle</th></tr>
+<tr><td><code>PRIMARY KEY (col1, col2…)</code></td><td>Clé primaire : identifie la ligne ; <b>aucune valeur NULL</b>, pas de doublon. Composée si plusieurs colonnes.</td></tr>
+<tr><td><code>FOREIGN KEY (col) REFERENCES table (col')</code></td><td>Clé étrangère : la valeur doit exister dans la table référencée (si col' omise → sa clé primaire)</td></tr>
+<tr><td><code>UNIQUE (col…)</code></td><td>Interdit deux valeurs identiques</td></tr>
+<tr><td><code>NOT NULL</code></td><td>Valeur obligatoire</td></tr>
+<tr><td><code>CHECK (condition)</code></td><td>Condition à respecter</td></tr>
+<tr><td><code>CONSTRAINT nom …</code></td><td>Donne un nom à une contrainte</td></tr>
+</table></div>
+${code(`CREATE TABLE Detail_Commande (
+  Num_Commande INTEGER,
+  Num_Produit INTEGER,
+  Qte_Commandee INTEGER,
+  CONSTRAINT pk_detail PRIMARY KEY (Num_Commande, Num_Produit),
+  CONSTRAINT fk_cmd FOREIGN KEY (Num_Commande) REFERENCES Commande (Num_Commande),
+  CONSTRAINT fk_prod FOREIGN KEY (Num_Produit) REFERENCES Produit (Num_Produit)
+);`)}
+<h3>Principaux types de données</h3>
+<div class="tw"><table class="t">
+<tr><th>Type</th><th>Contenu</th></tr>
+<tr><td><code>CHAR(n)</code> / <code>VARCHAR(n)</code></td><td>Chaîne de longueur <b>fixe</b> / <b>variable</b> (max n)</td></tr>
+<tr><td><code>SMALLINT</code>, <code>INTEGER</code></td><td>Entiers (16 / 32 bits)</td></tr>
+<tr><td><code>NUMBER(n,d)</code></td><td>Décimal de n chiffres dont d après la virgule : NUMBER(7,2) = 5 avant, 2 après</td></tr>
+<tr><td><code>REAL</code>, <code>FLOAT</code></td><td>Nombres à virgule flottante</td></tr>
+<tr><td><code>DATE</code>, <code>TIME</code>, <code>TIMESTAMP</code></td><td>Date / heure / date + heure précise</td></tr>
+<tr><td>SQLite : <code>INTEGER</code>, <code>REAL</code>, <code>TEXT</code>, <code>BLOB</code></td><td>Les 4 types cités dans le cours</td></tr>
+</table></div>
+<h3>ALTER TABLE / DROP TABLE</h3>
+${code(`ALTER TABLE Client ADD COLUMN Email TEXT;          -- ajouter une colonne
+ALTER TABLE Client MODIFY (Ville VARCHAR(60));     -- modifier (Oracle/MySQL)
+ALTER TABLE Client DROP COLUMN Email;              -- supprimer une colonne
+ALTER TABLE Client ADD CONSTRAINT u_tel UNIQUE (Telephone);
+DROP TABLE Fournisseur;                            -- supprime structure + données`)}
+<h3>INSERT, UPDATE, DELETE (DML)</h3>
+${code(`INSERT INTO Client (Code_Client, Raison_Sociale, Ville)
+VALUES ('C09', 'Studio Lumière', 'Bordeaux');`, true)}
+<ul><li>Avec la liste de colonnes : les colonnes non citées valent <b>NULL</b>.</li><li>Sans liste : il faut donner <b>toutes</b> les valeurs <b>dans l’ordre de création</b> de la table.</li><li><code>INSERT INTO t SELECT …</code> insère le résultat d’une requête.</li></ul>
+${code(`UPDATE Produit SET Prix_Unitaire = Prix_Unitaire * 1.1
+WHERE Categorie = 'Papier';`, true)}
+${code(`DELETE FROM Detail_Commande WHERE Num_Commande = 110;`, true)}
+${trap('<b>UPDATE ou DELETE sans WHERE</b> → <b>toutes les lignes</b> sont modifiées / supprimées ! <code>DELETE FROM t</code> vide la table (la structure reste) ; <code>DROP TABLE t</code> supprime la table elle-même. <code>TRUNCATE TABLE t</code> vide la table et libère la place.')}
+<h3>Vues</h3>
+<p>Une vue est une <b>requête stockée</b> qu’on interroge comme une table (table virtuelle). On ne peut pas modifier le schéma d’une vue : il faut la <b>supprimer et la recréer</b>. <code>DROP VIEW</code> ne touche pas aux données.</p>
+${code(`CREATE VIEW Profs_Par_Bureau AS
+  SELECT Bureau, COUNT(*) AS Nb FROM Prof GROUP BY Bureau;
+SELECT * FROM Profs_Par_Bureau;`, true)}
+<h3>Droits (DCL) et transactions (TCL)</h3>
+${code(`GRANT SELECT, UPDATE ON Client TO dupont WITH GRANT OPTION;
+REVOKE UPDATE ON Client FROM dupont;
+BEGIN TRANSACTION;
+  UPDATE Produit SET Quantite_Stock = Quantite_Stock - 5 WHERE Num_Produit = 1;
+COMMIT;      -- valide   (ROLLBACK annule)`)}
+<p><code>WITH GRANT OPTION</code> : l’utilisateur pourra à son tour <b>transmettre</b> ces droits.</p>
+<h3>CASE WHEN (colonne conditionnelle)</h3>
+${code(`SELECT Designation,
+  CASE WHEN Quantite_Stock = 0 THEN 'Rupture'
+       WHEN Quantite_Stock < 50 THEN 'Stock faible'
+       ELSE 'OK' END AS Etat_Stock
+FROM Produit;`, true)}
+<p class="small muted">Le mémo B présente aussi des notions Oracle avancées (PL/SQL, triggers, relationnel-objet) : elles ne figurent pas dans les diapos du cours.</p>` }
+];
+
+/* =========================================================
+   Exercices (corrigés automatiquement)
+   ========================================================= */
+const EX_CH = { select: 'SELECT, tris, limites', where: 'WHERE', group: 'Agrégats & GROUP BY', join: 'Jointures', set: 'Ensemblistes', sub: 'Sous-requêtes', ddl: 'Modifier les données' };
+const EXOS = [
+  { id: 's1', ch: 'select', lv: 1, q: 'Afficher la raison sociale et la ville de tous les clients.', sol: `SELECT Raison_Sociale, Ville FROM Client;`, hint: 'SELECT colonne1, colonne2 FROM table;' },
+  { id: 's2', ch: 'select', lv: 1, q: 'Afficher toutes les colonnes de la table Produit.', sol: `SELECT * FROM Produit;`, hint: 'L’étoile * désigne toutes les colonnes.' },
+  { id: 's3', ch: 'select', lv: 1, q: 'Afficher la désignation et le prix TTC (prix unitaire × 1,2) de chaque produit, la 2ᵉ colonne étant nommée Prix_TTC.', sol: `SELECT Designation, Prix_Unitaire * 1.2 AS Prix_TTC FROM Produit;`, hint: 'Un champ calculé se renomme avec AS.' },
+  { id: 's4', ch: 'select', lv: 1, q: 'Afficher la liste des villes où se trouvent des clients, sans doublons.', sol: `SELECT DISTINCT Ville FROM Client;`, hint: 'DISTINCT juste après SELECT.' },
+  { id: 's5', ch: 'select', lv: 1, q: 'Afficher la désignation et le prix des produits, du plus cher au moins cher.', sol: `SELECT Designation, Prix_Unitaire FROM Produit ORDER BY Prix_Unitaire DESC;`, ordered: true, hint: 'ORDER BY … DESC.' },
+  { id: 's6', ch: 'select', lv: 2, q: 'Afficher la désignation et le prix des 3 produits les plus chers.', sol: `SELECT Designation, Prix_Unitaire FROM Produit ORDER BY Prix_Unitaire DESC LIMIT 3;`, ordered: true, hint: 'Trier puis LIMIT.' },
+  { id: 's7', ch: 'select', lv: 2, q: 'Afficher la raison sociale et la ville des clients, triés par ville puis par raison sociale.', sol: `SELECT Raison_Sociale, Ville FROM Client ORDER BY Ville, Raison_Sociale;`, ordered: true, hint: 'ORDER BY col1, col2.' },
+  { id: 's8', ch: 'select', lv: 2, q: 'Afficher les désignations des produits par ordre alphabétique, mais seulement la 4ᵉ, la 5ᵉ et la 6ᵉ.', sol: `SELECT Designation FROM Produit ORDER BY Designation LIMIT 3 OFFSET 3;`, ordered: true, hint: 'LIMIT 3 OFFSET 3 (on saute les 3 premières).' },
+  { id: 'w1', ch: 'where', lv: 1, q: 'Désignation des produits coûtant au moins 10 € ET ayant au moins 40 unités en stock.', sol: `SELECT Designation FROM Produit WHERE Prix_Unitaire >= 10 AND Quantite_Stock >= 40;`, hint: 'Deux conditions reliées par AND.' },
+  { id: 'w2', ch: 'where', lv: 1, q: 'Numéro et date des commandes passées entre le 1ᵉʳ février et le 30 avril 2024 inclus (dates au format \'AAAA-MM-JJ\').', sol: `SELECT Num_Commande, Date_Commande FROM Commande WHERE Date_Commande BETWEEN '2024-02-01' AND '2024-04-30';`, hint: 'BETWEEN \'2024-02-01\' AND \'2024-04-30\'.' },
+  { id: 'w3', ch: 'where', lv: 1, q: 'Raison sociale des clients situés à Paris, Lyon ou Marseille.', sol: `SELECT Raison_Sociale FROM Client WHERE Ville IN ('Paris', 'Lyon', 'Marseille');`, hint: 'IN (\'…\', \'…\', \'…\').' },
+  { id: 'w4', ch: 'where', lv: 2, q: 'Raison sociale des clients dont la 2ᵉ lettre est un « a ».', sol: `SELECT Raison_Sociale FROM Client WHERE Raison_Sociale LIKE '_a%';`, hint: '_ = un caractère, % = n’importe quelle suite.' },
+  { id: 'w5', ch: 'where', lv: 1, q: 'Raison sociale des clients dont le téléphone n’est pas renseigné.', sol: `SELECT Raison_Sociale FROM Client WHERE Telephone IS NULL;`, hint: 'IS NULL, pas = NULL.' },
+  { id: 'w6', ch: 'where', lv: 2, q: 'Désignation des produits dont le stock est inférieur à 50 OU dont la désignation contient « Cahier ».', sol: `SELECT Designation FROM Produit WHERE Quantite_Stock < 50 OR Designation LIKE '%Cahier%';`, hint: 'OR et LIKE \'%…%\'.' },
+  { id: 'w7', ch: 'where', lv: 2, q: 'Désignation et catégorie des produits qui ne sont ni de la catégorie Bureau ni de la catégorie Papier.', sol: `SELECT Designation, Categorie FROM Produit WHERE Categorie NOT IN ('Bureau', 'Papier');`, hint: 'NOT IN.' },
+  { id: 'w8', ch: 'where', lv: 2, q: 'Désignation et prix des produits coûtant entre 5 et 20 € (bornes incluses), triés par prix croissant.', sol: `SELECT Designation, Prix_Unitaire FROM Produit WHERE Prix_Unitaire BETWEEN 5 AND 20 ORDER BY Prix_Unitaire;`, ordered: true, hint: 'BETWEEN puis ORDER BY.' },
+  { id: 'g1', ch: 'group', lv: 1, q: 'Afficher le nombre total de clients.', sol: `SELECT COUNT(*) FROM Client;`, hint: 'COUNT(*).' },
+  { id: 'g2', ch: 'group', lv: 1, q: 'Afficher le prix unitaire moyen des produits.', sol: `SELECT AVG(Prix_Unitaire) FROM Produit;`, hint: 'AVG.' },
+  { id: 'g3', ch: 'group', lv: 1, q: 'Afficher la plus grande quantité en stock parmi les produits.', sol: `SELECT MAX(Quantite_Stock) FROM Produit;`, hint: 'MAX.' },
+  { id: 'g4', ch: 'group', lv: 1, q: 'Afficher le nombre de clients dont le téléphone est renseigné (une seule fonction, sans WHERE).', sol: `SELECT COUNT(Telephone) FROM Client;`, hint: 'COUNT(colonne) ignore les NULL.' },
+  { id: 'g5', ch: 'group', lv: 2, q: 'Pour chaque client ayant commandé : son code et son nombre de commandes.', sol: `SELECT Code_Client, COUNT(*) FROM Commande GROUP BY Code_Client;`, hint: 'GROUP BY Code_Client dans la table Commande.' },
+  { id: 'g6', ch: 'group', lv: 2, q: 'Pour chaque produit commandé : son numéro et la quantité totale commandée.', sol: `SELECT Num_Produit, SUM(Qte_Commandee) FROM Detail_Commande GROUP BY Num_Produit;`, hint: 'SUM + GROUP BY dans Detail_Commande.' },
+  { id: 'g7', ch: 'group', lv: 3, q: 'Exemple du cours : en ne gardant que les lignes de commande d’au moins 5 unités, afficher les produits (numéro, total) dont la quantité totale atteint au moins 10.', sol: `SELECT Num_Produit, SUM(Qte_Commandee) FROM Detail_Commande WHERE Qte_Commandee >= 5 GROUP BY Num_Produit HAVING SUM(Qte_Commandee) >= 10;`, hint: 'WHERE sur les lignes, HAVING sur les groupes.' },
+  { id: 'g8', ch: 'group', lv: 2, q: 'Afficher chaque catégorie avec son nombre de produits, uniquement pour les catégories qui en comptent strictement plus de 3.', sol: `SELECT Categorie, COUNT(*) FROM Produit GROUP BY Categorie HAVING COUNT(*) > 3;`, hint: 'HAVING COUNT(*) > 3.' },
+  { id: 'g9', ch: 'group', lv: 2, q: 'Afficher les bureaux qui accueillent plus de 2 professeurs.', sol: `SELECT Bureau FROM Prof GROUP BY Bureau HAVING COUNT(*) > 2;`, hint: 'GROUP BY Bureau HAVING …' },
+  { id: 'g10', ch: 'group', lv: 2, q: 'Afficher le salaire moyen de chaque fonction (fonction, moyenne).', sol: `SELECT Fonction, AVG(Salaire) FROM Employe GROUP BY Fonction;`, hint: 'AVG + GROUP BY Fonction.' },
+  { id: 'j1', ch: 'join', lv: 1, q: 'Pour chaque commande : son numéro, sa date et la raison sociale du client.', sol: `SELECT Num_Commande, Date_Commande, Raison_Sociale FROM Commande JOIN Client ON Commande.Code_Client = Client.Code_Client;`, hint: 'Commande JOIN Client ON … = …' },
+  { id: 'j2', ch: 'join', lv: 1, q: 'Désignation des produits de la commande 105.', sol: `SELECT Designation FROM Produit JOIN Detail_Commande ON Produit.Num_Produit = Detail_Commande.Num_Produit WHERE Num_Commande = 105;`, hint: 'Jointure Produit / Detail_Commande + critère de sélection.' },
+  { id: 'j3', ch: 'join', lv: 2, q: 'Raison sociale de TOUS les clients avec le numéro de leurs commandes, y compris les clients qui n’ont jamais commandé.', sol: `SELECT Raison_Sociale, Num_Commande FROM Client LEFT JOIN Commande ON Client.Code_Client = Commande.Code_Client;`, hint: 'LEFT JOIN avec Client à gauche.' },
+  { id: 'j4', ch: 'join', lv: 2, q: 'Raison sociale des clients n’ayant passé aucune commande.', sol: `SELECT Raison_Sociale FROM Client LEFT JOIN Commande ON Client.Code_Client = Commande.Code_Client WHERE Commande.Code_Client IS NULL;`, hint: 'LEFT JOIN … WHERE … IS NULL (ou NOT IN).' },
+  { id: 'j5', ch: 'join', lv: 2, q: 'Désignation des produits qui n’ont jamais été commandés.', sol: `SELECT Designation FROM Produit WHERE Num_Produit NOT IN (SELECT Num_Produit FROM Detail_Commande);`, hint: 'NOT IN ou LEFT JOIN … IS NULL.' },
+  { id: 'j6', ch: 'join', lv: 2, q: 'Numéros des commandes qui n’ont pas encore été livrées.', sol: `SELECT Commande.Num_Commande FROM Commande LEFT JOIN Livraison ON Commande.Num_Commande = Livraison.Num_Commande WHERE Livraison.Num_Livraison IS NULL;`, hint: 'Commande LEFT JOIN Livraison.' },
+  { id: 'j7', ch: 'join', lv: 3, q: 'Pour chaque commande : son numéro et son montant total (somme des quantités × prix unitaires).', sol: `SELECT d.Num_Commande, SUM(d.Qte_Commandee * p.Prix_Unitaire) FROM Detail_Commande d JOIN Produit p ON d.Num_Produit = p.Num_Produit GROUP BY d.Num_Commande;`, hint: 'Jointure Detail_Commande / Produit, puis SUM(qte * prix) GROUP BY commande.' },
+  { id: 'j8', ch: 'join', lv: 3, q: 'Chiffre d’affaires de chaque client (raison sociale, CA), du plus grand au plus petit.', sol: `SELECT c.Raison_Sociale, SUM(d.Qte_Commandee * p.Prix_Unitaire) AS CA FROM Client c JOIN Commande co ON c.Code_Client = co.Code_Client JOIN Detail_Commande d ON co.Num_Commande = d.Num_Commande JOIN Produit p ON d.Num_Produit = p.Num_Produit GROUP BY c.Code_Client, c.Raison_Sociale ORDER BY CA DESC;`, ordered: true, hint: '4 tables, 3 conditions de jointure, GROUP BY client, ORDER BY … DESC.' },
+  { id: 'j9', ch: 'join', lv: 3, q: 'Nom de chaque employé avec le nom de son chef (auto-jointure). Le directeur, sans chef, n’apparaît pas.', sol: `SELECT e.Nom, c.Nom FROM Employe e JOIN Employe c ON e.Num_Chef = c.Num_Empl;`, hint: 'Employe e JOIN Employe c ON e.Num_Chef = c.Num_Empl.' },
+  { id: 'j10', ch: 'join', lv: 3, q: 'Raison sociale (sans doublons) des clients ayant commandé au moins une « Calculatrice ».', sol: `SELECT DISTINCT c.Raison_Sociale FROM Client c JOIN Commande co ON c.Code_Client = co.Code_Client JOIN Detail_Commande d ON co.Num_Commande = d.Num_Commande JOIN Produit p ON d.Num_Produit = p.Num_Produit WHERE p.Designation = 'Calculatrice';`, hint: 'Client → Commande → Detail_Commande → Produit.' },
+  { id: 'j11', ch: 'join', lv: 1, q: 'Afficher le nombre de lignes du produit cartésien Client × Commande.', sol: `SELECT COUNT(*) FROM Client CROSS JOIN Commande;`, hint: 'COUNT(*) sur FROM Client, Commande.' },
+  { id: 't1', ch: 'set', lv: 1, q: 'Villes où habitent des élèves OU des professeurs (sans doublons).', sol: `SELECT Ville FROM Eleve UNION SELECT Ville FROM Prof;`, hint: 'UNION.' },
+  { id: 't2', ch: 'set', lv: 1, q: 'Villes où habitent à la fois des élèves ET des professeurs.', sol: `SELECT Ville FROM Eleve INTERSECT SELECT Ville FROM Prof;`, hint: 'INTERSECT.' },
+  { id: 't3', ch: 'set', lv: 1, q: 'Villes où habitent des élèves mais aucun professeur.', sol: `SELECT Ville FROM Eleve EXCEPT SELECT Ville FROM Prof;`, hint: 'EXCEPT (MINUS en Oracle).' },
+  { id: 't4', ch: 'set', lv: 2, q: 'Liste de toutes les villes des élèves suivies de celles des professeurs, doublons compris.', sol: `SELECT Ville FROM Eleve UNION ALL SELECT Ville FROM Prof;`, hint: 'UNION ALL conserve les doublons.' },
+  { id: 't5', ch: 'set', lv: 3, q: 'Codes des clients qui ont passé au moins une commande mais dont AUCUNE commande n’a été livrée.', sol: `SELECT Code_Client FROM Commande EXCEPT SELECT Code_Client FROM Commande JOIN Livraison ON Commande.Num_Commande = Livraison.Num_Commande;`, hint: '(clients ayant commandé) EXCEPT (clients ayant une commande livrée).' },
+  { id: 'q1', ch: 'sub', lv: 2, q: 'Désignation et prix des produits plus chers que le prix moyen.', sol: `SELECT Designation, Prix_Unitaire FROM Produit WHERE Prix_Unitaire > (SELECT AVG(Prix_Unitaire) FROM Produit);`, hint: '> (SELECT AVG(…) FROM …).' },
+  { id: 'q2', ch: 'sub', lv: 2, q: 'Raison sociale des clients ayant passé au moins une commande (avec EXISTS ou IN).', sol: `SELECT Raison_Sociale FROM Client c WHERE EXISTS (SELECT * FROM Commande co WHERE co.Code_Client = c.Code_Client);`, hint: 'WHERE EXISTS (SELECT * FROM Commande WHERE … = …).' },
+  { id: 'q3', ch: 'sub', lv: 3, q: 'Nom et salaire des employés qui gagnent plus que TOUS les programmeurs. (SQLite ne connaît pas ALL : passe par MAX.)', sol: `SELECT Nom, Salaire FROM Employe WHERE Salaire > (SELECT MAX(Salaire) FROM Employe WHERE Fonction = 'Programmeur');`, hint: '> ALL (…) équivaut à > (SELECT MAX(…) …).' },
+  { id: 'q4', ch: 'sub', lv: 2, q: 'Nom et salaire de l’employé le mieux payé.', sol: `SELECT Nom, Salaire FROM Employe WHERE Salaire = (SELECT MAX(Salaire) FROM Employe);`, hint: '= (SELECT MAX(…)).' },
+  { id: 'q5', ch: 'sub', lv: 3, q: 'Le bureau qui accueille le plus de professeurs.', sol: `SELECT Bureau FROM Prof GROUP BY Bureau HAVING COUNT(*) = (SELECT MAX(nb) FROM (SELECT COUNT(*) AS nb FROM Prof GROUP BY Bureau));`, hint: 'HAVING COUNT(*) = (SELECT MAX(nb) FROM (SELECT COUNT(*) AS nb … GROUP BY Bureau)).' },
+  { id: 'q6', ch: 'sub', lv: 3, q: 'Désignation des produits commandés par le client C01 (sous-requêtes IN imbriquées).', sol: `SELECT Designation FROM Produit WHERE Num_Produit IN (SELECT Num_Produit FROM Detail_Commande WHERE Num_Commande IN (SELECT Num_Commande FROM Commande WHERE Code_Client = 'C01'));`, hint: 'Produit ← Detail_Commande ← Commande.' },
+  { id: 'd1', ch: 'ddl', lv: 1, q: 'Ajouter le client C09 « Studio Lumière », situé « 3 quai des Chartrons » à Bordeaux, sans téléphone.', sol: `INSERT INTO Client VALUES ('C09', 'Studio Lumière', '3 quai des Chartrons', 'Bordeaux', NULL);`, check: `SELECT * FROM Client ORDER BY Code_Client;`, hint: 'INSERT INTO Client VALUES (…) ou avec la liste des colonnes.' },
+  { id: 'd2', ch: 'ddl', lv: 1, q: 'Le client C07 déménage à Rennes : mettre sa ville à jour.', sol: `UPDATE Client SET Ville = 'Rennes' WHERE Code_Client = 'C07';`, check: `SELECT Code_Client, Ville FROM Client ORDER BY Code_Client;`, hint: 'UPDATE … SET … WHERE … (sans WHERE, tous les clients déménagent !).' },
+  { id: 'd3', ch: 'ddl', lv: 2, q: 'Augmenter de 10 % le prix unitaire des produits de la catégorie Papier.', sol: `UPDATE Produit SET Prix_Unitaire = Prix_Unitaire * 1.1 WHERE Categorie = 'Papier';`, check: `SELECT Num_Produit, ROUND(Prix_Unitaire, 2) FROM Produit ORDER BY Num_Produit;`, hint: 'SET Prix_Unitaire = Prix_Unitaire * 1.1.' },
+  { id: 'd4', ch: 'ddl', lv: 1, q: 'Supprimer toutes les lignes de détail de la commande 110.', sol: `DELETE FROM Detail_Commande WHERE Num_Commande = 110;`, check: `SELECT Num_Commande, COUNT(*) FROM Detail_Commande GROUP BY Num_Commande ORDER BY Num_Commande;`, hint: 'DELETE FROM … WHERE …' },
+  { id: 'd5', ch: 'ddl', lv: 2, q: 'Créer la table Fournisseur : Num_Fournisseur (entier, clé primaire), Nom (texte, obligatoire), Ville (texte).', sol: `CREATE TABLE Fournisseur (Num_Fournisseur INTEGER PRIMARY KEY, Nom TEXT NOT NULL, Ville TEXT);`, check: `SELECT lower(name), pk, CASE WHEN lower(name) = 'nom' THEN "notnull" ELSE 0 END FROM pragma_table_info('Fournisseur') ORDER BY cid;`, hint: 'CREATE TABLE … (col TYPE contrainte, …);' },
+  { id: 'd6', ch: 'ddl', lv: 1, q: 'Ajouter une colonne Email (texte) à la table Client.', sol: `ALTER TABLE Client ADD COLUMN Email TEXT;`, check: `SELECT lower(name) FROM pragma_table_info('Client') ORDER BY cid;`, hint: 'ALTER TABLE … ADD …' },
+  { id: 'd7', ch: 'ddl', lv: 3, q: 'Créer une vue CA_Client donnant, pour chaque client ayant commandé, son code et son chiffre d’affaires.', sol: `CREATE VIEW CA_Client AS SELECT co.Code_Client, SUM(d.Qte_Commandee * p.Prix_Unitaire) AS CA FROM Commande co JOIN Detail_Commande d ON co.Num_Commande = d.Num_Commande JOIN Produit p ON d.Num_Produit = p.Num_Produit GROUP BY co.Code_Client;`, check: `SELECT * FROM CA_Client;`, hint: 'CREATE VIEW nom AS SELECT …' }
+];
+
+/* =========================================================
+   Banque de QCM
+   ========================================================= */
+const QB = [];
+function q(ch, text, opts, exp, codeSql) { QB.push({ id: ch + '-' + QB.filter(x => x.ch === ch).length, ch, text, opts, exp, code: codeSql }); }
+const CH_LABEL = { voc: 'Vocabulaire & modèle', select: 'SELECT, tris, limites', where: 'WHERE', group: 'Agrégats & GROUP BY', join: 'Jointures', set: 'Ensemblistes', sub: 'Sous-requêtes', ddl: 'DDL / DML / droits', lire: 'Lire & corriger' };
+
+q('voc', 'Que signifie SQL ?', ['Structured Query Language', 'Simple Query Logic', 'Standard Question Language', 'System Quality Language'], 'Langage de requête structuré.');
+q('voc', 'Dans une base de données relationnelle (BDR), les liens entre tables se font…', ['Via les données : clés primaires et clés étrangères', 'Par des pointeurs mémoire', 'Par l’ordre des lignes', 'Par des fichiers séparés'], 'Données organisées en tables, liées par clés primaires / étrangères.');
+q('voc', 'Un SGBD, c’est…', ['L’ensemble des éléments mis à disposition pour manipuler les données', 'Une table particulière', 'Un langage de requête', 'Un type de clé'], 'Système de Gestion de Base de Données.');
+q('voc', 'Lequel n’est PAS un SGBDR ?', ['Excel', 'PostgreSQL', 'Oracle', 'SQLite'], 'SGBDR cités : Oracle, SQL Server, PostgreSQL, MySQL, DB2, SQLite.');
+q('voc', 'Le DDL (Data Definition Language) sert à…', ['Créer, modifier ou supprimer les structures de la base', 'Manipuler les données', 'Gérer les droits d’accès', 'Valider les transactions'], 'CREATE, ALTER, DROP.');
+q('voc', 'Le DML (ou LMD) sert à…', ['Manipuler les données contenues dans la base', 'Créer les tables', 'Gérer la sécurité', 'Gérer les transactions'], 'SELECT, INSERT, UPDATE, DELETE.');
+q('voc', 'Le DCL sert à…', ['Gérer la sécurité des accès aux données', 'Créer des index', 'Supprimer des lignes', 'Trier les résultats'], 'GRANT / REVOKE.');
+q('voc', 'Le TCL sert à…', ['Gérer la validation ou non des mises à jour', 'Définir les types', 'Faire des jointures', 'Créer des vues'], 'COMMIT / ROLLBACK.');
+q('voc', 'À quel sous-langage appartient `CREATE TABLE` ?', ['DDL', 'DML', 'DCL', 'TCL'], 'Création de structure → définition.');
+q('voc', 'À quel sous-langage appartient `GRANT` ?', ['DCL', 'DDL', 'DML', 'TCL'], 'Contrôle des droits.');
+q('voc', 'À quel sous-langage appartient `ROLLBACK` ?', ['TCL', 'DCL', 'DML', 'DDL'], 'Annule une transaction.');
+q('voc', 'À quel sous-langage appartient `UPDATE` ?', ['DML', 'DDL', 'DCL', 'TCL'], 'Modifie des données (pas la structure).');
+q('voc', 'Quels sont les 4 types de données SQLite cités dans le cours ?', ['INTEGER, REAL, TEXT, BLOB', 'INT, FLOAT, STRING, DATE', 'NUMBER, CHAR, BOOL, IMAGE', 'SMALLINT, VARCHAR, DATE, TIME'], 'INTEGER, REAL, TEXT, BLOB.');
+q('voc', 'Une clé étrangère est…', ['Une colonne qui reprend la clé primaire d’une autre table', 'Une clé primaire composée', 'Une colonne qui accepte les doublons', 'Un index sur une colonne texte'], 'Elle matérialise le lien entre deux tables.');
+q('voc', 'Dans le MLD du cours, la clé primaire de DÉTAIL COMMANDE est…', ['(N°Commande, N°Produit) : une clé composée', 'N°Commande seul', 'N°Produit seul', 'Qté commandée'], 'L’association porteuse « concerne » devient une table à clé composée des deux clés étrangères.');
+q('voc', 'Dans le MCD, l’association « concerne » porte la Qté commandée. Au MLD elle devient…', ['La table Détail commande', 'Une colonne de Commande', 'Une colonne de Produit', 'Rien, elle disparaît'], 'Association porteuse de données (n,n) → table.');
+
+q('select', 'Quel est l’ordre obligatoire des clauses ?', ['SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY, LIMIT', 'SELECT, WHERE, FROM, ORDER BY, GROUP BY', 'FROM, SELECT, WHERE, HAVING, GROUP BY', 'SELECT, FROM, GROUP BY, WHERE, ORDER BY'], 'C’est la structure donnée par le cours.');
+q('select', 'Que signifie `*` dans `SELECT * FROM Produit` ?', ['Toutes les colonnes', 'Toutes les tables', 'Un produit cartésien', 'Une multiplication'], 'L’ensemble des colonnes.');
+q('select', 'Que fait `DISTINCT` ?', ['Supprime les doublons du résultat', 'Trie le résultat', 'Compte les lignes', 'Supprime les NULL'], 'Si plusieurs lignes sont identiques, une seule est conservée.');
+q('select', 'Sans précision, `ORDER BY Prix` trie…', ['Par ordre croissant (ASC)', 'Par ordre décroissant', 'Au hasard', 'Par ordre d’insertion'], 'ASC est la valeur par défaut.');
+q('select', 'Que renvoie `SELECT * FROM Client LIMIT 10 OFFSET 2` ?', ['10 clients à partir du troisième', '10 clients à partir du deuxième', 'Les clients 2 à 10', '12 clients'], 'OFFSET 2 saute les 2 premières lignes.');
+q('select', 'Que fait `AS` dans `SELECT Prix * 1.2 AS Prix_TTC` ?', ['Renomme la colonne, seulement pour l’affichage', 'Crée une nouvelle colonne dans la table', 'Modifie les prix dans la table', 'Crée une vue'], 'Renommage d’affichage.');
+q('select', 'Lequel n’est PAS une fonction d’agrégat du cours ?', ['MEAN', 'COUNT', 'AVG', 'SUM'], 'Agrégats : COUNT, AVG, MAX, MIN, SUM. La moyenne s’écrit AVG.');
+q('select', '`ORDER BY Nom, Prenom` trie…', ['Par nom, puis par prénom pour les noms identiques', 'Par prénom, puis par nom', 'Uniquement par nom', 'C’est une erreur de syntaxe'], 'Tri sur plusieurs colonnes, dans l’ordre cité.');
+q('select', 'Pour afficher les 3 produits les plus chers :', ['`ORDER BY Prix DESC LIMIT 3`', '`ORDER BY Prix LIMIT 3`', '`LIMIT 3 ORDER BY Prix DESC`', '`WHERE Prix = MAX LIMIT 3`'], 'On trie en décroissant puis on limite (LIMIT en dernier).');
+q('select', 'Que renvoie `SELECT Designation, Prix_Unitaire * 1.2 FROM Produit` ?', ['Chaque désignation avec son prix multiplié par 1,2', 'Les prix modifiés dans la table', 'Une erreur : on ne calcule pas dans un SELECT', 'Uniquement les produits à 1,2 €'], 'Champ calculé : le calcul n’apparaît que dans le résultat.');
+q('select', '`SELECT DISTINCT Ville, Nom FROM Client` supprime…', ['Les lignes où le couple (Ville, Nom) est identique', 'Les villes en double uniquement', 'Les noms en double uniquement', 'Rien du tout'], 'DISTINCT porte sur la ligne entière.');
+
+q('where', 'Quel opérateur signifie « différent de » ?', ['`<>`', '`><`', '`=!`', '`NOT=`'], '<> (ou != dans beaucoup de SGBD).');
+q('where', '`WHERE Prix BETWEEN 10 AND 20` inclut-il 10 et 20 ?', ['Oui, les bornes sont incluses', 'Non, elles sont exclues', 'Seulement 10', 'Seulement 20'], 'Les extrêmes sont inclus dans l’intervalle.');
+q('where', '`Ville IN (\'Paris\', \'Lyon\')` équivaut à…', ['`Ville = \'Paris\' OR Ville = \'Lyon\'`', '`Ville = \'Paris\' AND Ville = \'Lyon\'`', '`Ville LIKE \'Paris%Lyon\'`', '`Ville BETWEEN \'Paris\' AND \'Lyon\'`'], 'IN teste l’appartenance à un ensemble.');
+q('where', 'Dans LIKE, que représente `%` ?', ['N’importe quelle chaîne, y compris vide', 'Exactement un caractère', 'Un chiffre', 'Un pourcentage'], '% = toute chaîne ; _ = un seul caractère.');
+q('where', 'Dans LIKE, que représente `_` ?', ['Un et un seul caractère', 'N’importe quelle chaîne', 'Un espace', 'Une majuscule'], '_ = exactement un caractère.');
+q('where', 'Quels noms correspondent à `LIKE \'_a%\'` ?', ['Garage, Café', 'Albert, Anne', 'Boulangerie, Pharmacie', 'Tous les noms contenant un a'], 'Le 2ᵉ caractère doit être un « a ».');
+q('where', 'Comment trouver les noms commençant par DE ?', ['`LIKE \'DE%\'`', '`LIKE \'%DE\'`', '`LIKE \'DE_\'`', '`= \'DE*\'`'], '% après DE.');
+q('where', 'Comment tester qu’un téléphone n’est pas renseigné ?', ['`WHERE Telephone IS NULL`', '`WHERE Telephone = NULL`', '`WHERE Telephone = 0`', '`WHERE Telephone = \'\'`'], 'NULL se teste avec IS / IS NOT, jamais avec =.');
+q('where', '0 est-il une valeur NULL ?', ['Non : 0 est une valeur renseignée', 'Oui', 'Seulement pour les entiers', 'Seulement en SQLite'], 'Mémo : « Attention, 0 n’est pas une valeur NULL ».');
+q('where', 'Dans `WHERE a OR b AND c`, que calcule SQL ?', ['`a OR (b AND c)` : AND est prioritaire', '`(a OR b) AND c`', 'Une erreur', 'Ça dépend du SGBD'], 'AND est évalué avant OR : mets des parenthèses.');
+q('where', 'Pourquoi `WHERE Ville = Lyon` provoque une erreur ?', ['Il manque les quotes : `\'Lyon\'`', 'Il faut écrire LIKE', 'Ville est un mot réservé', 'Il faut des guillemets doubles obligatoirement'], 'Les quotes sont obligatoires autour des chaînes et des dates.');
+q('where', 'Que fait `WHERE UPPER(Couleur) = \'BLEU\'` ?', ['Trouve « bleu », « Bleu », « BLEU »… quelle que soit la casse', 'Met la colonne en majuscules dans la table', 'Ne trouve que « BLEU »', 'Provoque une erreur'], 'UPPER transforme la valeur pour la comparaison uniquement.');
+q('where', 'Quelle condition sélectionne les produits qui ne sont ni Bureau ni Papier ?', ['`Categorie NOT IN (\'Bureau\', \'Papier\')`', '`Categorie <> \'Bureau\' OR Categorie <> \'Papier\'`', '`Categorie NOT LIKE \'Bureau Papier\'`', '`NOT Categorie = \'Bureau\', \'Papier\'`'], 'Avec OR, toute catégorie serait différente de l’une des deux : la condition serait toujours vraie.');
+
+q('group', 'GROUP BY s’utilise avec…', ['Les fonctions d’agrégat', 'Les jointures uniquement', 'DISTINCT uniquement', 'LIMIT'], 'Il regroupe pour calculer un agrégat par groupe.');
+q('group', 'HAVING sert à…', ['Mettre une condition sur une fonction d’agrégat (filtrer des groupes)', 'Filtrer des lignes avant regroupement', 'Trier les groupes', 'Renommer un groupe'], 'HAVING se place après GROUP BY.');
+q('group', 'Différence entre WHERE et HAVING ?', ['WHERE filtre les lignes AVANT regroupement, HAVING filtre les groupes APRÈS', 'Aucune, ce sont des synonymes', 'HAVING filtre avant, WHERE après', 'WHERE ne s’utilise pas avec GROUP BY'], 'Ordre : WHERE → GROUP BY → HAVING.');
+q('group', 'Pourquoi cette requête est fausse ?', ['Un agrégat ne peut pas être dans le WHERE : il faut HAVING', 'Il manque DISTINCT', 'SUM ne s’applique pas aux nombres', 'GROUP BY doit précéder FROM'], 'Condition sur agrégat → HAVING.', `SELECT Num_Produit, SUM(Qte_Commandee)\nFROM Detail_Commande\nWHERE SUM(Qte_Commandee) > 10\nGROUP BY Num_Produit;`);
+q('group', 'Avec GROUP BY, chaque colonne du SELECT doit être…', ['Dans le GROUP BY ou dans une fonction d’agrégat', 'Une clé primaire', 'Renommée avec AS', 'Triée'], 'Règle rappelée par les deux mémos.');
+q('group', 'Différence entre `COUNT(*)` et `COUNT(Telephone)` ?', ['COUNT(Telephone) ne compte que les lignes où Telephone n’est pas NULL', 'Aucune', 'COUNT(*) ignore les NULL', 'COUNT(Telephone) compte les valeurs différentes'], 'COUNT(attribut) = lignes où l’attribut a une valeur non nulle.');
+q('group', 'Que renvoie `COUNT(DISTINCT Ville)` ?', ['Le nombre de villes différentes', 'Le nombre de clients', 'La liste des villes', 'Une erreur'], 'DISTINCT à l’intérieur de COUNT.');
+q('group', 'Pour additionner des montants, on utilise…', ['SUM', 'COUNT', 'AVG', 'MAX'], 'Mémo : SUM est « à ne pas confondre avec COUNT ! ».');
+q('group', 'Quel est le résultat de cette requête (exemple du cours) ?', ['B | 12', 'A | 14 et B | 12', 'A | 6 et B | 12', 'Aucune ligne'], 'WHERE garde A6, B6, B6 → A = 6, B = 12 → HAVING ≥ 10 garde B.', `-- Détail_commandes : (A,4) (A,4) (A,6) (B,6) (B,6)\nSELECT reference, SUM(quantite_commande)\nFROM Detail_commandes\nWHERE quantite_commande >= 5\nGROUP BY reference\nHAVING SUM(quantite_commande) >= 10;`);
+q('group', 'Quel est l’ordre logique d’exécution ?', ['FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY', 'SELECT → FROM → WHERE → GROUP BY → HAVING', 'FROM → GROUP BY → WHERE → HAVING → SELECT', 'SELECT → WHERE → FROM → ORDER BY'], 'C’est pourquoi un agrégat ne peut pas être filtré dans le WHERE.');
+q('group', 'Que renvoie cette requête ?', ['Les bureaux qui accueillent plus de 2 professeurs', 'Le nombre total de professeurs', 'Les professeurs ayant plus de 2 bureaux', 'Les 2 premiers bureaux'], 'Exemple du mémo A.', `SELECT Bureau FROM Profs\nGROUP BY Bureau\nHAVING COUNT(*) > 2;`);
+q('group', 'Combien de lignes renvoie `SELECT Ville, COUNT(*) FROM Client GROUP BY Ville` si les clients sont à Lyon, Lyon, Paris, Nice ?', ['3', '4', '1', '2'], 'Une ligne par groupe : Lyon, Paris, Nice.');
+q('group', 'Que renvoie `SELECT COUNT(*) FROM Client` sans GROUP BY ?', ['Une seule ligne : le nombre total de clients', 'Une ligne par client', 'Une erreur', 'Le nombre de colonnes'], 'Sans GROUP BY, l’agrégat porte sur toute la sélection.');
+
+q('join', 'Un produit cartésien entre une table de 3 lignes et une table de 4 lignes donne…', ['12 lignes', '7 lignes', '4 lignes', '3 lignes'], 'Nombre de lignes = l₁ × l₂ (et colonnes = c₁ + c₂).');
+q('join', 'Quelle écriture est équivalente à `FROM Client CROSS JOIN Commande` ?', ['`FROM Client, Commande`', '`FROM Client JOIN Commande USING (Code_Client)`', '`FROM Client LEFT JOIN Commande`', '`FROM Client UNION Commande`'], 'La virgule sans condition = produit cartésien.');
+q('join', 'Une jointure interne (INNER JOIN) renvoie…', ['Uniquement les lignes ayant une correspondance dans les deux tables', 'Toutes les lignes de la table de gauche', 'Toutes les lignes des deux tables', 'Toutes les combinaisons possibles'], 'Les lignes sans correspondance disparaissent.');
+q('join', 'Quelle requête est équivalente à cette jointure interne ?', ['`FROM Client, Commande WHERE Client.Code_Client = Commande.Code_Client`', '`FROM Client, Commande`', '`FROM Client LEFT JOIN Commande`', '`FROM Client UNION Commande`'], 'La jointure interne équivaut à une restriction du produit cartésien.', `SELECT Adresse, N_Commande\nFROM Client JOIN Commande\n  ON Client.Code_Client = Commande.Code_Client;`);
+q('join', 'Quand peut-on écrire `JOIN Commande USING (Code_Client)` ?', ['Quand la colonne de jointure porte le même nom dans les deux tables', 'Toujours', 'Seulement pour un LEFT JOIN', 'Quand il n’y a pas de clé étrangère'], 'USING évite de répéter Table.col = Table.col.');
+q('join', 'LEFT JOIN renvoie…', ['Toute la table de gauche, avec NULL quand il n’y a pas de correspondance à droite', 'Seulement les lignes de droite', 'Seulement les correspondances', 'Toutes les combinaisons'], 'Table de gauche complète.');
+q('join', 'Clients A, B, C ; commandes 1→A, 2→B, 3→B, 4→D. Combien de lignes donne `Client LEFT JOIN Commande` ?', ['4', '3', '5', '12'], 'A1, B2, B3, C NULL.');
+q('join', 'Même données. Combien de lignes donne `Client FULL JOIN Commande` ?', ['5', '4', '3', '7'], 'A1, B2, B3, C NULL, NULL 4.');
+q('join', 'Même données. Combien de lignes donne `Client INNER JOIN Commande` ?', ['3', '4', '2', '12'], 'A1, B2, B3.');
+q('join', 'Que renvoie cette requête ?', ['Les clients qui n’ont passé aucune commande', 'Les commandes sans client', 'Tous les clients', 'Une erreur'], 'LEFT JOIN + IS NULL = « négation ».', `SELECT Adresse\nFROM Client LEFT JOIN Commande\n  ON Client.Code_Client = Commande.Code_Client\nWHERE Commande.Code_Client IS NULL;`);
+q('join', 'Quelle requête donne aussi les clients sans commande ?', ['`WHERE Code_Client NOT IN (SELECT Code_Client FROM Commande)`', '`WHERE Code_Client IN (SELECT Code_Client FROM Commande)`', '`FROM Client CROSS JOIN Commande`', '`WHERE Code_Client <> Commande`'], 'Soustraction avec NOT IN.');
+q('join', 'Que se passe-t-il si on oublie la condition de jointure : `SELECT … FROM Client, Commande;` ?', ['On obtient un produit cartésien', 'SQL ajoute la condition automatiquement', 'Erreur de syntaxe', 'On obtient une jointure gauche'], 'Toutes les combinaisons : attention aux temps de calcul.');
+q('join', 'Pour joindre 4 tables, combien faut-il de conditions de jointure ?', ['3', '4', '2', '1'], 'n tables → n − 1 conditions.');
+q('join', 'Pourquoi un alias est-il obligatoire dans une auto-jointure ?', ['Pour distinguer les deux occurrences de la même table', 'Pour accélérer la requête', 'Parce que JOIN l’exige toujours', 'Pour renommer le résultat'], 'Mémo : « il est obligatoire de spécifier deux fois la table source […] en attribuant un alias ».');
+q('join', 'Que fait `RIGHT JOIN` ?', ['Garde toute la table de droite', 'Garde toute la table de gauche', 'Garde les deux tables complètes', 'Fait un produit cartésien'], 'Symétrique du LEFT JOIN.');
+q('join', 'Selon le mémo, une jointure c’est…', ['Un produit cartésien suivi d’une sélection selon le critère de jointure', 'Une union de deux tables', 'Une sous-requête', 'Une vue'], 'Généralement par égalité (équi-jointure).');
+q('join', 'Erreur « ambiguous column name: Code_Client » : que faire ?', ['Préfixer la colonne : `Client.Code_Client`', 'Renommer la table', 'Ajouter DISTINCT', 'Utiliser UNION'], 'La colonne existe dans les deux tables jointes.');
+q('join', 'Que fait `NATURAL JOIN` ?', ['Joint automatiquement sur les colonnes de même nom', 'Fait un produit cartésien', 'Garde toutes les lignes', 'Joint sur les clés primaires uniquement'], 'Mémo B (SQL3).');
+
+q('set', 'Quel opérateur donne les lignes présentes dans les DEUX requêtes ?', ['INTERSECT', 'UNION', 'EXCEPT', 'UNION ALL'], 'Intersection A ∩ B.');
+q('set', 'Différence entre UNION et UNION ALL ?', ['UNION élimine les doublons, UNION ALL les garde', 'Aucune', 'UNION ALL élimine les doublons', 'UNION ALL fait une intersection'], 'UNION ALL = union complète.');
+q('set', 'Quel est l’équivalent Oracle de EXCEPT ?', ['MINUS', 'DIFF', 'NOT UNION', 'SUBTRACT'], 'MINUS en Oracle, EXCEPT en SQL standard.');
+q('set', 'Condition pour faire une UNION entre deux requêtes ?', ['Même nombre de colonnes, de types compatibles', 'Même nom de table', 'Une clé étrangère commune', 'Un ORDER BY dans chaque requête'], 'Les résultats doivent avoir la même « forme ».');
+q('set', 'Villes des élèves : {Lyon, Paris, Lyon}. Villes des profs : {Paris, Nice}. Combien de lignes pour UNION ?', ['3', '5', '2', '1'], 'Lyon, Paris, Nice.');
+q('set', 'Mêmes données. Combien de lignes pour UNION ALL ?', ['5', '3', '4', '2'], '3 + 2, doublons gardés.');
+q('set', 'Mêmes données. Que donne `élèves EXCEPT profs` ?', ['Lyon', 'Nice', 'Paris', 'Lyon, Nice'], 'Villes d’élèves absentes des villes de profs.');
+q('set', '« Les villes où habitent seulement des élèves et pas de professeurs » :', ['EXCEPT', 'INTERSECT', 'UNION', 'UNION ALL'], 'Différence A − B.');
+q('set', '`A EXCEPT B` et `B EXCEPT A` donnent-ils le même résultat ?', ['Non, l’ordre compte', 'Oui, toujours', 'Oui si A et B ont autant de lignes', 'Ça dépend du SGBD'], 'C’est une soustraction.');
+q('set', 'Que vaut |A ∪ B| selon le mémo ?', ['|A| + |B| − |A ∩ B|', '|A| + |B|', '|A| × |B|', '|A| − |B|'], 'On retire l’intersection comptée deux fois.');
+q('set', 'Pourquoi cette requête échoue-t-elle ?', ['Les deux SELECT n’ont pas le même nombre de colonnes', 'UNION n’existe pas', 'Il faut un ORDER BY', 'Il faut DISTINCT'], '1 colonne d’un côté, 2 de l’autre.', `SELECT Ville FROM Eleve\nUNION\nSELECT Nom, Ville FROM Prof;`);
+
+q('sub', 'Avec un opérateur classique (`=`, `>`…), la sous-requête doit renvoyer…', ['Une seule ligne et une seule colonne', 'Plusieurs lignes', 'Au moins deux colonnes', 'Une table entière'], 'Sinon : IN, ANY, ALL.');
+q('sub', '`EXISTS (sous-requête)` est vrai si…', ['La sous-requête renvoie au moins une ligne (même remplie de NULL)', 'La sous-requête renvoie une valeur non NULL', 'La table existe', 'La sous-requête renvoie exactement une ligne'], 'Définition du mémo A.');
+q('sub', '`NOT EXISTS` permet de…', ['Tester l’absence de données dans la sous-requête', 'Supprimer une table', 'Tester si une colonne est NULL', 'Exclure les doublons'], 'Mémo A.');
+q('sub', '`x > ANY (sous-requête)` est vrai si…', ['x est supérieur à au moins une valeur', 'x est supérieur à toutes les valeurs', 'x est égal à une valeur', 'la sous-requête est vide'], 'ANY = au moins un (faux si ensemble vide).');
+q('sub', '`x > ALL (sous-requête)` est vrai si…', ['x est supérieur à toutes les valeurs', 'x est supérieur à au moins une valeur', 'x est NULL', 'la sous-requête renvoie une ligne'], 'ALL = tous (vrai si ensemble vide).');
+q('sub', '`Salaire > ALL (SELECT Salaire … Programmeur)` équivaut à…', ['`Salaire > (SELECT MAX(Salaire) … Programmeur)`', '`Salaire > (SELECT MIN(Salaire) …)`', '`Salaire IN (SELECT …)`', '`Salaire > (SELECT AVG(Salaire) …)`'], 'Supérieur à tous = supérieur au maximum.');
+q('sub', '`= ANY (sous-requête)` est équivalent à…', ['`IN (sous-requête)`', '`NOT IN`', '`EXISTS`', '`= ALL`'], 'Égal à au moins une valeur de la liste.');
+q('sub', 'Que renvoie cette requête ?', ['Le(s) bureau(x) accueillant le plus de professeurs', 'Tous les bureaux', 'Les bureaux vides', 'Le nombre de bureaux'], 'Exemple du mémo A.', `SELECT bureau FROM Profs\nGROUP BY bureau\nHAVING COUNT(*) >= ALL (SELECT COUNT(*) FROM Profs GROUP BY bureau);`);
+q('sub', 'Que renvoie cette requête ?', ['Les produits plus chers que la moyenne', 'Le prix moyen', 'Le produit le plus cher', 'Une erreur'], 'Sous-requête scalaire (une valeur).', `SELECT Designation FROM Produit\nWHERE Prix_Unitaire > (SELECT AVG(Prix_Unitaire) FROM Produit);`);
+q('sub', 'Pourquoi cette requête peut-elle planter ?', ['La sous-requête renvoie plusieurs lignes avec un `=`', 'Il manque GROUP BY', 'IN est obligatoire avec EXISTS', 'On ne peut pas imbriquer de SELECT'], 'Utiliser IN, ou une sous-requête renvoyant une seule valeur.', `SELECT Nom FROM Employe\nWHERE Salaire = (SELECT Salaire FROM Employe WHERE Fonction = 'Analyste');`);
+
+q('ddl', 'Que garantit une PRIMARY KEY ?', ['Valeurs uniques et jamais NULL', 'Valeurs uniques, NULL autorisé', 'Valeurs triées', 'Valeurs positives'], 'Aucun des attributs de la clé ne doit être NULL.');
+q('ddl', 'Que fait la contrainte UNIQUE ?', ['Interdit deux valeurs identiques', 'Interdit les NULL', 'Crée une clé étrangère', 'Trie la colonne'], 'Unicité d’un attribut ou d’une combinaison.');
+q('ddl', 'Comment déclarer une clé étrangère ?', ['`FOREIGN KEY (col) REFERENCES table (col)`', '`FOREIGN (col) TO table`', '`KEY col LINK table`', '`REFERENCE KEY col`'], 'Si la colonne distante est omise → clé primaire de la table.');
+q('ddl', 'Que fait `CHECK (Note BETWEEN 0 AND 20)` ?', ['Impose que la note soit entre 0 et 20', 'Vérifie une fois puis disparaît', 'Trie les notes', 'Calcule une moyenne'], 'Condition à respecter à chaque insertion / modification.');
+q('ddl', 'Que fait `DELETE FROM Client;` (sans WHERE) ?', ['Supprime toutes les lignes ; la table existe toujours', 'Supprime la table', 'Ne fait rien', 'Erreur de syntaxe'], 'Sans prédicat, tous les n-uplets sont supprimés.');
+q('ddl', 'Que fait `DROP TABLE Client;` ?', ['Supprime la définition de la table et toutes ses lignes', 'Vide la table mais garde la structure', 'Supprime une colonne', 'Supprime la base'], 'Structure + données.');
+q('ddl', 'Que fait `UPDATE Produit SET Prix = 0;` ?', ['Met TOUS les prix à 0', 'Met le premier prix à 0', 'Erreur : WHERE obligatoire', 'Rien'], 'Sans WHERE, tous les n-uplets sont mis à jour.');
+q('ddl', 'Dans `INSERT INTO Client (Code_Client, Raison_Sociale) VALUES (…)`, que valent les autres colonnes ?', ['NULL', '0', 'Une chaîne vide', 'Erreur'], 'Les attributs non cités prennent la valeur NULL.');
+q('ddl', 'Sans liste de colonnes, `INSERT INTO t VALUES (…)` attend les valeurs…', ['Dans l’ordre de création de la table', 'Dans l’ordre alphabétique des colonnes', 'Dans n’importe quel ordre', 'Seulement la clé primaire'], 'Ordre utilisé par défaut = celui du CREATE TABLE.');
+q('ddl', 'Quelle instruction ajoute une colonne à une table existante ?', ['`ALTER TABLE t ADD …`', '`UPDATE TABLE t ADD …`', '`INSERT COLUMN …`', '`CREATE COLUMN …`'], 'ALTER TABLE ADD / MODIFY / DROP.');
+q('ddl', 'Différence entre TRUNCATE et DELETE (mémo) ?', ['TRUNCATE vide la table et libère la place ; DELETE ne la libère pas', 'Aucune', 'TRUNCATE supprime la table', 'DELETE est plus rapide'], 'Mémo B.');
+q('ddl', 'Qu’est-ce qu’une vue ?', ['Une requête stockée qu’on interroge comme une table', 'Une copie physique d’une table', 'Un index', 'Un utilisateur'], 'CREATE VIEW nom AS SELECT …');
+q('ddl', 'Pour changer le schéma d’une vue, il faut…', ['La supprimer et la recréer', 'Faire ALTER VIEW … ADD', 'Faire UPDATE sur la vue', 'C’est impossible même en la recréant'], 'Mémo A.');
+q('ddl', 'Que permet `WITH GRANT OPTION` ?', ['Que l’utilisateur transmette à son tour les droits reçus', 'De donner tous les droits', 'De retirer les droits', 'De créer un utilisateur'], 'GRANT privilège ON table TO user WITH GRANT OPTION.');
+q('ddl', 'Quelle instruction retire un droit ?', ['`REVOKE … ON … FROM …`', '`GRANT … DELETE`', '`DROP RIGHT`', '`ROLLBACK`'], 'REVOKE reprend un privilège.');
+q('ddl', 'Que fait ROLLBACK ?', ['Annule les modifications de la transaction en cours', 'Valide la transaction', 'Supprime la table', 'Revient à la requête précédente'], 'COMMIT valide, ROLLBACK annule.');
+q('ddl', 'Différence entre CHAR(10) et VARCHAR(10) ?', ['CHAR : longueur fixe ; VARCHAR : longueur variable (max 10)', 'Aucune', 'VARCHAR est un nombre', 'CHAR ne contient qu’un caractère'], 'Types du mémo A.');
+q('ddl', '`NUMBER(7,2)` peut stocker…', ['5 chiffres avant la virgule et 2 après', '7 chiffres avant et 2 après', '9 chiffres', 'Des dates'], 'n chiffres au total dont d après la virgule.');
+q('ddl', 'Que fait `CASE WHEN … THEN … ELSE … END` dans un SELECT ?', ['Crée une colonne dont la valeur dépend de conditions', 'Crée une table', 'Filtre les lignes', 'Trie le résultat'], 'Mémo B.');
+q('ddl', 'Quel symbole de commentaire fonctionne dans tous les SGBD ?', ['`--`', '`#`', '`//`', '`%`'], '# : MySQL uniquement ; /* */ : MySQL/Oracle.');
+
+q('lire', 'Quelle est l’erreur ?', ['Il manque `GROUP BY Ville`', 'COUNT doit être en premier', 'Ville doit être entre quotes', 'Il faut HAVING'], 'Ville n’est ni groupée ni agrégée.', `SELECT Ville, COUNT(*)\nFROM Client;`);
+q('lire', 'Que renvoie cette requête ?', ['Aucune ligne', 'Les clients sans téléphone', 'Tous les clients', 'Une erreur'], '= NULL n’est jamais vrai : il faut IS NULL.', `SELECT Raison_Sociale FROM Client\nWHERE Telephone = NULL;`);
+q('lire', 'Quelle est l’erreur ?', ['WHERE doit être placé avant GROUP BY', 'GROUP BY doit être avant FROM', 'Il manque HAVING', 'COUNT ne prend pas *'], 'Ordre imposé : FROM → WHERE → GROUP BY.', `SELECT Ville, COUNT(*)\nFROM Client\nGROUP BY Ville\nWHERE Ville <> 'Nice';`);
+q('lire', 'Quelle est l’erreur ?', ['`Code_Client` est ambigu : il faut le préfixer', 'Il manque WHERE', 'JOIN est interdit sans INNER', 'Il faut USING'], 'Code_Client existe dans Client et dans Commande.', `SELECT Code_Client, Num_Commande\nFROM Client JOIN Commande\n  ON Client.Code_Client = Commande.Code_Client;`);
+q('lire', 'Combien de lignes renvoie cette requête si Client a 8 lignes et Commande 10 ?', ['80', '10', '18', '8'], 'Pas de condition de jointure → produit cartésien.', `SELECT Raison_Sociale, Num_Commande\nFROM Client, Commande;`);
+q('lire', 'Les clients ont des téléphones : 0478…, 0145…, NULL, 0491…, NULL. Que renvoie la requête ?', ['3', '5', '2', 'NULL'], 'COUNT(colonne) ignore les NULL.', `SELECT COUNT(Telephone) FROM Client;`);
+q('lire', 'Que renvoie cette requête ?', ['La 2ᵉ ligne du tri décroissant : le 2ᵉ produit le plus cher', 'Le produit le plus cher', 'Les 2 produits les plus chers', 'Le produit le moins cher'], 'LIMIT 1 OFFSET 1 : on saute 1 ligne, on en garde 1.', `SELECT Designation FROM Produit\nORDER BY Prix_Unitaire DESC\nLIMIT 1 OFFSET 1;`);
+q('lire', 'Ces deux requêtes donnent-elles le même résultat ?', ['Oui : jointure interne = restriction du produit cartésien', 'Non : la 1ʳᵉ fait un produit cartésien', 'Non : la 2ᵉ garde les clients sans commande', 'Non : la 2ᵉ est une erreur'], 'Équivalence INNER JOIN / WHERE du cours.', `SELECT Adresse, Num_Commande FROM Client JOIN Commande\n  ON Client.Code_Client = Commande.Code_Client;\n\nSELECT Adresse, Num_Commande FROM Client, Commande\n  WHERE Client.Code_Client = Commande.Code_Client;`);
+q('lire', 'Pour afficher TOUS les clients avec leurs commandes éventuelles, que faut-il corriger ?', ['Remplacer JOIN par LEFT JOIN', 'Ajouter DISTINCT', 'Remplacer JOIN par CROSS JOIN', 'Ajouter GROUP BY'], 'La jointure interne fait disparaître les clients sans commande.', `SELECT Raison_Sociale, Num_Commande\nFROM Client JOIN Commande\n  ON Client.Code_Client = Commande.Code_Client;`);
+q('lire', 'Que renvoie cette requête ?', ['Le nombre de commandes de chaque client ayant commandé', 'Le nombre total de commandes', 'Le nombre de clients', 'Une erreur'], 'Un groupe par client dans Commande.', `SELECT Code_Client, COUNT(*)\nFROM Commande\nGROUP BY Code_Client;`);
+q('lire', 'Que renvoie cette requête ?', ['Les clients ayant passé plus de 2 commandes', 'Les 2 premiers clients', 'Les commandes de plus de 2 produits', 'Une erreur'], 'HAVING filtre les groupes.', `SELECT Code_Client\nFROM Commande\nGROUP BY Code_Client\nHAVING COUNT(*) > 2;`);
+q('lire', 'Quel problème pose cette requête ?', ['Tous les produits voient leur prix modifié (pas de WHERE)', 'Erreur de syntaxe', 'Seul le premier produit est modifié', 'Aucun'], 'UPDATE sans WHERE modifie toutes les lignes.', `UPDATE Produit SET Prix_Unitaire = Prix_Unitaire * 1.1;`);
+q('lire', 'Que renvoie cette requête ?', ['Les villes d’élèves où n’habite aucun prof', 'Les villes communes', 'Toutes les villes', 'Les villes de profs sans élève'], 'Différence A − B.', `SELECT Ville FROM Eleve\nEXCEPT\nSELECT Ville FROM Prof;`);
+q('lire', 'Que renvoie cette requête ?', ['Le nom de chaque employé et celui de son chef', 'Les employés sans chef', 'Les chefs uniquement', 'Un produit cartésien'], 'Auto-jointure avec deux alias.', `SELECT e.Nom, c.Nom\nFROM Employe e JOIN Employe c\n  ON e.Num_Chef = c.Num_Empl;`);
+q('lire', 'Quelle requête répond à « nombre de produits par catégorie » ?', ['`SELECT Categorie, COUNT(*) FROM Produit GROUP BY Categorie`', '`SELECT COUNT(Categorie) FROM Produit`', '`SELECT DISTINCT Categorie FROM Produit`', '`SELECT Categorie, SUM(*) FROM Produit`'], 'Un groupe par catégorie, COUNT(*) dans chaque groupe.');
+
+/* =========================================================
+   Flashcards
+   ========================================================= */
+const CARDS = [
+  ['SELECT … FROM …', 'Projection : choisit les colonnes à afficher, depuis une ou plusieurs tables.', 'SELECT Nom, Ville FROM Client;'],
+  ['WHERE', 'Sélection : garde les LIGNES qui vérifient une condition (AND, OR, NOT).', 'SELECT * FROM Produit WHERE Prix_Unitaire >= 10;'],
+  ['DISTINCT', 'Élimine les doublons du résultat (sur la ligne entière).', 'SELECT DISTINCT Ville FROM Client;'],
+  ['ORDER BY … ASC / DESC', 'Trie le résultat. ASC (croissant) par défaut. Tri possible sur plusieurs colonnes.', 'ORDER BY Ville, Nom DESC'],
+  ['LIMIT n OFFSET m', 'Affiche n lignes en sautant les m premières (à la fin de la requête).', 'LIMIT 10 OFFSET 2 -- 10 lignes dès la 3e'],
+  ['AS', 'Renomme une colonne (ou une table) pour l’affichage.', 'SELECT Prix * 1.2 AS Prix_TTC FROM Produit;'],
+  ['BETWEEN a AND b', 'Appartenance à un intervalle, bornes INCLUSES.', 'WHERE Prix BETWEEN 10 AND 20'],
+  ['IN / NOT IN', 'Appartenance (ou non) à une liste de valeurs ou au résultat d’une sous-requête.', "WHERE Ville IN ('Paris', 'Lyon')"],
+  ['LIKE avec % et _', '% = n’importe quelle chaîne (même vide) ; _ = exactement un caractère.', "WHERE Nom LIKE '_a%'"],
+  ['IS NULL / IS NOT NULL', 'Teste une valeur non renseignée. Jamais « = NULL ». 0 n’est pas NULL.', 'WHERE Telephone IS NULL'],
+  ['COUNT(*) vs COUNT(col)', 'COUNT(*) compte les lignes ; COUNT(col) compte les lignes où col n’est pas NULL.', 'SELECT COUNT(*), COUNT(Telephone) FROM Client;'],
+  ['SUM / AVG / MIN / MAX', 'Somme, moyenne, minimum, maximum d’une colonne pour les lignes sélectionnées.', 'SELECT AVG(Salaire) FROM Employe;'],
+  ['GROUP BY', 'Regroupe les lignes de même valeur : une ligne de résultat par groupe. Colonnes du SELECT = groupées ou agrégées.', 'SELECT Bureau, COUNT(*) FROM Prof GROUP BY Bureau;'],
+  ['HAVING', 'Condition sur un agrégat : filtre les GROUPES, après GROUP BY.', 'GROUP BY Bureau HAVING COUNT(*) > 2'],
+  ['WHERE vs HAVING', 'WHERE filtre les lignes AVANT regroupement ; HAVING filtre les groupes APRÈS.', null],
+  ['Ordre d’exécution', 'FROM → WHERE → GROUP BY → agrégats → HAVING → SELECT → ORDER BY → LIMIT.', null],
+  ['Produit cartésien', 'Toutes les combinaisons : l₁ × l₂ lignes, c₁ + c₂ colonnes.', 'FROM Client CROSS JOIN Commande  -- = FROM Client, Commande'],
+  ['INNER JOIN … ON', 'Jointure interne : seulement les lignes qui se correspondent dans les deux tables.', 'FROM Client JOIN Commande ON Client.Code_Client = Commande.Code_Client'],
+  ['Équivalence JOIN / WHERE', 'Une jointure interne équivaut à un produit cartésien + restriction WHERE.', 'FROM Client, Commande WHERE Client.Code_Client = Commande.Code_Client'],
+  ['USING (col)', 'Écriture courte de la jointure quand la colonne a le même nom dans les deux tables.', 'FROM Client JOIN Commande USING (Code_Client)'],
+  ['LEFT JOIN', 'Table de gauche complète ; NULL à droite quand pas de correspondance.', 'FROM Client LEFT JOIN Commande ON …'],
+  ['RIGHT JOIN', 'Table de droite complète ; NULL à gauche quand pas de correspondance.', null],
+  ['FULL JOIN', 'Les deux tables complètes ; NULL des deux côtés si besoin.', null],
+  ['« Négation » par jointure', 'LEFT JOIN + WHERE colonne_droite IS NULL → ce qui n’a pas de correspondance.', 'FROM Client LEFT JOIN Commande ON … WHERE Commande.Code_Client IS NULL'],
+  ['Auto-jointure', 'Jointure d’une table avec elle-même ; alias obligatoire.', 'FROM Employe e JOIN Employe c ON e.Num_Chef = c.Num_Empl'],
+  ['NATURAL JOIN', 'Jointure automatique sur toutes les colonnes de même nom.', null],
+  ['UNION', 'A ∪ B entre deux requêtes, doublons éliminés.', 'SELECT Ville FROM Eleve UNION SELECT Ville FROM Prof;'],
+  ['UNION ALL', 'Union complète : doublons conservés.', null],
+  ['INTERSECT', 'A ∩ B : lignes présentes dans les deux requêtes.', null],
+  ['EXCEPT (MINUS)', 'A − B : lignes de la 1re requête absentes de la 2e. MINUS en Oracle.', null],
+  ['Règle des opérateurs ensemblistes', 'Même nombre de colonnes, types compatibles, même ordre.', null],
+  ['EXISTS / NOT EXISTS', 'Vrai si la sous-requête renvoie au moins une ligne (NOT : aucune).', 'WHERE EXISTS (SELECT * FROM Commande co WHERE co.Code_Client = c.Code_Client)'],
+  ['ANY', 'Vrai si la comparaison est vraie pour AU MOINS UN élément (faux si vide). > ANY ⇔ > MIN.', null],
+  ['ALL', 'Vrai si la comparaison est vraie pour TOUS les éléments (vrai si vide). > ALL ⇔ > MAX.', null],
+  ['Sous-requête avec =', 'Doit renvoyer UNE ligne et UNE colonne ; sinon IN / ANY / ALL.', null],
+  ['DDL / DML / DCL / TCL', 'Structure (CREATE, ALTER, DROP) / données (SELECT, INSERT, UPDATE, DELETE) / droits (GRANT, REVOKE) / transactions (COMMIT, ROLLBACK).', null],
+  ['PRIMARY KEY', 'Identifie chaque ligne : unique et jamais NULL. Peut être composée.', 'PRIMARY KEY (Num_Commande, Num_Produit)'],
+  ['FOREIGN KEY … REFERENCES', 'Clé étrangère : la valeur doit exister dans la table référencée.', 'FOREIGN KEY (Code_Client) REFERENCES Client (Code_Client)'],
+  ['UNIQUE / NOT NULL / CHECK', 'Pas de doublon / valeur obligatoire / condition à respecter.', 'CHECK (Note BETWEEN 0 AND 20)'],
+  ['ALTER TABLE', 'Modifie la structure : ADD, MODIFY, DROP (colonne ou contrainte).', 'ALTER TABLE Client ADD Email VARCHAR(80);'],
+  ['DROP TABLE vs DELETE FROM', 'DROP supprime la table (structure + données) ; DELETE supprime des lignes (toutes sans WHERE).', null],
+  ['INSERT INTO', 'Insère des lignes. Colonnes non citées → NULL. Sans liste → ordre de création.', "INSERT INTO Client (Code_Client, Raison_Sociale) VALUES ('C09', 'Studio');"],
+  ['UPDATE … SET … WHERE', 'Modifie les lignes vérifiant le WHERE. Sans WHERE : toutes !', 'UPDATE Produit SET Prix = Prix * 1.1 WHERE Categorie = \'Papier\';'],
+  ['CREATE VIEW', 'Vue = requête stockée, interrogeable comme une table. On la supprime/recrée pour la modifier.', 'CREATE VIEW v AS SELECT …;'],
+  ['GRANT / REVOKE', 'Donner / reprendre un droit. WITH GRANT OPTION : l’utilisateur peut retransmettre.', 'GRANT SELECT ON Client TO dupont;'],
+  ['COMMIT / ROLLBACK', 'Valider / annuler les modifications de la transaction.', null],
+  ['CHAR vs VARCHAR', 'CHAR(n) : longueur fixe ; VARCHAR(n) : longueur variable (max n).', null],
+  ['NUMBER(n,d)', 'Décimal de n chiffres dont d après la virgule (NUMBER(7,2) : 5 + 2).', null],
+  ['BD / BDR / SGBD / SGBDR', 'Stockage / données en tables liées par clés / outil de manipulation / SGBD relationnel (Oracle, MySQL, PostgreSQL, SQLite…).', null]
+];
+
+/* =========================================================
+   Pièges
+   ========================================================= */
+const TRAPS = [
+  ['WHERE Telephone = NULL', 'IS NULL / IS NOT NULL : une comparaison « = NULL » n’est jamais vraie.', "SELECT * FROM Client WHERE Telephone IS NULL;"],
+  ['Un agrégat dans le WHERE', 'Condition sur SUM / COUNT / AVG… → HAVING, après GROUP BY.', 'GROUP BY Num_Produit HAVING SUM(Qte_Commandee) > 10'],
+  ['Une colonne ni groupée ni agrégée', 'Avec GROUP BY, chaque colonne du SELECT est dans le GROUP BY ou dans un agrégat.', 'SELECT Ville, COUNT(*) FROM Client GROUP BY Ville;'],
+  ['Clauses dans le désordre', 'SELECT → FROM → WHERE → GROUP BY → HAVING → ORDER BY → LIMIT.', null],
+  ['Oublier la condition de jointure', 'Sinon produit cartésien (l₁ × l₂ lignes). n tables → n − 1 conditions.', null],
+  ['Colonne ambiguë dans une jointure', 'Préfixer par la table (ou l’alias) : Client.Code_Client.', null],
+  ['INNER JOIN pour « tous les clients »', '« Tous, y compris ceux qui n’ont pas… » → LEFT JOIN (table complète à gauche).', null],
+  ['Chercher « ceux qui n’ont pas » avec <>', 'Négation : LEFT JOIN … IS NULL, NOT IN (sous-requête) ou EXCEPT.', 'WHERE Code_Client NOT IN (SELECT Code_Client FROM Commande)'],
+  ['Chaînes et dates sans quotes', "Les quotes sont obligatoires : Ville = 'Lyon', Date >= '2024-02-01'.", null],
+  ['Confondre % et _', '% = n’importe quelle chaîne (même vide) ; _ = exactement UN caractère.', null],
+  ['BETWEEN aux bornes exclues', 'BETWEEN inclut les deux bornes.', null],
+  ['OR à la place de AND avec <>', "« ni Bureau ni Papier » : Categorie NOT IN ('Bureau','Papier') (ou <> … AND <> …).", null],
+  ['Oublier les parenthèses AND / OR', 'AND est prioritaire sur OR : parenthèses obligatoires pour « (a OR b) AND c ».', null],
+  ['COUNT au lieu de SUM', 'COUNT compte des lignes ; SUM additionne des valeurs.', null],
+  ['COUNT(col) = COUNT(*)', 'COUNT(col) ignore les NULL.', null],
+  ['LIMIT sans ORDER BY', 'Pour « les 3 plus… », il faut trier d’abord : ORDER BY … DESC LIMIT 3.', null],
+  ['OFFSET 2 = à partir de la 2ᵉ ligne', 'OFFSET 2 saute 2 lignes : on commence à la 3ᵉ.', null],
+  ['UNION avec des colonnes différentes', 'Même nombre de colonnes, types compatibles, même ordre.', null],
+  ['Croire que UNION garde les doublons', 'UNION élimine les doublons ; UNION ALL les garde.', null],
+  ['MINUS en SQL standard', 'MINUS = Oracle. Standard / SQLite / PostgreSQL : EXCEPT.', null],
+  ['= (sous-requête à plusieurs lignes)', 'Avec =, < ou >, la sous-requête doit renvoyer une seule valeur ; sinon IN, ANY, ALL.', null],
+  ['UPDATE / DELETE sans WHERE', 'Toutes les lignes sont modifiées / supprimées !', "UPDATE Client SET Ville = 'Rennes' WHERE Code_Client = 'C07';"],
+  ['DELETE = DROP', 'DELETE vide des lignes (la table reste) ; DROP TABLE supprime la table.', null],
+  ['Auto-jointure sans alias', 'Deux occurrences de la même table → deux alias obligatoires.', 'FROM Employe e JOIN Employe c ON e.Num_Chef = c.Num_Empl'],
+  ['0 = NULL', '0 est une valeur ; NULL = absence de valeur.', null]
+];
+
+/* =========================================================
+   Vues
+   ========================================================= */
+const app = $('#app');
+let cleanup = null;
+const read = () => store.get('read', {});
+const known = () => store.get('known', {});
+const best = () => store.get('best', {});
+const solved = () => store.get('solved', {});
+const wrongSet = () => store.get('wrong', {});
+function engineBadge() {
+  if (SQL) return '<span class="pill ok engine">Moteur SQL prêt</span>';
+  if (engineErr) return '<span class="pill bad engine">Moteur SQL indisponible</span>';
+  return '<span class="pill warn engine">Chargement du moteur SQL…</span>';
+}
+const ENGINE_FAIL = `<div class="card"><h3 style="margin-top:0">Le moteur SQL n’a pas pu être chargé</h3><p>Le labo et les exercices exécutent du vrai SQL (SQLite) téléchargé depuis cdnjs.cloudflare.com : une connexion internet est nécessaire. Le cours, le quiz, les flashcards et les pièges fonctionnent sans.</p><button class="btn pri" onclick="location.reload()">Réessayer</button></div>`;
+function whenEngine(render) {
+  if (SQL) return render();
+  if (engineErr) { app.innerHTML = ENGINE_FAIL; return; }
+  app.innerHTML = `<div class="card">${engineBadge()}<p class="muted">Préparation de la base d’entraînement…</p></div>`;
+  const h = location.hash;
+  engineReady.then(() => { if (location.hash === h) route(); });
+}
+
+function viewHome() {
+  const r = read(), kn = known(), b = best(), sv = solved();
+  const nRead = CHAPTERS.filter(c => r[c.id]).length, nKnown = CARDS.filter((c, i) => kn[i]).length, nSolved = EXOS.filter(e => sv[e.id]).length;
+  const exam = b.exam;
+  const steps = [
+    ['Lire le cours (8 chapitres, visualiseurs de jointures et GROUP BY)', '#cours', nRead === CHAPTERS.length, '≈ 60 min'],
+    ['Tester les exemples dans le labo SQL', '#labo', !!store.get('labUsed', false), '≈ 15 min'],
+    [`Exercices corrigés automatiquement (${EXOS.length})`, '#exos', nSolved >= EXOS.length * .7, '≈ 60 min'],
+    ['Quiz par thème (viser 80 %+)', '#quiz', Object.keys(CH_LABEL).every(k => (b[k] || 0) >= 80), '≈ 30 min'],
+    ['Flashcards des mots-clés', '#cartes', nKnown >= CARDS.length * .8, '≈ 15 min'],
+    ['Relire les pièges', '#pieges', !!store.get('trapsSeen', false), '≈ 10 min'],
+    ['Examen blanc (QCM + requêtes à écrire)', '#examen', exam != null && exam >= 14, '30 min']
+  ];
+  app.innerHTML = `
+<div class="hero">
+  <div class="card">
+    <span class="pill acc">R5.04 · Traitement numérique des données</span>
+    <h1 style="margin-top:10px">Réviser SQL</h1>
+    <p class="muted">Le cours (SELECT, WHERE, GROUP BY, jointures, opérations ensemblistes) et les deux mémos SQL. Tu écris de vraies requêtes, exécutées dans ton navigateur, et chaque exercice est corrigé automatiquement.</p>
+    <div class="row" style="margin-top:14px"><a class="btn pri" href="#cours">Commencer le cours →</a><a class="btn" href="#exos">Exercices</a><a class="btn" href="#labo">Labo SQL</a></div>
+    <div style="margin-top:12px" id="engineState">${engineBadge()}</div>
+  </div>
+  <div class="card grid" style="gap:16px">
+    <div class="stat"><span class="muted small">Chapitres lus</span><span class="v">${nRead} / ${CHAPTERS.length}</span><div class="bar"><i style="width:${nRead / CHAPTERS.length * 100}%"></i></div></div>
+    <div class="stat"><span class="muted small">Exercices réussis</span><span class="v">${nSolved} / ${EXOS.length}</span><div class="bar"><i style="width:${nSolved / EXOS.length * 100}%"></i></div></div>
+    <div class="stat"><span class="muted small">Meilleur examen blanc</span><span class="v">${exam == null ? '—' : exam.toFixed(1).replace('.', ',') + ' / 20'}</span></div>
+  </div>
+</div>
+<h2 style="margin-top:28px">Plan de révision</h2>
+<ol class="steps">${steps.map(([t, h, d, time]) => `<li class="${d ? 'done' : ''}"><div><a href="${h}" style="font-weight:650;color:var(--ink);text-decoration:none">${t}</a></div><span class="muted small">${time}</span></li>`).join('')}</ol>
+<h2 style="margin-top:28px">Scores du quiz par thème</h2>
+<div class="grid g3">${Object.entries(CH_LABEL).map(([k, l]) => `<a class="card" style="text-decoration:none;color:inherit;padding:14px" href="#quiz/${k}"><div class="row" style="justify-content:space-between"><b>${l}</b><span class="pill ${b[k] >= 80 ? 'ok' : b[k] != null ? 'bad' : ''}">${b[k] != null ? b[k] + ' %' : 'à faire'}</span></div><div class="bar" style="margin-top:10px"><i style="width:${b[k] || 0}%"></i></div></a>`).join('')}</div>
+<div class="card" style="margin-top:16px"><div class="row" style="justify-content:space-between"><span class="muted small">La progression est enregistrée dans ce navigateur.</span><button class="btn ghost" id="reset">Réinitialiser ma progression</button></div></div>`;
+  $('#reset').onclick = () => { if (confirm('Effacer toute la progression ?')) { ['read', 'known', 'best', 'wrong', 'solved', 'labUsed', 'trapsSeen', 'exoCode'].forEach(store.del); viewHome(); toast('Progression réinitialisée'); } };
+  if (!SQL && !engineErr) engineReady.then(() => { const e = $('#engineState'); if (e) e.innerHTML = engineBadge(); });
+}
+
+function viewCours(arg) {
+  const idx = Math.max(0, CHAPTERS.findIndex(c => c.id === arg));
+  const ch = CHAPTERS[idx], r = read();
+  const nq = QB.filter(x => x.ch === ch.id).length, ne = EXOS.filter(e => e.ch === ch.id).length;
+  app.innerHTML = `<div class="course">
+  <aside class="side">${CHAPTERS.map(c => `<a href="#cours/${c.id}" class="${c.id === ch.id ? 'on' : ''}"><span class="num">${c.n}</span>${c.t}${r[c.id] ? '<span class="ck">✓</span>' : ''}</a>`).join('')}</aside>
+  <article class="lesson">
+    ${ch.html()}
+    <div class="card" style="margin-top:22px"><div class="row" style="justify-content:space-between">
+      <button class="btn readbtn ${r[ch.id] ? 'done' : ''}" id="markRead">${r[ch.id] ? '✓ Chapitre lu' : 'Marquer comme lu'}</button>
+      <div class="row">${ne ? `<a class="btn" href="#exos/${EXOS.find(e => e.ch === ch.id).id}">${ne} exercices</a>` : ''}${nq ? `<a class="btn pri" href="#quiz/${ch.id}">Quiz (${nq} questions)</a>` : ''}</div>
+    </div></div>
+    <div class="nav2">
+      ${idx > 0 ? `<a class="btn ghost" href="#cours/${CHAPTERS[idx - 1].id}">← ${CHAPTERS[idx - 1].t}</a>` : '<span></span>'}
+      ${idx < CHAPTERS.length - 1 ? `<a class="btn" href="#cours/${CHAPTERS[idx + 1].id}">${CHAPTERS[idx + 1].t} →</a>` : `<a class="btn" href="#exos">Passer aux exercices →</a>`}
+    </div>
+  </article></div>`;
+  $('#markRead').onclick = () => { const rr = read(); rr[ch.id] = !rr[ch.id]; store.set('read', rr); viewCours(ch.id); if (rr[ch.id]) toast('Chapitre marqué comme lu'); };
+}
+
+/* -------- Éditeur SQL -------- */
+function editorKeys(ta, onRun) {
+  ta.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); onRun(); }
+    if (e.key === 'Tab' && !e.shiftKey) { e.preventDefault(); const s = ta.selectionStart; ta.setRangeText('  ', s, ta.selectionEnd, 'end'); }
+  });
+}
+function schemaPanel(clickable) {
+  return `<div class="schema">${SCHEMA.map(([t, cols], i) => `<details ${i < 4 ? 'open' : ''}><summary>${t}</summary>${cols.map(([c, k]) => `<div class="col ${k ? k.split(' ').join(' ') : ''}" data-ins="${clickable ? c : ''}">${k && k.includes('fk') ? '#' : ''}${c}</div>`).join('')}${clickable ? `<button class="btn sm ghost" data-peek="${t}" style="margin-top:4px">Voir les données</button>` : ''}</details>`).join('')}
+<p class="muted small" style="margin:4px 2px">Souligné = clé primaire · # = clé étrangère</p></div>`;
+}
+function viewLabo() {
+  whenEngine(() => {
+    if (!labDb) labDb = freshDb();
+    const pending = store.get('labPending', null);
+    const startSql = pending || store.get('labSql', `SELECT Raison_Sociale, Ville\nFROM Client\nWHERE Ville = 'Lyon';`);
+    store.del('labPending');
+    app.innerHTML = `<div class="row" style="justify-content:space-between;margin-bottom:12px"><div><h2 style="margin:0">Labo SQL</h2><p class="muted small" style="margin:4px 0 0">Vrai moteur SQLite dans ton navigateur. <kbd>Ctrl</kbd> + <kbd>Entrée</kbd> pour exécuter. Clique sur une colonne pour l’insérer.</p></div>${engineBadge()}</div>
+<div class="lab">
+  <aside>${schemaPanel(true)}</aside>
+  <section>
+    <textarea class="ed" id="ed" spellcheck="false" aria-label="Requête SQL">${esc(startSql)}</textarea>
+    <div class="row" style="margin-top:10px"><button class="btn pri" id="run">▶ Exécuter</button><button class="btn" id="resetDb" title="Recharger les données d’origine">↺ Réinitialiser la base</button><span class="muted small" id="info"></span></div>
+    <div class="res" id="res"></div>
+  </section>
+</div>`;
+    const ed = $('#ed'), res = $('#res');
+    const run = () => {
+      const sql = ed.value; store.set('labSql', sql); store.set('labUsed', true);
+      const t0 = performance.now();
+      try { const r = lastResult(labDb, sql); res.innerHTML = resultTable(r); $('#info').textContent = `exécutée en ${Math.max(1, Math.round(performance.now() - t0))} ms`; }
+      catch (e) { res.innerHTML = `<div class="err">${esc(friendlyError(e.message, sql))}</div>`; $('#info').textContent = ''; }
+    };
+    editorKeys(ed, run);
+    $('#run').onclick = run;
+    $('#resetDb').onclick = () => { labDb.close(); labDb = freshDb(); toast('Base réinitialisée'); };
+    $$('[data-ins]').forEach(el => { if (el.dataset.ins) el.onclick = () => { ed.focus(); ed.setRangeText(el.dataset.ins, ed.selectionStart, ed.selectionEnd, 'end'); }; });
+    $$('[data-peek]').forEach(b => b.onclick = () => { ed.value = `SELECT * FROM ${b.dataset.peek};`; run(); });
+    if (pending) run();
+  });
+}
+
+/* -------- Exercices -------- */
+/* passe à la ligne avant les clauses principales (hors sous-requêtes) pour l'affichage */
+function prettySql(sql) {
+  let depth = 0, out = '';
+  const re = /\(|\)|\s+(FROM|WHERE|GROUP BY|HAVING|ORDER BY|LIMIT|(?:LEFT |RIGHT |FULL |CROSS |INNER )?JOIN|EXCEPT|UNION ALL|UNION|INTERSECT)\s+|[^()\s]+|\s+/g;
+  let m;
+  while ((m = re.exec(sql))) {
+    if (m[0] === '(') depth++;
+    if (m[0] === ')') depth--;
+    const setOp = /^(EXCEPT|UNION|UNION ALL|INTERSECT)$/.test(m[1] || '');
+    out += m[1] ? (depth === 0 ? '\n' + m[1] + (setOp ? '\n' : ' ') : ' ' + m[1] + ' ') : m[0];
+  }
+  return out;
+}
+function viewExos(arg) {
+  whenEngine(() => {
+    const ex = EXOS.find(e => e.id === arg) || EXOS.find(e => !solved()[e.id]) || EXOS[0];
+    const sv = solved(), codes = store.get('exoCode', {});
+    const idx = EXOS.indexOf(ex);
+    let list = '';
+    Object.entries(EX_CH).forEach(([k, l]) => {
+      const items = EXOS.filter(e => e.ch === k);
+      list += `<div class="grp">${l} · ${items.filter(e => sv[e.id]).length}/${items.length}</div>` + items.map(e => `<a href="#exos/${e.id}" class="${e.id === ex.id ? 'on' : ''}"><span class="st ${sv[e.id] ? 'done' : ''}">${sv[e.id] ? '✓' : ''}</span><span>${e.id.toUpperCase()} · ${esc(e.q.length > 46 ? e.q.slice(0, 44) + '…' : e.q)}</span></a>`).join('');
+    });
+    app.innerHTML = `<div class="exo">
+<nav class="exlist" aria-label="Liste des exercices">${list}</nav>
+<section>
+  <div class="row" style="justify-content:space-between"><span class="pill acc">${EX_CH[ex.ch]} · ${ex.id.toUpperCase()}</span><span class="lvl">${'★'.repeat(ex.lv)}${'☆'.repeat(3 - ex.lv)}</span></div>
+  <h2 style="margin:12px 0 6px">${esc(ex.q)}</h2>
+  <p class="muted small">${ex.ordered ? '⚠ L’ordre des lignes compte pour cet exercice.' : 'L’ordre des lignes et le nom des colonnes ne comptent pas.'}${ex.check ? ' Cet exercice modifie la base : la vérification compare l’état des tables après ta requête (base remise à zéro à chaque essai).' : ''}</p>
+  <details style="margin:8px 0"><summary class="small" style="cursor:pointer;color:var(--acc);font-weight:650">Schéma des tables</summary><div style="margin-top:8px">${schemaPanel(false)}</div></details>
+  <textarea class="ed" id="ed" spellcheck="false" aria-label="Ta requête">${esc(codes[ex.id] || '')}</textarea>
+  <div class="row" style="margin-top:10px">
+    <button class="btn" id="run">▶ Exécuter</button>
+    <button class="btn pri" id="chk">✓ Vérifier</button>
+    <button class="btn ghost" id="hint">Indice</button>
+    <button class="btn ghost" id="exp">Résultat attendu</button>
+    <button class="btn ghost" id="sol">Solution</button>
+  </div>
+  <div id="fb" style="margin-top:12px"></div>
+  <div class="res" id="res"></div>
+  <div class="nav2">${idx > 0 ? `<a class="btn ghost" href="#exos/${EXOS[idx - 1].id}">← Précédent</a>` : '<span></span>'}${idx < EXOS.length - 1 ? `<a class="btn" href="#exos/${EXOS[idx + 1].id}">Suivant →</a>` : '<a class="btn" href="#examen">Examen blanc →</a>'}</div>
+</section></div>`;
+    const ed = $('#ed'), fb = $('#fb'), res = $('#res');
+    ed.addEventListener('input', () => { const c = store.get('exoCode', {}); c[ex.id] = ed.value; store.set('exoCode', c); });
+    const run = () => {
+      if (!ed.value.trim()) { fb.innerHTML = '<div class="err">Écris d’abord ta requête.</div>'; return; }
+      const db = freshDb();
+      try { const r = ex.check ? (db.exec(ed.value), lastResult(db, ex.check)) : lastResult(db, ed.value); fb.innerHTML = ex.check ? '<div class="muted small">État de la table après ta requête :</div>' : ''; res.innerHTML = resultTable(r); }
+      catch (e) { fb.innerHTML = `<div class="err">${esc(friendlyError(e.message, ed.value))}</div>`; res.innerHTML = ''; }
+      finally { db.close(); }
+    };
+    const check = () => {
+      if (!ed.value.trim()) { fb.innerHTML = '<div class="err">Écris d’abord ta requête.</div>'; return; }
+      const c = checkExercise(ex, ed.value);
+      if (c.err) { fb.innerHTML = `<div class="err">${esc(c.err)}</div>`; res.innerHTML = ''; return; }
+      if (c.ok) {
+        const s = solved(); s[ex.id] = 1; store.set('solved', s);
+        fb.innerHTML = `<div class="okmsg">✓ Bravo, résultat correct ! ${idx < EXOS.length - 1 ? `<a href="#exos/${EXOS[idx + 1].id}" style="margin-left:8px">Exercice suivant →</a>` : ''}</div>`;
+        res.innerHTML = resultTable(c.user);
+        const st = $(`.exlist a.on .st`); if (st) { st.classList.add('done'); st.textContent = '✓'; }
+      } else {
+        fb.innerHTML = `<div class="err">✗ Pas encore. ${esc(c.why)}</div>`;
+        res.innerHTML = `<div class="grid g2" style="margin-top:6px"><div><b class="small">Ton résultat</b>${resultTable(c.user, 30)}</div><div><b class="small">Résultat attendu</b>${resultTable(c.expected, 30)}</div></div>`;
+      }
+    };
+    editorKeys(ed, check);
+    $('#run').onclick = run; $('#chk').onclick = check;
+    $('#hint').onclick = () => { fb.innerHTML = `<div class="explain">💡 ${fmt(ex.hint)}</div>`; };
+    $('#exp').onclick = () => {
+      const db = freshDb();
+      try { const r = ex.check ? (db.exec(ex.sol), lastResult(db, ex.check)) : lastResult(db, ex.sol); fb.innerHTML = '<div class="muted small">Résultat attendu :</div>'; res.innerHTML = resultTable(r); }
+      finally { db.close(); }
+    };
+    $('#sol').onclick = () => {
+      fb.innerHTML = `<div class="muted small">Une solution possible (d’autres écritures sont acceptées si le résultat est identique) :</div>${code(prettySql(ex.sol))}<button class="btn sm" id="useSol">Copier dans l’éditeur</button>`;
+      $('#useSol').onclick = () => { ed.value = prettySql(ex.sol); ed.dispatchEvent(new Event('input')); };
+    };
+  });
+}
+
+/* -------- Quiz -------- */
+function prepQ(item) { return Object.assign({}, item, { shown: shuffle(item.opts.map((t, i) => ({ t, ok: i === 0 }))) }); }
+function viewQuiz(arg) {
+  if (!arg) return quizSetup();
+  let pool;
+  if (arg === 'erreurs') { const w = wrongSet(); pool = QB.filter(x => w[x.id]); }
+  else if (arg === 'tout') pool = QB.slice();
+  else pool = QB.filter(x => x.ch === arg);
+  if (!pool.length) { app.innerHTML = `<div class="qwrap card"><h2>Rien à réviser ici</h2><p class="muted">${arg === 'erreurs' ? 'Aucune erreur enregistrée. Bravo !' : 'Thème introuvable.'}</p><a class="btn pri" href="#quiz">Retour</a></div>`; return; }
+  const n = Math.min(parseInt(store.get('quizN', 15), 10) || 15, pool.length);
+  runQuiz(shuffle(pool).slice(0, arg === 'erreurs' ? pool.length : n).map(prepQ), arg);
+}
+function quizSetup() {
+  const b = best(), w = Object.keys(wrongSet()).length;
+  app.innerHTML = `<div class="qwrap">
+<h2>Quiz</h2><p class="muted">${QB.length} questions corrigées avec explication. Raccourcis : <kbd>1</kbd>–<kbd>4</kbd> pour répondre, <kbd>Entrée</kbd> pour continuer.</p>
+<div class="row" style="margin:10px 0 16px"><label class="small muted" for="qn">Questions par série</label><select id="qn"><option>10</option><option>15</option><option>20</option><option value="999">Toutes</option></select></div>
+<div class="grid g2">
+${Object.entries(CH_LABEL).map(([k, l]) => `<a class="card" href="#quiz/${k}" style="text-decoration:none;color:inherit;padding:14px"><div class="row" style="justify-content:space-between"><b>${l}</b><span class="pill ${b[k] >= 80 ? 'ok' : b[k] != null ? 'bad' : ''}">${b[k] != null ? 'meilleur : ' + b[k] + ' %' : QB.filter(x => x.ch === k).length + ' q.'}</span></div></a>`).join('')}
+<a class="card" href="#quiz/tout" style="text-decoration:none;color:inherit;padding:14px;border-color:var(--acc)"><div class="row" style="justify-content:space-between"><b>Tout mélangé</b><span class="pill acc">${QB.length} q.</span></div></a>
+${w ? `<a class="card" href="#quiz/erreurs" style="text-decoration:none;color:inherit;padding:14px;border-color:var(--bad)"><div class="row" style="justify-content:space-between"><b>Mes erreurs</b><span class="pill bad">${w} q.</span></div></a>` : ''}
+</div></div>`;
+  $('#qn').value = String(store.get('quizN', 15));
+  $('#qn').onchange = e => store.set('quizN', parseInt(e.target.value, 10));
+}
+function runQuiz(qs, key) {
+  let i = 0, score = 0, answered = false;
+  const log = [];
+  const render = () => {
+    const x = qs[i];
+    app.innerHTML = `<div class="qwrap">
+<div class="qhead"><span class="pill acc">${CH_LABEL[x.ch]}</span><span class="muted small">Question ${i + 1} / ${qs.length} · score ${score}</span></div>
+<div class="bar"><i style="width:${i / qs.length * 100}%"></i></div>
+<div class="card" style="margin-top:14px">
+<div class="qtxt">${fmt(x.text)}</div>${x.code ? code(x.code) : ''}
+<div class="opts">${x.shown.map((o, k) => `<button class="opt" data-k="${k}"><span class="l">${k + 1}</span><span>${fmt(o.t)}</span></button>`).join('')}</div>
+<div id="fb"></div></div></div>`;
+    answered = false;
+    $$('.opt').forEach(b => b.onclick = () => pick(+b.dataset.k));
+  };
+  const pick = k => {
+    if (answered) return; answered = true;
+    const x = qs[i], ok = x.shown[k].ok;
+    if (ok) score++;
+    log.push({ x, k, ok });
+    const w = wrongSet(); if (ok) delete w[x.id]; else w[x.id] = 1; store.set('wrong', w);
+    $$('.opt').forEach((b, j) => { b.disabled = true; if (x.shown[j].ok) b.classList.add('good'); else if (j === k) b.classList.add('wrong'); });
+    $('#fb').innerHTML = `<div class="exp"><b style="color:${ok ? 'var(--ok)' : 'var(--bad)'}">${ok ? 'Bonne réponse' : 'Raté'}.</b> ${fmt(x.exp)}</div><div class="row" style="justify-content:flex-end;margin-top:12px"><button class="btn pri" id="nx">${i < qs.length - 1 ? 'Suivant →' : 'Voir le résultat'}</button></div>`;
+    $('#nx').onclick = next; $('#nx').focus();
+  };
+  const next = () => { i++; if (i < qs.length) render(); else finish(); };
+  const finish = () => {
+    const pct = Math.round(score / qs.length * 100);
+    if (CH_LABEL[key]) { const b = best(); b[key] = Math.max(b[key] || 0, pct); store.set('best', b); }
+    const ko = log.filter(l => !l.ok);
+    app.innerHTML = `<div class="qwrap"><div class="card" style="text-align:center">
+<div class="score">${pct} %</div><p class="muted">${score} / ${qs.length} bonnes réponses${CH_LABEL[key] ? ' · ' + CH_LABEL[key] : ''}</p>
+<p>${pct >= 90 ? 'Excellent, c’est maîtrisé.' : pct >= 70 ? 'Solide. Relis les corrections ci-dessous.' : 'À retravailler : relis le chapitre puis refais la série.'}</p>
+<div class="row" style="justify-content:center">${ko.length ? `<button class="btn pri" id="redo">Refaire mes ${ko.length} erreur(s)</button>` : ''}<button class="btn" id="again">Nouvelle série</button><a class="btn ghost" href="#quiz">Autres thèmes</a></div></div>
+${ko.length ? `<h3>Corrections</h3><div class="review">${ko.map(l => `<div class="it ko"><b>${fmt(l.x.text)}</b>${l.x.code ? code(l.x.code) : ''}<div class="small" style="margin-top:6px">Ta réponse : <span style="color:var(--bad)">${fmt(l.x.shown[l.k].t)}</span><br>Bonne réponse : <span style="color:var(--ok);font-weight:650">${fmt(l.x.opts[0])}</span></div><div class="small muted" style="margin-top:6px">${fmt(l.x.exp)}</div></div>`).join('')}</div>` : ''}</div>`;
+    if (ko.length) $('#redo').onclick = () => runQuiz(ko.map(l => prepQ(l.x)), key);
+    $('#again').onclick = () => viewQuiz(key);
+  };
+  const onKey = e => {
+    if (/^[1-4]$/.test(e.key) && !answered) { const k = +e.key - 1; if (qs[i] && k < qs[i].shown.length) pick(k); }
+    else if (e.key === 'Enter' && answered && $('#nx') && document.activeElement !== $('#nx')) { e.preventDefault(); next(); }
+  };
+  document.addEventListener('keydown', onKey);
+  cleanup = () => document.removeEventListener('keydown', onKey);
+  render();
+}
+
+/* -------- Flashcards -------- */
+function viewCartes() {
+  let filter = store.get('cardFilter', 'todo');
+  let deck = [], pos = 0, flipped = false, sessionOk = 0;
+  const build = () => { const kn = known(); deck = shuffle(CARDS.map((c, i) => i).filter(i => filter === 'all' || !kn[i])); pos = 0; flipped = false; sessionOk = 0; };
+  const render = () => {
+    const kn = known(), nK = CARDS.filter((c, i) => kn[i]).length, ci = deck[pos], c = CARDS[ci];
+    app.innerHTML = `<div class="fc-wrap">
+<div class="row" style="justify-content:space-between"><h2 style="margin:0">Flashcards</h2><select id="ff"><option value="todo">Non maîtrisées</option><option value="all">Toutes</option></select></div>
+<div class="row small muted" style="justify-content:space-between;margin-top:8px"><span>${deck.length ? `Carte ${Math.min(pos + 1, deck.length)} / ${deck.length}` : ''}</span><span>${nK} / ${CARDS.length} maîtrisées</span></div>
+<div class="bar" style="margin-top:6px"><i style="width:${deck.length ? pos / deck.length * 100 : 100}%"></i></div>
+${c ? `<div class="fc ${flipped ? 'flip' : ''}" id="fc" tabindex="0" role="button" aria-label="Retourner la carte">
+<div class="fc-in"><div class="fc-f"><div class="q">${esc(c[0])}</div><span class="hint">Clique ou <kbd>Espace</kbd> pour retourner</span></div>
+<div class="fc-b"><div class="a">${esc(c[1])}</div>${c[2] ? code(c[2]) : ''}</div></div></div>
+<div class="row" style="justify-content:center"><button class="btn" id="bad">← À revoir</button><button class="btn pri" id="ok">Je savais →</button></div>
+<p class="muted small" style="text-align:center;margin-top:10px"><kbd>Espace</kbd> retourner · <kbd>←</kbd> à revoir · <kbd>→</kbd> je savais</p>`
+        : `<div class="card" style="text-align:center;margin-top:16px"><div class="score">🎉</div><h3>${filter === 'todo' ? 'Toutes les cartes sont maîtrisées !' : 'Paquet terminé'}</h3><p class="muted">${sessionOk} carte(s) validée(s) pendant cette série.</p><div class="row" style="justify-content:center"><button class="btn pri" id="again">Recommencer</button><a class="btn" href="#quiz">Passer au quiz</a></div></div>`}</div>`;
+    $('#ff').value = filter;
+    $('#ff').onchange = e => { filter = e.target.value; store.set('cardFilter', filter); build(); render(); };
+    if (c) { $('#fc').onclick = () => { flipped = !flipped; $('#fc').classList.toggle('flip', flipped); }; $('#ok').onclick = () => answer(true); $('#bad').onclick = () => answer(false); }
+    else $('#again').onclick = () => { if (filter === 'todo' && CARDS.every((x, i) => known()[i])) { filter = 'all'; store.set('cardFilter', filter); } build(); render(); };
+  };
+  const answer = ok => {
+    const ci = deck[pos]; if (ci === undefined) return;
+    const kn = known();
+    if (ok) { kn[ci] = 1; sessionOk++; pos++; } else { delete kn[ci]; deck.push(deck.splice(pos, 1)[0]); }
+    store.set('known', kn); flipped = false; render();
+  };
+  const onKey = e => {
+    if (e.target.tagName === 'SELECT') return;
+    if (e.key === ' ' || e.key === 'Enter') { const f = $('#fc'); if (f) { e.preventDefault(); f.click(); } }
+    if (e.key === 'ArrowRight' && $('#ok')) answer(true);
+    if (e.key === 'ArrowLeft' && $('#bad')) answer(false);
+  };
+  document.addEventListener('keydown', onKey);
+  cleanup = () => document.removeEventListener('keydown', onKey);
+  build(); render();
+}
+
+/* -------- Pièges -------- */
+function viewPieges() {
+  store.set('trapsSeen', true);
+  app.innerHTML = `<h2>Pièges d’examen & règles d’or</h2>
+<p class="muted">Les ${TRAPS.length} erreurs les plus fréquentes et la bonne façon de faire. À relire juste avant l’épreuve.</p>
+<div class="card" style="margin-bottom:16px"><h3 style="margin-top:0">La requête complète, à connaître par cœur</h3>
+<div class="grid g2"><div><b class="small">Ordre d’ÉCRITURE</b>${code(`SELECT [DISTINCT] colonnes, agrégats
+FROM table1 [JOIN table2 ON …]
+WHERE conditions sur les lignes
+GROUP BY colonnes
+HAVING conditions sur les agrégats
+ORDER BY colonnes [ASC|DESC]
+LIMIT n OFFSET m;`)}</div><div><b class="small">Ordre d’EXÉCUTION</b><ol class="small"><li>FROM / JOIN (tables, jointures)</li><li>WHERE (filtre des lignes)</li><li>GROUP BY (groupes)</li><li>agrégats (COUNT, SUM…)</li><li>HAVING (filtre des groupes)</li><li>SELECT (colonnes, DISTINCT, AS)</li><li>ORDER BY puis LIMIT / OFFSET</li></ol></div></div></div>
+<div class="traps">${TRAPS.map(([f, v, c]) => `<div class="trapc"><div class="f">${esc(f)}</div><div class="v">${esc(v)}</div>${c ? code(c) : ''}</div>`).join('')}</div>
+<div class="row" style="justify-content:center;margin-top:18px"><a class="btn pri" href="#examen">Passer l’examen blanc →</a></div>`;
+}
+
+/* -------- Examen blanc -------- */
+function viewExamen() {
+  const b = best();
+  app.innerHTML = `<div class="qwrap"><div class="card">
+<h2>Examen blanc</h2>
+<p><b>18 QCM</b> tirés dans tout le cours, puis <b>4 requêtes à écrire</b> sur la base d’entraînement (SELECT/WHERE, GROUP BY, jointure, ensembliste ou sous-requête). Durée : <b>30 minutes</b>.</p>
+<p class="muted small">Barème : 1 point par QCM, 3 points par requête juste, ramené sur 20. Tu peux exécuter tes requêtes pour voir leur résultat, mais la correction n’apparaît qu’à la fin.${SQL ? '' : engineErr ? ' Moteur SQL indisponible : l’examen ne contiendra que des QCM.' : ''}</p>
+${b.exam != null ? `<p>Meilleure note : <b>${b.exam.toFixed(1).replace('.', ',')} / 20</b></p>` : ''}
+<button class="btn pri" id="go">Lancer l’examen</button></div></div>`;
+  $('#go').onclick = () => engineReady.then(startExam);
+}
+function startExam() {
+  const pickQ = (chs, n) => shuffle(QB.filter(x => chs.includes(x.ch))).slice(0, n);
+  const qcm = shuffle([...pickQ(['select', 'where'], 4), ...pickQ(['group'], 3), ...pickQ(['join'], 4), ...pickQ(['set', 'sub'], 2), ...pickQ(['ddl', 'voc'], 2), ...pickQ(['lire'], 3)]).map(x => Object.assign(prepQ(x), { kind: 'qcm' }));
+  const pickE = (chs, lvMax) => shuffle(EXOS.filter(e => chs.includes(e.ch) && e.lv <= lvMax))[0];
+  const exos = SQL ? [pickE(['select', 'where'], 2), pickE(['group'], 3), pickE(['join'], 3), pickE(['set', 'sub'], 2)].filter(Boolean).map(e => ({ kind: 'exo', ex: e })) : [];
+  const items = [...qcm, ...exos];
+  const ans = new Array(items.length).fill(null);
+  let i = 0, done = false;
+  const end = Date.now() + 30 * 60 * 1000;
+  const tick = () => {
+    const left = Math.max(0, end - Date.now()), t = $('#tm');
+    if (t) { const m = Math.floor(left / 60000), s = Math.floor(left % 60000 / 1000); t.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`; t.classList.toggle('low', left < 3 * 60000); }
+    if (left <= 0 && !done) { toast('Temps écoulé !'); finish(); }
+  };
+  const iv = setInterval(tick, 500);
+  const onKey = e => {
+    if (done || items[i].kind !== 'qcm' || e.target.tagName === 'TEXTAREA') return;
+    if (/^[1-4]$/.test(e.key)) { const k = +e.key - 1; if (k < items[i].shown.length) { ans[i] = k; if (i < items.length - 1) i++; render(); } }
+  };
+  document.addEventListener('keydown', onKey);
+  cleanup = () => { clearInterval(iv); document.removeEventListener('keydown', onKey); };
+  const isAnswered = k => items[k].kind === 'qcm' ? ans[k] != null : !!(ans[k] && ans[k].trim());
+  const render = () => {
+    const x = items[i];
+    let body;
+    if (x.kind === 'qcm') body = `<div class="qtxt">${fmt(x.text)}</div>${x.code ? code(x.code) : ''}<div class="opts">${x.shown.map((o, k) => `<button class="opt ${ans[i] === k ? 'sel' : ''}" data-k="${k}"><span class="l">${k + 1}</span><span>${fmt(o.t)}</span></button>`).join('')}</div>`;
+    else body = `<span class="pill warn">Requête à écrire · 3 points</span><div class="qtxt" style="margin-top:8px">${esc(x.ex.q)}</div><details style="margin-bottom:8px"><summary class="small" style="cursor:pointer;color:var(--acc);font-weight:650">Schéma des tables</summary><div style="margin-top:8px">${schemaPanel(false)}</div></details><textarea class="ed" id="ed" spellcheck="false">${esc(ans[i] || '')}</textarea><div class="row" style="margin-top:8px"><button class="btn" id="run">▶ Exécuter</button><span class="muted small">Le résultat s’affiche, la correction viendra à la fin.</span></div><div class="res" id="res"></div>`;
+    app.innerHTML = `<div class="qwrap">
+<div class="qhead"><b>Examen blanc</b><span class="timer" id="tm">30:00</span></div>
+<div class="dots">${items.map((it, k) => `<button class="${isAnswered(k) ? 'ans' : ''} ${k === i ? 'cur' : ''}" data-k="${k}" title="${it.kind === 'exo' ? 'Requête' : 'QCM'}">${it.kind === 'exo' ? 'R' + (k - qcm.length + 1) : k + 1}</button>`).join('')}</div>
+<div class="card"><div class="muted small">${x.kind === 'exo' ? 'Requête' : 'Question'} ${i + 1} / ${items.length}</div>${body}
+<div class="row" style="justify-content:space-between;margin-top:16px"><button class="btn ghost" id="pv" ${i === 0 ? 'disabled' : ''}>← Précédente</button>${i < items.length - 1 ? '<button class="btn" id="nx">Suivante →</button>' : ''}</div></div>
+<div class="row" style="justify-content:flex-end;margin-top:14px"><span class="muted small">${items.filter((_, k) => isAnswered(k)).length} / ${items.length} répondues</span><button class="btn pri" id="sub">Rendre la copie</button></div></div>`;
+    tick();
+    $$('.opt').forEach(b => b.onclick = () => { ans[i] = +b.dataset.k; if (i < items.length - 1) i++; render(); });
+    $$('.dots button').forEach(b => b.onclick = () => { i = +b.dataset.k; render(); });
+    $('#pv').onclick = () => { if (i > 0) { i--; render(); } };
+    if ($('#nx')) $('#nx').onclick = () => { i++; render(); };
+    if (x.kind === 'exo') {
+      const ed = $('#ed');
+      ed.addEventListener('input', () => { ans[i] = ed.value; });
+      const run = () => { const db = freshDb(); try { const r = x.ex.check ? (db.exec(ed.value), lastResult(db, x.ex.check)) : lastResult(db, ed.value); $('#res').innerHTML = resultTable(r, 40); } catch (e) { $('#res').innerHTML = `<div class="err">${esc(friendlyError(e.message, ed.value))}</div>`; } finally { db.close(); } };
+      editorKeys(ed, run); $('#run').onclick = run;
+    }
+    $('#sub').onclick = () => { const miss = items.filter((_, k) => !isAnswered(k)).length; if (!miss || confirm(`${miss} question(s) sans réponse. Rendre quand même ?`)) finish(); };
+  };
+  const finish = () => {
+    if (done) return; done = true; cleanup(); cleanup = null;
+    let pts = 0, max = 0; const w = wrongSet();
+    const results = items.map((x, k) => {
+      if (x.kind === 'qcm') { max += 1; const ok = ans[k] != null && x.shown[ans[k]].ok; if (ok) { pts += 1; delete w[x.id]; } else w[x.id] = 1; return { ok }; }
+      max += 3; if (!ans[k] || !ans[k].trim()) return { ok: false, why: 'Pas de réponse.' };
+      const c = checkExercise(x.ex, ans[k]); if (c.ok) { pts += 3; const s = solved(); s[x.ex.id] = 1; store.set('solved', s); }
+      return { ok: c.ok, why: c.err || c.why };
+    });
+    store.set('wrong', w);
+    const note = Math.round(pts / max * 200) / 10;
+    const b = best(); b.exam = Math.max(b.exam != null ? b.exam : 0, note); store.set('best', b);
+    app.innerHTML = `<div class="qwrap"><div class="card" style="text-align:center">
+<div class="score">${note.toFixed(1).replace('.', ',')} / 20</div><p class="muted">${pts} / ${max} points · QCM ${results.filter((r, k) => items[k].kind === 'qcm' && r.ok).length}/${qcm.length} · requêtes ${results.filter((r, k) => items[k].kind === 'exo' && r.ok).length}/${exos.length}</p>
+<p>${note >= 16 ? 'Très bien : tu es prêt·e.' : note >= 12 ? 'Correct. Retravaille les erreurs ci-dessous puis refais un examen.' : 'Revois les chapitres concernés, refais les exercices, puis retente.'}</p>
+<div class="row" style="justify-content:center"><button class="btn pri" id="re">Nouvel examen</button><a class="btn" href="#quiz/erreurs">Refaire mes erreurs QCM</a></div></div>
+<h3>Corrigé</h3><div class="review">${items.map((x, k) => {
+      const r = results[k];
+      if (x.kind === 'qcm') return `<div class="it ${r.ok ? 'okk' : 'ko'}"><div class="row" style="justify-content:space-between"><span class="pill">${k + 1} · ${CH_LABEL[x.ch]}</span><span class="pill ${r.ok ? 'ok' : 'bad'}">${r.ok ? 'juste' : ans[k] == null ? 'sans réponse' : 'faux'}</span></div><b style="display:block;margin-top:8px">${fmt(x.text)}</b>${!r.ok ? `${x.code ? code(x.code) : ''}<div class="small" style="margin-top:6px">${ans[k] != null ? `Ta réponse : <span style="color:var(--bad)">${fmt(x.shown[ans[k]].t)}</span><br>` : ''}Bonne réponse : <span style="color:var(--ok);font-weight:650">${fmt(x.opts[0])}</span></div><div class="small muted" style="margin-top:6px">${fmt(x.exp)}</div>` : ''}</div>`;
+      return `<div class="it ${r.ok ? 'okk' : 'ko'}"><div class="row" style="justify-content:space-between"><span class="pill warn">Requête · ${EX_CH[x.ex.ch]}</span><span class="pill ${r.ok ? 'ok' : 'bad'}">${r.ok ? '3 / 3' : '0 / 3'}</span></div><b style="display:block;margin-top:8px">${esc(x.ex.q)}</b>${ans[k] ? `<div class="small muted" style="margin-top:6px">Ta requête :</div>${code(ans[k])}` : ''}${!r.ok ? `<div class="small" style="color:var(--bad)">${esc(r.why || '')}</div><div class="small muted" style="margin-top:6px">Une solution :</div>${code(prettySql(x.ex.sol))}` : ''}</div>`;
+    }).join('')}</div></div>`;
+    $('#re').onclick = startExam;
+    window.scrollTo(0, 0);
+  };
+  render();
+}
+
+/* =========================================================
+   Routeur & thème
+   ========================================================= */
+const VIEWS = { home: viewHome, cours: viewCours, labo: viewLabo, exos: viewExos, quiz: viewQuiz, cartes: viewCartes, pieges: viewPieges, examen: viewExamen };
+function route() {
+  if (cleanup) { cleanup(); cleanup = null; }
+  const [v, arg] = (location.hash.slice(1) || 'home').split('/');
+  (VIEWS[v] || viewHome)(arg ? decodeURIComponent(arg) : undefined);
+  $$('#tabs a').forEach(a => a.classList.toggle('on', a.dataset.v === (VIEWS[v] ? v : 'home')));
+  window.scrollTo(0, 0);
+}
+window.addEventListener('hashchange', route);
+(function theme() {
+  const saved = store.get('theme', null);
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  $('#themeBtn').onclick = () => {
+    const cur = document.documentElement.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const nx = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', nx); store.set('theme', nx);
+  };
+})();
+route();
+</script>
+</body>
+</html>
