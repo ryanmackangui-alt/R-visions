@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Révision Propriété intellectuelle</title>
+<meta name="description" content="Application de révision du cours de droit de la propriété intellectuelle (R5.02, A. Mbotaingar) : cours complété et vérifié, mémento des articles, flashcards, QCM difficiles, cas pratiques et examen blanc.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f4f0;--surface:#ffffff;--surface2:#efede7;--ink:#1c1a17;--muted:#6a655c;--line:#e0dcd2;
+  --acc:#7b1f79;--acc-soft:#f4e6f3;--acc2:#0e7f92;--acc2-soft:#e2f4f6;
+  --ok:#1d7f46;--ok-soft:#e3f3e8;--bad:#bf3228;--bad-soft:#fbe7e4;--warn:#96600f;--warn-soft:#fbf0dc;
+  --shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.05);
+  --r:14px;--serif:"Source Serif 4",Georgia,serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141317;--surface:#1d1c21;--surface2:#26252c;--ink:#ecebe7;--muted:#a19d95;--line:#34323a;
+    --acc:#e08fdd;--acc-soft:#3a2439;--acc2:#4ccadd;--acc2-soft:#193338;
+    --ok:#5cc98a;--ok-soft:#1b3326;--bad:#f07a70;--bad-soft:#3b2120;--warn:#e6b25a;--warn-soft:#382d18;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141317;--surface:#1d1c21;--surface2:#26252c;--ink:#ecebe7;--muted:#a19d95;--line:#34323a;
+  --acc:#e08fdd;--acc-soft:#3a2439;--acc2:#4ccadd;--acc2-soft:#193338;
+  --ok:#5cc98a;--ok-soft:#1b3326;--bad:#f07a70;--bad-soft:#3b2120;--warn:#e6b25a;--warn-soft:#382d18;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15.5px/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--acc)}
+button,textarea,select,input{font:inherit;color:inherit}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em}
+h1{font-size:clamp(1.6rem,4vw,2.3rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:1.45rem;font-weight:750;letter-spacing:-.01em}
+h3{font-size:1.12rem;font-weight:700;margin-top:1.6em}
+h4{margin:1.2em 0 .4em;font-size:1rem}
+p{margin:.45em 0 .8em}
+ul,ol{margin:.3em 0 .9em;padding-left:1.25em}
+li{margin:.25em 0}
+b,strong{font-weight:650}
+.muted{color:var(--muted)}
+.small{font-size:.86rem}
+q,.cite{font-family:var(--serif);font-style:italic;font-size:1.03em}
+q{quotes:"« " " »"}
+.art{font-weight:700;color:var(--acc2);white-space:nowrap}
+
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topin{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:10px 16px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;text-decoration:none;color:var(--ink);white-space:nowrap}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs a{padding:7px 12px;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:600;font-size:.92rem;white-space:nowrap}
+nav.tabs a:hover{background:var(--surface2);color:var(--ink)}
+nav.tabs a.on{background:var(--acc);color:#fff}
+:root[data-theme="dark"] nav.tabs a.on,:root[data-theme="dark"] .btn.pri{color:#1a0f1a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) nav.tabs a.on,:root:not([data-theme="light"]) .btn.pri{color:#1a0f1a}}
+.iconbtn{border:1px solid var(--line);background:var(--surface);border-radius:10px;width:36px;height:36px;display:grid;place-items:center;cursor:pointer;flex:none}
+@media (max-width:720px){.brand span{display:none}}
+
+main{max-width:1180px;margin:0 auto;padding:22px 16px 80px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.grid>*,.course>*,.hero>*{min-width:0}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);padding:9px 16px;border-radius:10px;cursor:pointer;font-weight:600;text-decoration:none;color:var(--ink)}
+.btn:hover{border-color:var(--acc)}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:#fff}
+.btn.ghost{background:transparent}
+.btn.sm{padding:5px 11px;font-size:.85rem}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:.78rem;font-weight:650;background:var(--surface2);color:var(--muted)}
+.pill.acc{background:var(--acc-soft);color:var(--acc)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+select,input[type=search]{padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface)}
+input[type=search]{width:100%;max-width:360px}
+
+.hero{display:grid;grid-template-columns:1.5fr 1fr;gap:14px}
+@media (max-width:820px){.hero{grid-template-columns:1fr}}
+.stat{display:flex;flex-direction:column;gap:2px}
+.stat .v{font-size:1.5rem;font-weight:800;letter-spacing:-.02em}
+.bar{height:7px;border-radius:99px;background:var(--surface2);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--acc);border-radius:99px;transition:width .3s}
+ol.steps{list-style:none;padding:0;margin:0;counter-reset:s;display:grid;gap:8px}
+ol.steps li{counter-increment:s;display:flex;justify-content:space-between;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin:0}
+ol.steps li>div::before{content:counter(s);display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--surface2);font-weight:700;font-size:.8rem;margin-right:10px}
+ol.steps li.done>div::before{content:"✓";background:var(--ok);color:#fff}
+
+.course{display:grid;grid-template-columns:250px 1fr;gap:20px;align-items:start}
+@media (max-width:860px){.course{grid-template-columns:1fr}}
+.toc{position:sticky;top:70px;display:grid;gap:4px}
+@media (max-width:860px){.toc{position:static;display:flex;overflow-x:auto;gap:6px;padding-bottom:4px}}
+.toc a{display:flex;gap:8px;align-items:baseline;padding:8px 10px;border-radius:10px;text-decoration:none;color:var(--muted);font-weight:600;font-size:.9rem}
+@media (max-width:860px){.toc a{white-space:nowrap;border:1px solid var(--line);background:var(--surface)}}
+.toc a:hover{background:var(--surface2);color:var(--ink)}
+.toc a.on{background:var(--acc-soft);color:var(--acc)}
+.toc a .n{font-variant-numeric:tabular-nums;opacity:.7}
+.toc a.read .n::after{content:" ✓";color:var(--ok)}
+article.ch{max-width:780px}
+article.ch h2{margin-bottom:.2em}
+article.ch h3{border-top:1px solid var(--line);padding-top:1.1em}
+.box{border-radius:12px;padding:12px 15px;margin:14px 0;border:1px solid var(--line);background:var(--surface)}
+.box .bt{display:block;font-size:.74rem;font-weight:750;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+.box p:last-child,.box ul:last-child{margin-bottom:0}
+.box.key{background:var(--acc-soft);border-color:transparent}.box.key .bt{color:var(--acc)}
+.box.trap{background:var(--bad-soft);border-color:transparent}.box.trap .bt{color:var(--bad)}
+.box.tip{background:var(--acc2-soft);border-color:transparent}.box.tip .bt{color:var(--acc2)}
+.box.fix{background:var(--warn-soft);border-color:transparent}.box.fix .bt{color:var(--warn)}
+.box.plus{border-style:dashed}.box.plus .bt{color:var(--muted)}
+.tw{overflow-x:auto;margin:12px 0}
+table.t{border-collapse:collapse;width:100%;font-size:.92rem;background:var(--surface);border-radius:12px;overflow:hidden}
+table.t th,table.t td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+table.t th{background:var(--surface2);font-weight:700}
+
+.opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:11px 14px;margin:8px 0;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--acc)}
+.opt.good{background:var(--ok-soft);border-color:var(--ok)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.exp{background:var(--surface2);border-radius:12px;padding:12px 14px;margin-top:10px}
+.qtext{font-size:1.08rem;font-weight:600;margin:10px 0 14px}
+
+.flash{perspective:1200px;max-width:640px;margin:18px auto}
+.flash .in{position:relative;min-height:260px;cursor:pointer}
+.flash .f{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:26px;min-height:260px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:10px}
+.flash .f.b{background:var(--acc-soft);border-color:transparent;text-align:left;align-items:stretch}
+.flash .big{font-size:1.25rem;font-weight:700}
+
+.case{margin-bottom:14px}
+.case summary{cursor:pointer;font-weight:700;font-size:1.05rem}
+.facts{font-family:var(--serif);font-size:1.04rem;background:var(--surface2);border-radius:12px;padding:12px 15px;margin:10px 0}
+.chk{display:flex;gap:9px;align-items:flex-start;padding:6px 0;border-bottom:1px dashed var(--line)}
+.chk input{margin-top:5px;accent-color:var(--acc);width:16px;height:16px;flex:none}
+details.ans{margin:8px 0 16px}
+details.ans>summary{cursor:pointer;color:var(--acc);font-weight:650}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:99px;font-weight:600;font-size:.9rem;opacity:0;pointer-events:none;transition:.25s;z-index:50}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="topin">
+    <a class="brand" href="#home" aria-label="Accueil">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="8" fill="var(--acc)"/><circle cx="15" cy="15" r="8" fill="none" stroke="#fff" stroke-width="2"/><path d="M18.2 12.3a4 4 0 1 0 0 5.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>Propriété intellectuelle</span>
+    </a>
+    <nav class="tabs" id="tabs">
+      <a href="#home" data-v="home">Accueil</a>
+      <a href="#cours" data-v="cours">Cours</a>
+      <a href="#fiche" data-v="fiche">Fiche express</a>
+      <a href="#articles" data-v="articles">Articles &amp; arrêts</a>
+      <a href="#cartes" data-v="cartes">Flashcards</a>
+      <a href="#quiz" data-v="quiz">QCM</a>
+      <a href="#cas" data-v="cas">Cas &amp; questions de cours</a>
+      <a href="#pieges" data-v="pieges">Pièges</a>
+      <a href="#examen" data-v="examen">Examen blanc</a>
+    </nav>
+    <button class="iconbtn" id="themeBtn" title="Changer de thème" aria-label="Changer de thème">◐</button>
+  </div>
+</header>
+<main id="app"></main>
+<div class="toast" id="toast"></div>
+<script>
+'use strict';
+/* =========================================================
+   COURS — R5.02 Droit de la propriété intellectuelle (A. Mbotaingar)
+   Sources : notes de cours, plan du cours, support « suite et fin »,
+   complétés et recoupés avec le Code de la propriété intellectuelle.
+   ========================================================= */
+const key = h => `<div class="box key"><span class="bt">À retenir</span>${h}</div>`;
+const trap = h => `<div class="box trap"><span class="bt">Piège d’examen</span>${h}</div>`;
+const tip = h => `<div class="box tip"><span class="bt">Astuce mémo</span>${h}</div>`;
+const fix = h => `<div class="box fix"><span class="bt">Tes notes ≠ le texte — à vérifier</span>${h}</div>`;
+const plus = h => `<div class="box plus"><span class="bt">Pour aller plus loin (complément hors notes)</span>${h}</div>`;
+const A = s => `<span class="art">${s}</span>`;
+
+const CHAPTERS = [
+{ id: 'intro', n: '0', title: 'Introduction générale', time: '15 min', html: `
+<p class="muted">Notions préalables : définition, plagiat et contrefaçon, branches de la PI, acquisition des droits, exclusions, régime répressif.</p>
+
+<h3>1. Définition du droit de la propriété intellectuelle</h3>
+<p>La propriété intellectuelle est l’ensemble des règles qui permettent à l’<b>inventeur</b> ou au <b>créateur</b> d’une œuvre de protéger sa production en lui réservant deux séries de prérogatives :</p>
+<ul>
+<li>un <b>droit patrimonial</b> : le <b>monopole d’exploitation</b>. Il peut être transmis <b>à titre gratuit ou onéreux</b>, ou <b>concédé sous forme de licence</b> ;</li>
+<li>un <b>droit moral</b> : le respect du nom, de la qualité et de l’œuvre — notamment la <b>paternité</b>. Il est <b>perpétuel</b> et <b>attaché à la personne</b> de l’auteur.</li>
+</ul>
+${key(`<p>Même après avoir <b>vendu</b> son droit patrimonial, l’auteur <b>conserve</b> son droit moral. On peut céder l’exploitation, jamais la paternité.</p>`)}
+<p>Le droit de la PI est aussi la <b>source de la répression</b> de deux usages indus : la <b>contrefaçon</b> et le <b>plagiat</b>. Tout usage non autorisé par l’auteur caractérise, selon le cas, l’un ou l’autre.</p>
+
+<h3>2. Plagiat et contrefaçon</h3>
+<div class="tw"><table class="t">
+<tr><th></th><th>Plagiat</th><th>Contrefaçon</th></tr>
+<tr><th>Texte cité au cours</th><td>${A('CPI, art. L. 122-4')}</td><td>${A('CPI, art. L. 335-3')}</td></tr>
+<tr><th>Définition</th><td>S’<b>attribuer la propriété</b> de ce qu’on a puisé dans l’œuvre d’autrui, <b>sans son consentement</b> et <b>sans mention des sources</b>.</td><td>Toute <b>reproduction, représentation ou diffusion</b>, par quelque moyen que ce soit, d’une œuvre <b>en violation des droits de l’auteur</b>.</td></tr>
+<tr><th>Ce qui est atteint</th><td>La <b>paternité</b> : emprunt d’un passage, d’une idée exprimée, voire de l’intégralité de l’œuvre, en se faisant passer pour l’auteur.</td><td>La <b>forme</b> de l’œuvre : reprise de sa composition, de sa structure, et <b>utilisation sans autorisation</b> du titulaire.</td></tr>
+<tr><th>Formule du cours</th><td>« Plagiat ⇒ emprunt + appropriation de la paternité »</td><td>« Contrefaçon = reproduction + utilisation sans autorisation »</td></tr>
+</table></div>
+<p>${A('L. 122-4')} : <q>Toute représentation ou reproduction intégrale ou partielle faite sans le consentement de l’auteur ou de ses ayants droit ou ayants cause est illicite. Il en est de même pour la traduction, l’adaptation ou la transformation, l’arrangement ou la reproduction par un art ou un procédé quelconque.</q></p>
+<p>${A('L. 335-3')} : <q>Est également un délit de contrefaçon toute reproduction, représentation ou diffusion, par quelque moyen que ce soit, d’une œuvre de l’esprit en violation des droits de l’auteur, tels qu’ils sont définis et réglementés par la loi.</q></p>
+${plus(`<p>Le mot « plagiat » ne figure <b>pas</b> dans le CPI : c’est une notion morale et universitaire. Juridiquement, le plagiat est sanctionné <b>par l’action en contrefaçon</b> lorsqu’il reprend la <i>forme</i> originale d’une œuvre. C’est pour cela que le cours rattache le plagiat à L. 122-4 (l’usage illicite) et la contrefaçon à L. 335-3 (le délit). Reprendre une simple <b>idée</b> n’est pas une contrefaçon : les idées sont de libre parcours.</p>`)}
+<p>Des <b>exceptions</b> existent : certains usages non consentis sont licites (visée scientifique, universitaire, didactique… — voir les exceptions de ${A('L. 122-5')}).</p>
+
+<h3>3. Les branches de la propriété intellectuelle</h3>
+<div class="tw"><table class="t">
+<tr><th>Propriété littéraire et artistique (PLA)</th><th>Propriété industrielle</th></tr>
+<tr><td><ul>
+<li><b>Droit d’auteur</b> : musique, films, livres, créations de mode… et <b>logiciels</b>.</li>
+<li><b>Droits voisins</b> du droit d’auteur : artistes-interprètes, producteurs de phonogrammes et de vidéogrammes, entreprises de communication audiovisuelle.</li>
+<li><b>Droit spécial (sui generis) des producteurs de bases de données</b>.</li>
+</ul></td><td><ul>
+<li><b>Brevets</b> (inventions).</li>
+<li><b>Marques</b> (industrielles, commerciales, de service).</li>
+<li><b>Dessins et modèles</b>.</li>
+<li><b>Appellations d’origine</b> et <b>indications géographiques</b> protégées.</li>
+</ul></td></tr>
+<tr><th colspan="2">Acquisition du droit</th></tr>
+<tr><td><b>Aucune formalité</b> : le droit naît <b>du seul fait de la création</b>. Présomption de titularité au profit de celui sous le nom de qui l’œuvre est divulguée.</td><td>Par un <b>dépôt</b> (auprès de l’INPI) : le droit résulte du titre délivré et se règle par l’<b>antériorité du dépôt</b> (le premier déposant l’emporte).</td></tr>
+</table></div>
+<p><b>Support légal</b> : le <b>Code de la propriété intellectuelle</b> (CPI).</p>
+${plus(`<ul>
+<li>Durées en propriété industrielle : brevet <b>20 ans</b> à compter du dépôt ; marque <b>10 ans</b>, renouvelable indéfiniment ; dessins et modèles <b>5 ans</b>, renouvelables jusqu’à 25 ans.</li>
+<li>INPI = Institut national de la propriété industrielle. Tes notes s’arrêtent à « Auprès de… » : c’est l’INPI.</li>
+<li>Depuis 2019, les <b>éditeurs et agences de presse</b> disposent aussi d’un droit voisin.</li>
+</ul>`)}
+
+<h3>4. Ce qui est exclu du champ de la propriété intellectuelle</h3>
+<ul>
+<li><b>Le droit à l’image</b> : il est attaché à la <b>personne</b> de l’être humain et prolonge sa personnalité. Il relève du <b>Code civil</b> (vie privée, art. 9) et du <b>Code pénal</b>, pas du CPI.</li>
+<li><b>Certains signes distinctifs</b> : <b>dénomination sociale</b>, <b>logo</b>, <b>enseigne commerciale</b>, <b>nom commercial</b>, <b>nom de domaine</b>.</li>
+<li>Le <b>savoir-faire</b>.</li>
+</ul>
+<p>Ces éléments ne sont protégés, en eux-mêmes, ni par le droit d’auteur, ni par le brevet, ni par la marque. Ils peuvent l’être par l’action en <b>concurrence déloyale</b> (responsabilité civile).</p>
+${plus(`<p>Nuances utiles si le prof creuse : un <b>logo</b> peut être <i>déposé comme marque</i> ou protégé par le droit d’auteur s’il est original — c’est le signe « en lui-même » qui n’a pas de titre propre. Une marque ne peut pas porter atteinte à une dénomination sociale, un nom commercial ou un nom de domaine <b>antérieurs</b> (ce sont des « droits antérieurs » opposables). Le savoir-faire secret relève du <b>secret des affaires</b> (Code de commerce).</p>`)}
+
+<h3>5. Régime répressif : une action de double nature</h3>
+<p>L’action en contrefaçon (et en plagiat) a une <b>double nature</b> :</p>
+<div class="tw"><table class="t">
+<tr><th>Action pénale (délit)</th><th>Action civile (réparation)</th></tr>
+<tr><td>${A('L. 335-2')} ; ${A('L. 335-2-1')} ; ${A('L. 335-4')} ; ${A('L. 343-4')} ; ${A('L. 521-10')} ; ${A('L. 615-14')} ; ${A('L. 716-10')}</td><td>${A('L. 331-1-3')} ; ${A('L. 521-7')} ; ${A('L. 615-7')} ; ${A('L. 623-28')} ; ${A('L. 716-4-10')} ; ${A('L. 722-6')}</td></tr>
+<tr><td><b>3 ans d’emprisonnement et 300 000 € d’amende</b> (contrefaçon de droit d’auteur, L. 335-2).</td><td><b>Dommages et intérêts</b> au profit de l’auteur.</td></tr>
+</table></div>
+${plus(`<p><b>Lire les numéros</b> (très utile pour un prof précis) : le premier chiffre du numéro indique le livre du CPI. <b>L. 3xx</b> = droit d’auteur, droits voisins, bases de données ; <b>L. 5xx</b> = dessins et modèles ; <b>L. 6xx</b> = brevets (et obtentions végétales, L. 623) ; <b>L. 7xx</b> = marques et indications géographiques.</p>
+<ul>
+<li>Pénal : L. 335-2 (droit d’auteur), L. 335-2-1 (logiciels destinés au piratage), L. 335-4 (droits voisins), L. 343-4 (bases de données), L. 521-10 (dessins et modèles), L. 615-14 (brevets), L. 716-10 (marques).</li>
+<li>Civil : L. 331-1-3 (droit d’auteur), L. 521-7 (dessins et modèles), L. 615-7 (brevets), L. 623-28 (obtentions végétales), L. 716-4-10 (marques), L. 722-6 (indications géographiques).</li>
+<li>Pour fixer les dommages et intérêts, le juge prend en considération <b>distinctement</b> : les conséquences économiques négatives (manque à gagner, perte subie), le <b>préjudice moral</b>, et les <b>bénéfices réalisés par le contrefacteur</b>. À la demande de la victime, il peut allouer à la place une <b>somme forfaitaire</b>.</li>
+<li>En <b>bande organisée</b> (ou en ligne dans certains cas), les peines sont aggravées (7 ans et 750 000 € dans la rédaction que j’ai pu recouper ; des sources plus anciennes indiquent 5 ans et 500 000 € — à vérifier sur Légifrance si tu veux citer ce chiffre).</li>
+</ul>`)}
+` },
+
+{ id: 'oeuvre', n: '1', title: 'L’œuvre de l’esprit', time: '20 min', html: `
+<p class="muted">Titre 1 — PLA · Chapitre 1 — Droit d’auteur · Section I, § 1, A : la nécessité d’une œuvre de l’esprit (définition, IA).</p>
+
+<h3>Le droit d’auteur : objet et nature</h3>
+<p>Le droit d’auteur a pour <b>seul objet</b> de protéger une <b>œuvre de l’esprit</b>, c’est-à-dire l’œuvre d’une <b>personne physique</b>.</p>
+<ul>
+<li>Une <b>personne morale</b> (entreprise, association, État, collectivité territoriale) <b>ne peut pas être auteur</b> — elle ne peut jamais être auteur <i>initial</i>.</li>
+<li>Elle peut en revanche être <b>titulaire du droit patrimonial</b> : soit en <b>achetant</b> le droit à l’auteur une fois l’œuvre créée, soit en étant <b>à l’initiative</b> de la création (œuvre collective).</li>
+</ul>
+<p>${A('L. 111-1, al. 1')} : <q>L’auteur d’une œuvre de l’esprit jouit sur cette œuvre, du seul fait de sa création, d’un droit de propriété incorporelle exclusif et opposable à tous.</q></p>
+${key(`<p>Quatre mots à replacer : droit de propriété <b>incorporelle</b>, <b>exclusif</b>, <b>opposable à tous</b>, né <b>du seul fait de la création</b>. « Pas de droit d’auteur sans œuvre de l’esprit. »</p>`)}
+${plus(`<p>${A('L. 111-3')} : la propriété incorporelle est <b>indépendante de la propriété de l’objet matériel</b>. Acheter un tableau ne donne pas le droit de le reproduire en cartes postales.</p>`)}
+
+<h3>A. Définition de l’œuvre de l’esprit</h3>
+<p><b>Absence de définition légale.</b> La doctrine la définit comme <q>une création intellectuelle se concrétisant dans une forme perceptible aux sens</q> (Lucas, Lucas-Schloetter et Bernault, <i>Traité de la propriété littéraire et artistique</i>, LexisNexis, 5<sup>e</sup> éd. 2017, p. 68).</p>
+<h4>1) Une création intellectuelle</h4>
+<ul>
+<li>Nécessairement l’œuvre d’une <b>personne physique</b>.</li>
+<li>Une activité de <b>réflexion</b> qui dépasse le simple choix : créer, ce n’est pas assembler au hasard ou mécaniquement.</li>
+<li>Créer requiert la <b>maîtrise du processus</b> : l’auteur <b>ne doit pas être surpris</b> par son œuvre ; il a conscience, dès le départ, du résultat recherché.</li>
+<li>Sont donc exclues : la réalisation <b>spontanée</b>, <b>hasardeuse</b>, la simple <b>découverte</b>, la création <b>animale</b>, et la création réalisée <b>de façon autonome par une machine</b>.</li>
+</ul>
+<h4>2) Concrétisée dans une forme</h4>
+<ul>
+<li>L’œuvre doit <b>quitter l’état d’idée</b> pour prendre forme. <b>Les idées ne sont pas protégées</b> : elles sont <b>libres</b> (« de libre parcours ») et, tant qu’elles ne sont pas extériorisées, insaisissables.</li>
+<li>La forme est <b>indépendante de l’achèvement</b> : une œuvre inachevée est protégée.</li>
+</ul>
+<h4>3) Une forme perceptible aux sens</h4>
+<ul>
+<li>L’œuvre doit être <b>apte à être communiquée à un public</b> par les sens : vue, ouïe, odorat, goût, toucher.</li>
+<li><b>Attention aux parfums</b> : ils ne sont <b>pas</b> protégés par le droit d’auteur, car ils procèdent de la mise en œuvre d’un <b>savoir-faire</b>.</li>
+</ul>
+${plus(`<ul>
+<li><b>Parfum</b> : Cass. 1<sup>re</sup> civ., <b>13 juin 2006</b> — la fragrance d’un parfum, <q>qui procède de la simple mise en œuvre d’un savoir-faire</q>, n’est pas la création d’une forme d’expression protégeable. Solution maintenue par Cass. com., <b>10 décembre 2013</b> (forme non identifiable avec une précision suffisante).</li>
+<li><b>Saveur</b> : CJUE, <b>13 novembre 2018</b>, <i>Levola Hengelo</i> (C-310/17) — la saveur d’un aliment ne peut être une « œuvre », faute d’être identifiable avec précision et objectivité.</li>
+</ul>`)}
+${trap(`<p>« Perceptible aux sens » ne veut pas dire que tout ce qui se sent ou se goûte est protégé : le <b>parfum</b> est le contre-exemple à citer. Et l’<b>idée</b>, même géniale, n’est jamais protégée — seule sa <b>mise en forme</b> l’est.</p>`)}
+
+<h3>A bis. Les œuvres créées par l’intelligence artificielle</h3>
+<p>Principe : le droit d’auteur ne protège que les œuvres émanant de la <b>création humaine</b>.</p>
+<div class="tw"><table class="t">
+<tr><th>France et Union européenne</th><td>Une image, un texte, une musique produits par une IA <b>sans intervention humaine</b> ne sont pas protégés. Une protection est envisageable lorsque l’utilisateur a réellement <b>façonné</b> le résultat (prompts travaillés, direction artistique, choix créatifs, retouches) : c’est alors <i>son</i> apport créatif qui est protégé.</td></tr>
+<tr><th>États-Unis</th><td>Le <b>copyright</b> (équivalent du droit d’auteur) <b>refuse l’enregistrement</b> des œuvres réalisées par l’IA sans le concours de l’homme.</td></tr>
+<tr><th>Royaume-Uni</th><td>Plus <b>favorable</b> : la loi reconnaît un droit exclusif à la personne à l’origine de l’œuvre générée par ordinateur, à des conditions plus souples que dans l’UE (le cours parle d’un droit <i>sui generis</i> au profit de l’utilisateur).</td></tr>
+<tr><th>Droit <i>sui generis</i></th><td>De plus en plus de voix demandent la création d’un <b>droit spécial</b>, distinct du droit d’auteur, pour protéger les créations de l’IA.</td></tr>
+</table></div>
+<p><b>Conséquence de la non-protection par le droit d’auteur :</b></p>
+<ul>
+<li><b>Domaine public</b> : l’œuvre n’a aucune protection, elle « appartient à tout le monde ».</li>
+<li><b>Protection éventuelle par d’autres droits</b> : contrat (conditions d’utilisation de l’outil), concurrence déloyale et parasitisme, droit des marques ou des dessins et modèles si un dépôt est possible.</li>
+</ul>
+${plus(`<ul>
+<li><b>États-Unis</b> : affaire <i>Thaler v. Perlmutter</i> — refus d’enregistrer une image créée de façon autonome par une IA ; confirmé par la cour d’appel fédérale de Washington (D.C. Circuit) en mars 2025 ; la Cour suprême a <b>refusé d’examiner l’affaire le 2 mars 2026</b>. L’exigence d’un auteur humain demeure.</li>
+<li><b>Royaume-Uni</b> : <i>Copyright, Designs and Patents Act 1988</i>, section 9(3) : l’auteur d’une œuvre générée par ordinateur est la personne qui a pris <q>les dispositions nécessaires à la création</q> ; protection de 50 ans. Un rapport du gouvernement britannique de mars 2026 envisage de supprimer cette protection, mais <b>rien n’est voté</b> à ce jour.</li>
+<li><b>UE</b> : le critère reste celui de la CJUE — une <q>création intellectuelle propre à son auteur</q>, reflétant des <b>choix libres et créatifs</b> (arrêts <i>Infopaq</i>, 2009 ; <i>Painer</i>, 2011).</li>
+<li>Je n’ai pas pu vérifier de décision française publiée tranchant directement la question : n’en cite pas à l’examen.</li>
+</ul>`)}
+` },
+
+{ id: 'qualite', n: '2', title: 'Originalité, exemples d’œuvres, absence de formalité', time: '20 min', html: `
+<p class="muted">Section I, § 1 : 2) qualité de l’œuvre · 3) exemples d’œuvres · B. protection sans formalité.</p>
+
+<h3>2) La qualité de l’œuvre : l’originalité</h3>
+<p>L’<b>originalité</b> est la qualité <b>primordiale</b> de l’œuvre de l’esprit. Deux conceptions :</p>
+<div class="tw"><table class="t">
+<tr><th>Conception classique (subjective)</th><th>Conception moderne (objective)</th></tr>
+<tr><td>L’originalité est l’<b>empreinte personnelle</b> du créateur, le <b>reflet de sa personnalité</b>.<br>Exemple : un même paysage peint par deux peintres donne deux œuvres protégées, car chacun y met sa personnalité.</td><td>Est original <b>ce qui est nouveau</b>. Sur ce terrain de la nouveauté, le droit d’auteur <b>se rapproche du brevet</b>.</td></tr>
+</table></div>
+<p>La jurisprudence procède <b>au cas par cas</b>.</p>
+${fix(`<p>Tes notes disent : « 2 conditions cumulatives : <b>originalité et innovation</b> ». Le plan du prof, lui, ne pose qu’<b>une</b> qualité — l’<b>originalité</b> — avec <b>deux conceptions</b> (classique / moderne). L’« innovation » correspond très probablement à la conception <i>moderne</i> (nouveauté), pas à une seconde condition. En droit positif, la <b>nouveauté</b> est une condition du <b>brevet</b>, pas du droit d’auteur. À l’examen : présente l’originalité et ses deux conceptions.</p>`)}
+${plus(`<p>La conception moderne vient surtout du <b>logiciel</b> : Cass. ass. plén., <b>7 mars 1986</b>, <i>Babolat c/ Pachot</i> — l’originalité y est la <q>marque d’un apport intellectuel</q>. Au niveau européen : <q>création intellectuelle propre à son auteur</q> (CJUE, 16 juillet 2009, <i>Infopaq</i>).</p>`)}
+
+<h3>Les quatre « indifférences »</h3>
+<p>${A('L. 112-1')} : le droit d’auteur protège <q>toutes les œuvres de l’esprit, quels qu’en soient le genre, la forme d’expression, le mérite ou la destination</q>.</p>
+${tip(`<p><b>G-F-M-D</b> : <b>G</b>enre, <b>F</b>orme d’expression, <b>M</b>érite, <b>D</b>estination. Le juge ne note pas l’œuvre : originalité ≠ « plus-value » ≠ beauté ≠ valeur marchande.</p>`)}
+<p>${A('L. 111-2')} : <q>L’œuvre est réputée créée, indépendamment de toute divulgation publique, du seul fait de la réalisation, même inachevée, de la conception de l’auteur.</q></p>
+<p>Il en résulte que sont protégées :</p>
+<ul>
+<li>les <b>œuvres éphémères</b> : compositions florales, sculptures en chocolat… ;</li>
+<li>une simple <b>ébauche</b> ou un <b>brouillon</b>, pourvu qu’il épouse déjà la structure de l’œuvre et permette de la distinguer ;</li>
+<li>les <b>œuvres orales</b> : discours, allocutions, conférences, plaidoiries ;</li>
+<li>une <b>œuvre secrète</b>, jamais diffusée : la confidentialité ne retire rien.</li>
+</ul>
+${fix(`<p>Dans tes notes : « elle est réputée créée du seul fait de sa <i>réputation</i> » → il faut lire « du seul fait de sa <b>réalisation</b> » (L. 111-2).</p>`)}
+
+<h3>3) Exemples d’œuvres de l’esprit — ${A('L. 112-2')}</h3>
+<p><q>Sont considérés <b>notamment</b> comme œuvres de l’esprit</q> (14 rubriques) :</p>
+<ol>
+<li>les livres, brochures et autres écrits littéraires, artistiques et scientifiques ;</li>
+<li>les conférences, allocutions, sermons, plaidoiries et autres œuvres de même nature ;</li>
+<li>les œuvres dramatiques ou dramatico-musicales ;</li>
+<li>les œuvres chorégraphiques, les numéros et tours de cirque, les pantomimes, <b>dont la mise en œuvre est fixée par écrit ou autrement</b> ;</li>
+<li>les compositions musicales avec ou sans paroles ;</li>
+<li>les œuvres cinématographiques et autres œuvres consistant dans des séquences animées d’images, sonorisées ou non, dites <b>œuvres audiovisuelles</b> ;</li>
+<li>les œuvres de dessin, de peinture, d’architecture, de sculpture, de gravure, de lithographie ;</li>
+<li>les œuvres graphiques et typographiques ;</li>
+<li>les œuvres photographiques et celles réalisées à l’aide de techniques analogues ;</li>
+<li>les œuvres des <b>arts appliqués</b> ;</li>
+<li>les illustrations, les cartes géographiques ;</li>
+<li>les plans, croquis et ouvrages plastiques relatifs à la géographie, à la topographie, à l’architecture et aux sciences ;</li>
+<li>les <b>logiciels, y compris le matériel de conception préparatoire</b> ;</li>
+<li>les créations des <b>industries saisonnières de l’habillement et de la parure</b> (couture, fourrure, lingerie, broderie, mode, chaussure, ganterie, maroquinerie…).</li>
+</ol>
+${key(`<p>Le mot « <b>notamment</b> » rend la liste <b>indicative</b> (non limitative). La <b>jurisprudence</b> a ajouté : <b>compositions florales</b>, <b>modèles de coiffure</b>, <b>jeux de lumière</b>, <b>jeux télévisés</b>, <b>sonorité d’un orgue</b>.</p>`)}
+${trap(`<p>Seule la rubrique 4 (chorégraphie, cirque, pantomime) exige une <b>fixation</b> « par écrit ou autrement ». Et la rubrique 14 ne vise que les industries qui <b>renouvellent fréquemment la forme de leurs produits</b>.</p>`)}
+
+<h3>B. Une protection sans formalité</h3>
+<p><b>Naissance du seul fait de la création</b> (${A('L. 111-1')} et ${A('L. 111-2')}) : aucun dépôt, aucun enregistrement, aucune mention © n’est nécessaire. Il suffit que l’œuvre existe dans une forme perceptible aux sens.</p>
+<p>Il existe pourtant des <b>formalités</b>, mais elles ne conditionnent <b>pas</b> le droit d’auteur. Elles servent à la <b>conservation</b>, à la <b>sauvegarde</b>, à la <b>preuve</b> ou à l’exercice d’un <b>contrôle</b> :</p>
+<ul>
+<li><b>Dépôt légal</b> (un exemplaire du livre à la BnF, une copie du film) : conservation et <b>pérennité</b> de l’œuvre — si tous les exemplaires disparaissent, on pourra la rééditer dans 100 ans. Il est aussi <b>utile comme preuve</b> de la <b>date</b> de création ou de sortie.</li>
+<li><b>Visa d’exploitation</b> (films) : contrôle préalable, pour s’assurer de l’absence de <b>dangerosité</b> de l’œuvre pour le public (classification par âge).</li>
+</ul>
+${plus(`<p>Le dépôt légal est régi par le <b>Code du patrimoine</b> (BnF pour les imprimés, INA pour l’audiovisuel, CNC pour les films). Le visa d’exploitation cinématographique est délivré par le <b>ministre chargé de la culture</b> après avis d’une commission de classification (Code du cinéma et de l’image animée). Autres moyens de preuve de la date : enveloppe Soleau (INPI), dépôt chez un notaire ou un commissaire de justice, dépôt auprès d’une société d’auteurs.</p>`)}
+` },
+
+{ id: 'patri', n: '3', title: 'Droits patrimoniaux : le droit d’exploitation et ses exceptions', time: '25 min', html: `
+<p class="muted">Section I, § 2, A, 1 : droit de reproduction, droit de représentation, exceptions au monopole.</p>
+<p>${A('L. 111-1, al. 2')} : le droit d’auteur comporte des <b>attributs d’ordre intellectuel et moral</b> et des <b>attributs d’ordre patrimonial</b>.</p>
+<div class="tw"><table class="t">
+<tr><th colspan="2">Droits patrimoniaux</th></tr>
+<tr><td><b>Droit d’exploitation</b> — portée <b>générale</b> : reproduction + représentation</td><td><b>Droit de suite</b> — ne concerne que les œuvres <b>graphiques et plastiques</b></td></tr>
+</table></div>
+
+<h3>1. Le droit d’exploitation</h3>
+<p><b>Principe</b> : un <b>monopole</b> de l’auteur ou de ses <b>ayants droit</b>, qui se décline en droit de <b>reproduction</b> et droit de <b>représentation</b> (${A('L. 122-1')}).</p>
+${key(`<p><b>Ayants droit</b> = les héritiers. <b>Ayants cause</b> = les tiers qui ont <b>acquis</b> le droit d’exploitation auprès de l’auteur ou de ses héritiers (maison d’édition, producteur…).</p>`)}
+
+<h4>a) Le droit de reproduction — ${A('L. 122-3')}</h4>
+<p><b>Définition</b> : la <b>fixation matérielle</b> de l’œuvre sur un support, par tous procédés qui permettent de la <b>communiquer au public de manière indirecte</b>.</p>
+<p><b>Moyens de fixation</b> : imprimerie, dessin, gravure, photographie, moulage, tout procédé des arts graphiques et plastiques, enregistrement mécanique, cinématographique ou magnétique (et aujourd’hui numérique).</p>
+<p><b>Principe</b> : ce n’est pas la fixation par un tiers <i>en elle-même</i> qui viole le droit, c’est la fixation <b>en vue d’une exploitation publique</b>, <b>gratuite ou payante</b>. Il y a contrefaçon ou plagiat à partir de la <b>mise en circulation</b>.</p>
+<p>Fixations caractéristiques d’une violation :</p>
+<ul>
+<li>la <b>mise en vente d’un support non visé par l’auteur</b> (l’auteur a autorisé le livre papier, pas le livre audio) ;</li>
+<li>l’<b>intégration d’éléments originaux</b> d’une œuvre dans une autre, sans autorisation (œuvre composite non autorisée) ;</li>
+<li>les <b>œuvres dérivées</b> : traduction, adaptation et plus largement <b>merchandising</b> d’un livre, d’une chanson, d’une comédie musicale ;</li>
+<li>la <b>location</b> ou le <b>prêt</b> de l’œuvre.</li>
+</ul>
+<p>Face à une exploitation non autorisée, l’auteur a <b>deux choix</b> : <b>faire interdire</b> l’exploitation pour l’avenir, ou <b>réclamer des droits d’auteur</b> (une rémunération).</p>
+
+<h4>b) Le droit de représentation — ${A('L. 122-2')}</h4>
+<p><b>Définition</b> : la <b>communication de l’œuvre au public par un procédé quelconque</b>. À la différence de la reproduction, elle établit un <b>lien direct</b> entre l’œuvre et le public (pas de support intermédiaire remis au public).</p>
+<ul>
+<li>récitation publique ;</li>
+<li>exécution lyrique ;</li>
+<li>représentation dramatique ;</li>
+<li>exposition (présentation publique) ;</li>
+<li>projection publique ;</li>
+<li><b>télédiffusion</b> : ondes hertziennes, câble, satellite, Internet.</li>
+</ul>
+${tip(`<p><b>Reproduction = support = communication indirecte.</b> <b>Représentation = pas de support = communication directe.</b> Un concert : représentation. Le CD du concert : reproduction. Le streaming : les deux à la fois (copie sur serveur + mise à disposition du public).</p>`)}
+
+<h3>c) Les exceptions au monopole — ${A('L. 122-5')}</h3>
+<p>Le droit d’exploitation confère un monopole en principe <b>absolu</b>. Lorsque l’œuvre a été <b>divulguée</b>, l’auteur <b>ne peut interdire</b> certains usages. <b>Réserve générale</b> : ces dérogations ne doivent <b>ni porter atteinte à l’exploitation normale de l’œuvre, ni causer un préjudice injustifié aux intérêts légitimes de l’auteur</b>.</p>
+<div class="tw"><table class="t">
+<tr><th>Exception</th><th>Conditions à citer</th></tr>
+<tr><td><b>Représentation familiale</b></td><td><b>Privée</b> et <b>gratuite</b>, effectuée exclusivement dans un <b>cercle de famille</b>. L’exemplaire doit avoir été acquis de façon licite.</td></tr>
+<tr><td><b>Copie privée</b></td><td>Copie strictement réservée à l’<b>usage privé du copiste</b>, non destinée à une utilisation collective, réalisée à partir d’une <b>source licite</b>. <b>Ne s’applique pas aux logiciels</b> (seule une copie de sauvegarde est permise) ni aux bases de données électroniques.</td></tr>
+<tr><td colspan="2"><b>Usages d’intérêt public</b> — <b>sous réserve que soient indiqués clairement le nom de l’auteur et la source</b> :</td></tr>
+<tr><td>Analyses et <b>courtes citations</b></td><td>Justifiées par le caractère <b>critique, polémique, pédagogique, scientifique ou d’information</b> de l’œuvre qui les incorpore (critiques, médias, analystes, polémistes).</td></tr>
+<tr><td><b>Revues de presse</b></td><td>Présentation comparative d’articles de presse sur un même thème.</td></tr>
+<tr><td>Diffusion à titre d’<b>actualité</b></td><td>Discours destinés au public (assemblées politiques, administratives, judiciaires, académiques, réunions publiques, cérémonies officielles).</td></tr>
+<tr><td><b>Catalogues de ventes judiciaires</b></td><td>Reproduction d’œuvres d’art dans le catalogue d’une vente judiciaire effectuée en France.</td></tr>
+<tr><td>Fins <b>pédagogiques</b></td><td><b>Extraits</b> seulement, à des fins exclusives d’<b>illustration</b> dans le cadre de l’enseignement et de la recherche. L’enseignant ne peut reproduire qu’<b>une partie</b> de l’ouvrage.</td></tr>
+<tr><td colspan="2"><b>Autres exceptions</b></td></tr>
+<tr><td><b>Parodie, pastiche, caricature</b></td><td><q>Compte tenu des lois du genre</q> : intention humoristique, absence de confusion avec l’œuvre d’origine, pas d’intention de nuire.</td></tr>
+<tr><td><b>Handicap</b></td><td>Reproduction et représentation par des établissements ouverts au public, au profit de personnes atteintes d’une déficience motrice, physique, sensorielle, mentale, cognitive ou psychique.</td></tr>
+<tr><td><b>Conservation / consultation</b></td><td>Par des bibliothèques accessibles au public, musées, services d’archives, sans avantage économique ou commercial.</td></tr>
+<tr><td>Œuvres <b>architecturales et sculptures</b> sur la <b>voie publique</b> (« liberté de panorama »)</td><td>Œuvres placées <b>en permanence</b> sur la voie publique ; reproductions réalisées par des <b>personnes physiques</b>, <b>à l’exclusion de tout usage commercial</b>.</td></tr>
+<tr><td><b>Pièces automobiles</b></td><td>Reproduction de pièces destinées à <b>rendre son apparence initiale</b> à un véhicule (pièces de carrosserie, vitrages…) — issue de la loi « Climat et résilience » du 22 août 2021.</td></tr>
+</table></div>
+${fix(`<p>Tes notes disent pour la copie privée : « autorisé <i>avec accord de l’auteur</i> ». C’est l’inverse : une <b>exception</b> est justement un usage permis <b>sans</b> l’accord de l’auteur. Ce qui est exigé, c’est une <b>source licite</b> et un usage <b>strictement privé</b>. Ce que tes notes ont bien retenu : la copie privée <b>ne s’applique pas aux logiciels</b>.</p>`)}
+${trap(`<p>Trois confusions classiques : (1) la mention du <b>nom de l’auteur et de la source</b> n’est exigée que pour le bloc « intérêt public » (citations, revues de presse, actualité, catalogues, pédagogie) — pas pour la copie privée ni le cercle de famille ; (2) le cercle de famille doit être <b>privé ET gratuit</b> ; (3) la citation doit être <b>courte</b> et <b>justifiée</b> par l’œuvre qui l’accueille.</p>`)}
+${plus(`<p>La réserve générale s’appelle le <b>« test en trois étapes »</b> (Convention de Berne, directive 2001/29) : cas spéciaux, pas d’atteinte à l’exploitation normale, pas de préjudice injustifié aux intérêts légitimes de l’auteur. La copie privée est compensée par la <b>rémunération pour copie privée</b> prélevée sur les supports vierges. Je n’ai pas pu relire la <b>numérotation actuelle</b> des alinéas de L. 122-5 sur Légifrance : cite « L. 122-5 » sans numéro d’alinéa, sauf 1° (cercle de famille), 2° (copie privée), 3° (intérêt public) et 4° (parodie), qui sont stables.</p>`)}
+` },
+
+{ id: 'suite', n: '4', title: 'Droit de suite et régime des droits patrimoniaux', time: '15 min', html: `
+<p class="muted">Section I, § 2, A, 2 et 3.</p>
+
+<h3>2. Le droit de suite — ${A('L. 122-8')}</h3>
+<p><b>Définition</b> : le droit, pour l’auteur d’une œuvre <b>graphique ou plastique</b>, de <b>participer au produit de toute vente</b> de son œuvre <b>après la première cession</b> opérée par lui-même ou ses ayants droit, lorsqu’intervient un <b>professionnel du marché de l’art</b> en tant que <b>vendeur, acheteur ou intermédiaire</b>.</p>
+<p><b>Champ d’application</b> : uniquement les œuvres <b>graphiques et plastiques</b> originales — tableaux, dessins, sculptures, gravures, photographies…</p>
+<p><b>Justification (équité)</b> : l’artiste qui vend avant d’être connu est privé de la <b>valorisation ultérieure</b> de son travail. Le droit de suite l’<b>associe</b> à cette plus-value — rares sont les artistes qui connaissent la gloire de leur vivant.</p>
+<p><b>Limite</b> : ce droit n’est pas appliqué partout (il n’existe pas, par exemple, au niveau fédéral aux États-Unis).</p>
+${fix(`<p><b>C’est le point le plus déformé de tes notes.</b> Tu as noté : « deux conditions cumulatives : revente au moins 3 ans après la vente par l’auteur, et prix au moins égal à 10 000 € » et « taux de 3 % ». Ce que prévoient les textes (L. 122-8 et sa partie réglementaire, recoupés sur plusieurs sources) :</p>
+<ul>
+<li><b>Seuil</b> : le droit de suite s’applique dès que le prix de vente atteint <b>750 €</b>.</li>
+<li><b>« 3 ans / 10 000 € » est une exception, pas une condition</b> : le droit de suite <b>ne s’applique pas</b> lorsque le vendeur a acquis l’œuvre <b>directement de l’auteur moins de 3 ans</b> avant la revente <b>et</b> que le prix ne dépasse pas <b>10 000 €</b>.</li>
+<li><b>Taux dégressif par tranches</b> : <b>4 %</b> jusqu’à 50 000 € ; <b>3 %</b> de 50 000 à 200 000 € ; <b>1 %</b> de 200 000 à 350 000 € ; <b>0,5 %</b> de 350 000 à 500 000 € ; <b>0,25 %</b> au-delà. Total <b>plafonné à 12 500 €</b> par vente.</li>
+<li>Il est <b>à la charge du vendeur</b> ; le professionnel du marché de l’art est responsable du paiement.</li>
+</ul>
+<p>Le « 3 % » de tes notes est donc l’un des taux de la grille (ou le « ratio » simplifié donné à l’oral). <b>Conseil</b> : à l’examen, donne la règle légale et, si tu veux te couvrir, ajoute « (taux de 3 % indiqué en cours) ». Si tu peux, demande confirmation au prof.</p>`)}
+
+<h3>3. Le régime des droits patrimoniaux</h3>
+<h4>Limitation dans le temps — ${A('L. 123-1')}</h4>
+<p>Les droits patrimoniaux (exploitation et suite) durent <b>toute la vie de l’auteur</b> et <b>70 ans après son décès</b>, au profit de ses ayants droit.</p>
+<h4>« Domaine public »</h4>
+<p>Passé ce délai, l’œuvre <b>tombe dans le domaine public</b> : la part patrimoniale du droit d’auteur est <b>purgée</b>. Chacun peut l’exploiter <b>librement et gratuitement</b>. Mais l’écoulement des 70 ans <b>ne touche pas au droit moral</b>, qui est perpétuel.</p>
+${fix(`<p>Tes notes : « pour une œuvre <i>collective</i>, 70 ans après le décès du dernier co-auteur ». Il faut lire œuvre <b>de collaboration</b> : 70 ans après la mort du <b>dernier vivant des collaborateurs</b> (${A('L. 123-2')}). Pour une œuvre <b>collective</b>, <b>anonyme</b> ou <b>pseudonyme</b>, le délai de 70 ans court à compter du <b>1<sup>er</sup> janvier de l’année civile suivant la publication</b> (${A('L. 123-3')}) — logique : son titulaire est souvent une personne morale, qui ne meurt pas.</p>`)}
+${plus(`<p>Le délai se calcule en années civiles pleines : l’année du décès « et les 70 années qui suivent ». Un auteur mort en 1955 → œuvre dans le domaine public le 1<sup>er</sup> janvier 2026.</p>`)}
+
+<h4>Distinction de régime : exploitation / suite</h4>
+<div class="tw"><table class="t">
+<tr><th></th><th>Droit d’exploitation</th><th>Droit de suite</th></tr>
+<tr><th>Cession</th><td><b>Aliénable</b> : cessible à titre <b>onéreux ou gratuit</b> (${A('L. 122-7')}), par des contrats qui délimitent le périmètre de l’exploitation autorisée.</td><td><b>Inaliénable</b> : la loi (${A('L. 122-8')}) l’interdit. Règle d’<b>ordre public</b> : l’auteur ne peut pas y <b>renoncer</b>.</td></tr>
+<tr><th>Pourquoi ?</th><td>C’est la valeur économique de l’œuvre : elle doit pouvoir circuler.</td><td>Éviter qu’un auteur inconnu, sans valeur marchande, soit poussé par un <b>marchand d’art expérimenté</b> à y renoncer dès la première vente.</td></tr>
+<tr><th>Durée</th><td colspan="2">Tous deux <b>temporaires</b> : vie de l’auteur + 70 ans (les notes disent « prescriptibles »).</td></tr>
+</table></div>
+${key(`<p>Classement à connaître par cœur : <b>exploitation</b> = aliénable + temporaire · <b>suite</b> = <b>in</b>aliénable + temporaire · <b>droit moral</b> = inaliénable + <b>perpétuel</b> + imprescriptible.</p>`)}
+` },
+
+{ id: 'moral', n: '5', title: 'Le droit moral de l’auteur', time: '25 min', html: `
+<p class="muted">Section I, § 2, B : attributs et caractères du droit moral.</p>
+<p><b>Principe</b> : le droit moral est la composante du droit d’auteur qui consacre l’<b>intimité de la relation entre l’auteur et son œuvre</b>. Il établit un lien <b>inaltérable par le temps</b> et par les personnes interposées. Conséquences : à la différence du droit d’exploitation, il <b>ne peut pas être cédé</b>, ni à titre onéreux ni à titre gratuit ; à la différence du droit de suite, il est <b>imprescriptible</b>.</p>
+<p>${A('L. 121-1')} : <q>L’auteur jouit du droit au respect de son nom, de sa qualité et de son œuvre. Ce droit est attaché à sa personne. Il est perpétuel, inaliénable et imprescriptible. Il est transmissible à cause de mort aux héritiers de l’auteur.</q></p>
+${tip(`<p>Les quatre attributs : <b>D-R-P-R</b> — <b>D</b>ivulgation, <b>R</b>epentir et retrait, <b>P</b>aternité, <b>R</b>espect de l’œuvre.</p>`)}
+
+<h3>1. Les attributs du droit moral</h3>
+<h4>a) Droit de divulgation — ${A('L. 121-2')}</h4>
+<ul>
+<li>L’auteur a <b>seul</b> le droit de décider de <b>rendre son œuvre publique ou non</b>. Droit absolu : nul ne peut l’obliger à publier. Il peut s’opposer à la publication <b>même après avoir sollicité un éditeur</b>.</li>
+<li>Il détermine aussi le <b>procédé</b> et les <b>conditions</b> de la divulgation (sur quel support).</li>
+<li>Le cessionnaire du droit d’exploitation (éditeur, producteur) <b>ne peut pas s’y opposer</b>.</li>
+<li>En pratique, pour les œuvres littéraires : exigence d’un <b>« bon à publier »</b> signé par l’auteur, <b>en plus</b> du contrat d’édition.</li>
+</ul>
+${plus(`<p>Dans l’édition on parle plus couramment de <b>« bon à tirer » (BAT)</b> : c’est la même chose. Après la mort de l’auteur, le droit de divulgation est exercé par l’exécuteur testamentaire puis les héritiers, sous le contrôle du juge en cas d’<b>abus notoire</b> (${A('L. 121-3')}).</p>`)}
+
+<h4>b) Droit de repentir et de retrait — ${A('L. 121-4')}</h4>
+<ul>
+<li><b>Repentir</b> : imposer au cessionnaire des <b>modifications</b> du contenu ou de la forme d’une œuvre <b>déjà publiée</b> (par exemple pour les nouveaux tirages). Les exemplaires déjà tirés continuent de circuler. Le cessionnaire ne peut pas s’y opposer.</li>
+<li><b>Retrait</b> : exiger purement et simplement le <b>retrait de la circulation</b> de l’œuvre.</li>
+<li><b>Condition</b> : l’auteur doit <b>indemniser préalablement</b> le cessionnaire (éditeur, producteur) du préjudice causé. Cette contrainte financière explique que ce droit soit <b>très rarement exercé</b>.</li>
+</ul>
+${fix(`<p>Le plan du prof indique « (CPI, art. L. 121-7) » pour le repentir et le retrait. Dans le code, le <b>droit commun</b> du repentir et du retrait est à l’article <b>L. 121-4</b> ; l’article <b>L. 121-7</b> est celui qui le <b>supprime pour l’auteur d’un logiciel</b> (ce que dit d’ailleurs le support de cours, page 2). Retiens les deux : L. 121-4 = principe ; L. 121-7 = exclusion pour le logiciel. Si le sujet reprend la référence du diaporama, tu sauras d’où elle vient.</p>`)}
+${plus(`<p>L. 121-4 ajoute : si, après avoir exercé son droit, l’auteur décide de refaire publier l’œuvre, il doit l’offrir <b>par priorité</b> au cessionnaire d’origine, aux conditions d’origine.</p>`)}
+
+<h4>c) Droit de paternité</h4>
+<p>Consacré par la <b>Convention de Berne du 9 septembre 1886</b>, administrée par l’<b>OMPI</b> (Organisation mondiale de la propriété intellectuelle). Deux acceptions :</p>
+<ul>
+<li><b>Positive</b> : exiger que son <b>nom</b>, son prénom, ses <b>titres</b> et <b>qualités</b> soient associés à l’œuvre.</li>
+<li><b>Négative</b> : exiger que son nom <b>ne soit pas</b> associé à l’œuvre — choix de l’<b>anonymat</b> ou du <b>pseudonyme</b>.</li>
+</ul>
+${fix(`<p>Tes notes écrivent « administrée par <i>OMI</i> » : c’est l’<b>OMPI</b> (l’OMI est l’Organisation maritime internationale). Complément : le droit moral figure à l’article <b>6 bis</b> de la Convention, introduit lors de la révision de Rome en 1928.</p>`)}
+
+<h4>d) Droit au respect de l’œuvre</h4>
+<p>Il permet à l’auteur d’imposer à <b>tous</b> les utilisateurs, <b>y compris les cessionnaires</b> du droit d’exploitation, le respect de l’<b>intégrité</b> de l’œuvre, et de s’opposer à toute <b>modification non consentie</b>. Trois visages :</p>
+<ul>
+<li>atteinte à la <b>forme</b> : modification unilatérale d’un texte par l’éditeur, <b>coupes</b> dans un film par une chaîne de télévision, <b>colorisation</b>… <i>Limite</i> : l’éditeur peut corriger les <b>fautes d’orthographe</b>, les <b>coquilles</b>, les <b>dates</b>, les <b>noms</b> de personnes existantes et connues ;</li>
+<li>atteinte à l’<b>esprit</b> : une exploitation qui <b>dénature</b> ce que voulait l’auteur (contexte dégradant, détournement publicitaire…) ;</li>
+<li>altération du <b>support</b> de l’œuvre (toile, bâtiment, sculpture).</li>
+</ul>
+<p><b>Atténuations</b> du droit au respect :</p>
+<div class="tw"><table class="t">
+<tr><th>Œuvres architecturales</th><td>Le droit de l’architecte <b>n’est pas absolu</b> : il doit se concilier avec le <b>droit du propriétaire</b> de l’immeuble (vocation utilitaire du bâtiment). Recherche d’un compromis.</td></tr>
+<tr><th>Œuvre collective</th><td>La nécessité de <b>coordonner et harmoniser</b> les contributions limite le droit au respect de chaque contributeur.</td></tr>
+<tr><th>Œuvre de fonctionnaire</th><td>${A('L. 121-7-1')} : l’agent ne peut s’opposer à la modification décidée <b>dans l’intérêt du service</b> si elle ne porte pas atteinte à son <b>honneur</b> ou à sa <b>réputation</b>.</td></tr>
+<tr><th>Adaptation</th><td>La cession du droit d’adaptation <b>ne vaut pas renonciation</b> au droit au respect, mais l’adaptation au cinéma ou au théâtre implique de reconnaître <b>une certaine liberté à l’adaptateur</b>.</td></tr>
+</table></div>
+${fix(`<p>Le plan du prof indique « (CPI, art. L. 121-7-1) » pour le droit au respect de l’œuvre. Le fondement général est <b>L. 121-1</b> (« respect de son nom, de sa qualité et de son œuvre ») ; <b>L. 121-7-1</b> ne concerne que les <b>agents publics</b> (c’est une atténuation). Apprends les deux numéros avec leur rôle.</p>`)}
+${plus(`<ul>
+<li>Architecture : Cass. 1<sup>re</sup> civ., 7 janvier 1992 — la vocation utilitaire du bâtiment interdit à l’architecte d’imposer une <q>intangibilité absolue</q> de son œuvre.</li>
+<li>Adaptation : Cass. 1<sup>re</sup> civ., 22 novembre 1966, <i>Dialogues des Carmélites</i> — <q>une certaine liberté</q> doit être reconnue à l’adaptateur.</li>
+<li>Cass. 1<sup>re</sup> civ., 5 décembre 2006 : toute modification apportée à l’œuvre, même minime, porte atteinte au droit au respect.</li>
+</ul>`)}
+
+<h3>2. Les caractères du droit moral</h3>
+<h4>Perpétuel, inaliénable, imprescriptible (${A('L. 121-1')})</h4>
+<ul>
+<li><b>Perpétuel</b> : il survit à l’auteur et à l’entrée de l’œuvre dans le domaine public.</li>
+<li><b>Inaliénable</b> : ni cession, ni <b>renonciation</b> (abandon). Il est <b>indisponible</b>.</li>
+<li><b>Imprescriptible</b> : il ne se perd pas par le non-usage.</li>
+</ul>
+${fix(`<p>Tes notes citent « Art. L. 123-1 » pour ces trois caractères : c’est <b>L. 121-1</b>. L. 123-1 est l’article sur la <b>durée des droits patrimoniaux</b> (70 ans). Erreur de numéro typique dans un QCM.</p>`)}
+<h4>L’inaliénabilité est d’ordre public</h4>
+<ul>
+<li>Le droit moral protège l’auteur <b>même contre lui-même</b>.</li>
+<li><b>Prête-plume</b> : l’auteur « de l’ombre » qui a signé un contrat de prête-plume peut <b>revendiquer plus tard sa paternité</b>.</li>
+<li>Cour de cassation : <q>l’inaliénabilité du droit au respect de l’œuvre, principe d’ordre public, s’oppose à ce que l’auteur abandonne au cessionnaire, de façon préalable et générale, l’appréciation exclusive des utilisation, diffusion, adaptation, retrait, adjonction et changement auxquels il plairait à ce dernier de procéder</q>.</li>
+<li>En revanche, l’auteur peut <b>valider a posteriori</b> une modification précise apportée par le cessionnaire. Cette validation l’empêche d’invoquer ensuite son droit au respect sur ce point.</li>
+</ul>
+${plus(`<p>La formule vient de Cass. 1<sup>re</sup> civ., <b>28 janvier 2003</b>, affaire <b>« On va fluncher »</b> (la chanson <i>On va s’aimer</i> détournée pour une publicité Flunch), confirmée par Cass. 1<sup>re</sup> civ., 2 avril 2009. Ce qui est interdit, c’est la renonciation <b>préalable et générale</b> ; ce qui est permis, c’est l’accord <b>ponctuel et éclairé</b>.</p>`)}
+<h4>Transmission par la seule voie successorale</h4>
+<p>Le droit moral ne se transmet <b>qu’à cause de mort</b> : aux héritiers, ou à un tiers désigné par <b>testament</b>. <b>Pas de transmission entre vifs</b> (« sans mort, pas de transmission »).</p>
+<p>La jurisprudence lui reconnaît un caractère d’<b>ordre public international</b> : les héritiers d’un réalisateur américain ont pu s’opposer à la diffusion <b>en France</b> de la version <b>colorisée</b> d’un film tourné en noir et blanc.</p>
+${fix(`<p>Tes notes : « L’auteur ne peut le transmettre que de son vivant » → c’est l’inverse : il ne se transmet <b>qu’à son décès</b>. Et « film réalisé à l’origine en noir et blanc en France » → le film est <b>américain</b> ; c’est sa <b>diffusion en France</b> (sur La Cinq) qui était en cause.</p>`)}
+${plus(`<p>Cass. 1<sup>re</sup> civ., <b>28 mai 1991</b>, <b><i>Huston</i></b> (film <i>Asphalt Jungle</i> / <i>Quand la ville dort</i>, 1950, colorisé par Turner) : en France, <q>aucune atteinte ne peut être portée à l’intégrité d’une œuvre littéraire ou artistique, quel que soit l’État sur le territoire duquel cette œuvre a été divulguée pour la première fois</q> ; la personne qui en est l’auteur du seul fait de sa création est investie du droit moral — règles qualifiées de <b>lois d’application impérative</b>.</p>`)}
+<h4>Caractère discrétionnaire</h4>
+<ul>
+<li>L’<b>auteur</b> exerce son droit moral de façon <b>discrétionnaire</b> : il n’a pas à se justifier, son choix n’est pas soumis à la critique (« pouvoir du monarque absolu »).</li>
+<li>Les <b>héritiers</b>, eux, ne sont <b>pas à l’abri de l’abus</b> : leur exercice du droit moral peut être contrôlé en cas d’<b>abus notoire dans l’usage ou le non-usage du droit de divulgation</b> (${A('L. 121-3')}).</li>
+</ul>
+<h4>Intérêt de ces caractères impératifs</h4>
+<p>Protéger l’<b>œuvre</b>, protéger l’<b>auteur</b> (y compris contre lui-même), mais <b>surtout protéger le public</b> dans son intérêt d’accéder à la <b>version originale</b> de l’œuvre.</p>
+` },
+
+{ id: 'titu', n: '6', title: 'Titularité et lien de subordination', time: '20 min', html: `
+<p class="muted">Section II, § 1 (support « suite et fin », p. 1-3) : auteur salarié, journaliste, logiciel, fonctionnaire.</p>
+
+<h3>Identifier le titulaire</h3>
+<p>${A('L. 113-1')} : <q>La qualité d’auteur appartient, sauf preuve contraire, à celui ou à ceux sous le nom de qui l’œuvre est divulguée.</q></p>
+<ul>
+<li>C’est une <b>présomption simple</b> : elle peut être combattue par la <b>preuve contraire</b>.</li>
+<li>Distinguer le <b>titulaire initial</b> (l’auteur, sur la tête de qui naît le droit) du <b>titulaire dérivé</b> (celui qui tient ses droits d’une <b>cession</b>).</li>
+</ul>
+
+<h3>A. L’auteur salarié</h3>
+<p><b>Pourquoi la question se pose</b> : elle ne se posait pas pour les créations classiques (<b>peinture, sculpture, littérature, musique</b>). Elle se pose depuis que le droit d’auteur s’est étendu aux <b>arts appliqués</b>, aux <b>bases de données</b>, aux <b>logiciels</b>…</p>
+<h4>1) Titularité initiale : le salarié</h4>
+<ul>
+<li>${A('L. 111-1, al. 3')} : l’existence d’un <b>contrat de travail n’emporte pas dérogation</b> à la jouissance du droit reconnu à l’auteur, même si l’œuvre est réalisée <b>en exécution</b> du contrat. La jurisprudence y veille.</li>
+<li><b>Pas de cession automatique</b> à l’employeur : l’employeur n’est pas l’auteur. Pour exploiter, il doit conclure un <b>contrat de cession de droits distinct</b> du seul contrat de travail.</li>
+</ul>
+<h4>2) Les exceptions : cession automatique à l’employeur</h4>
+<div class="tw"><table class="t">
+<tr><th></th><th>Entreprises de presse</th><th>Logiciels</th></tr>
+<tr><th>Texte</th><td>${A('L. 132-36')}</td><td>${A('L. 113-9')}</td></tr>
+<tr><th>Règle</th><td>La convention liant le <b>journaliste</b> (contributeur <b>permanent ou occasionnel</b>) et l’employeur emporte, <b>sauf stipulation contraire</b>, <b>cession à titre exclusif</b> des droits d’exploitation des œuvres réalisées dans le cadre du titre de presse, <b>qu’elles soient ou non publiées</b>.</td><td><b>Sauf dispositions statutaires ou stipulations contraires</b>, les <b>droits patrimoniaux</b> sur les logiciels <b>et leur documentation</b>, créés par un ou plusieurs employés <b>dans l’exercice de leurs fonctions ou d’après les instructions de l’employeur</b>, sont <b>dévolus à l’employeur</b>, <b>seul habilité à les exercer</b>.</td></tr>
+<tr><th>Contrepartie</th><td>Le <b>salaire</b> est la <b>seule contrepartie</b>, pendant une période fixée par <b>accord d’entreprise</b> ou, à défaut, par tout autre <b>accord collectif</b>.</td><td>Le salaire (pas de rémunération spéciale prévue).</td></tr>
+<tr><th>Droit moral</th><td>Reste au journaliste.</td><td>Reste à l’employé, mais <b>restreint</b> (${A('L. 121-7')}).</td></tr>
+</table></div>
+${key(`<p><b>Logiciel</b> : le droit patrimonial est <b>dévolu</b> à l’employeur ; il <b>ne naît pas sur sa tête</b>. L’employé reste donc <b>titulaire initial</b> du droit d’auteur et conserve le <b>droit moral</b>.</p>`)}
+<p><b>Droit moral restreint du salarié sur le logiciel</b> — ${A('L. 121-7')} :</p>
+<ul>
+<li>le <b>droit au respect</b> ne peut être invoqué que si la modification porte atteinte à son <b>honneur</b> ou à sa <b>réputation</b> (à prouver) ;</li>
+<li>le <b>droit de repentir et de retrait</b> est <b>purement et simplement exclu</b>.</li>
+</ul>
+<p><b>Un droit d’auteur d’un genre particulier</b> : ces restrictions traduisent la spécificité de créateurs mus par le <b>lien de subordination</b>, qui ne disposent pas d’une grande liberté d’<b>initiative</b>.</p>
+${trap(`<p>La dévolution de L. 113-9 ne joue que pour les <b>salariés</b> (et agents publics), dans l’exercice des fonctions ou sur instructions. Un <b>prestataire indépendant</b>, un freelance : pas de dévolution — il faut un <b>contrat de cession</b>. Et elle ne vise que les <b>logiciels et leur documentation</b>, pas le site web, les graphismes ou la base de données qui les accompagnent.</p>`)}
+${plus(`<p>Depuis une ordonnance du 15 décembre 2021, un article L. 113-9-1 étend la dévolution aux logiciels créés par des <b>personnes accueillies par convention</b> (stagiaires, doctorants…) qui perçoivent une contrepartie et sont placées sous l’autorité d’un responsable de la structure. Les dispositions sur les journalistes viennent de la loi du 12 juin 2009.</p>`)}
+
+<h3>B. L’auteur fonctionnaire</h3>
+<h4>Situation antérieure</h4>
+<p>Les dispositions de la PI <b>n’étaient pas applicables aux fonctionnaires</b>. <b>Avis du Conseil d’État du 21 novembre 1972, n° 309721, <i>OFRATEME</i></b> : l’Administration est investie des droits de l’auteur sur les œuvres <q>dont la création fait l’objet même du service</q>. En acceptant leurs fonctions, les fonctionnaires ont <b>mis leurs droits à la disposition du service</b> dans la mesure nécessaire à l’exercice de ces fonctions. L’avis semblait donner à l’Administration la <b>titularité initiale</b>.</p>
+<h4>Situation actuelle</h4>
+<ul>
+<li><b>Titularité</b> — ${A('L. 111-1')} : le fonctionnaire créateur d’une œuvre dispose <b>seul</b> du droit d’auteur, qu’il soit agent de l’<b>État</b>, d’une <b>collectivité territoriale</b>, d’un <b>établissement public à caractère administratif</b>, d’une <b>autorité administrative indépendante</b> dotée de la personnalité morale ou de la <b>Banque de France</b>.</li>
+<li><b>Droit patrimonial</b> — ${A('L. 131-3-1')} : <q>Dans la mesure <b>strictement nécessaire</b> à l’accomplissement d’une <b>mission de service public</b>, le droit d’exploitation d’une œuvre créée par un agent de l’État dans l’exercice de ses fonctions ou d’après les instructions reçues est, <b>dès la création</b>, cédé <b>de plein droit</b> à l’État.</q> La cession automatique est <b>limitée à la mission de service public</b> : elle ne couvre <b>pas les exploitations commerciales</b>.</li>
+<li><b>Restrictions du droit moral</b> — ${A('L. 121-7-1')} : l’agent ne peut
+  <ul><li>(<b>respect</b>) s’opposer à la modification décidée <b>dans l’intérêt du service</b> par l’autorité hiérarchique, si elle ne porte pas atteinte à son <b>honneur</b> ou à sa <b>réputation</b> ;</li>
+  <li>(<b>repentir et retrait</b>) exercer ce droit, <b>sauf accord de l’autorité hiérarchique</b>.</li></ul></li>
+<li><b>Exception</b> : ni la cession automatique ni les restrictions du droit moral ne s’appliquent aux agents dont la divulgation des œuvres <b>n’est soumise à aucun contrôle préalable de l’autorité hiérarchique</b>, en vertu de leur statut ou des règles régissant leurs fonctions. Exemple : les <b>enseignants-chercheurs</b>.</li>
+</ul>
+${tip(`<p>Compare les deux « repentir et retrait » restreints : <b>logiciel (L. 121-7)</b> → <b>exclu</b>, point. <b>Fonctionnaire (L. 121-7-1)</b> → possible <b>avec l’accord</b> de l’autorité hiérarchique. Le prof peut jouer sur cette nuance.</p>`)}
+${plus(`<p>Le régime actuel vient de la loi <b>DADVSI du 1<sup>er</sup> août 2006</b>. Pour l’<b>exploitation commerciale</b>, l’État ne dispose envers son agent que d’un <b>droit de préférence</b> (L. 131-3-1, al. 2). L’article L. 131-3-2 étend ce régime aux collectivités territoriales, établissements publics administratifs, AAI et Banque de France.</p>`)}
+` },
+
+{ id: 'plural', n: '7', title: 'Titularité et pluralité d’auteurs', time: '20 min', html: `
+<p class="muted">Section II, § 2 (support « suite et fin », p. 4-5) : collaboration, collective, composite — ${A('L. 113-2')}.</p>
+
+<h3>A. L’œuvre de collaboration</h3>
+<p>${A('L. 113-2, al. 1')} : œuvre <q>à la création de laquelle ont concouru plusieurs personnes physiques</q>. Tous ceux qui ont contribué à la création sont <b>coauteurs</b>.</p>
+<p><b>Exemple type : l’œuvre audiovisuelle</b> (film, série). La loi (${A('L. 113-7')}) considère comme coauteurs : le <b>réalisateur</b>, le <b>scénariste</b>, l’<b>adaptateur</b>, le <b>dialoguiste</b> et le <b>compositeur</b> (de la musique <b>spécialement composée</b> pour le film). <b>Liste non limitative</b> : tout autre intervenant peut revendiquer la qualité de coauteur en prouvant sa <b>contribution créative</b>.</p>
+<p><b>Copropriété</b> — ${A('L. 113-3')} : l’œuvre de collaboration est <q>la propriété commune des coauteurs</q>, qui <q>doivent exercer leurs droits d’un commun accord</q>. En plus de sa part de cette propriété collective, <b>chaque coauteur a un droit d’auteur propre sur sa seule contribution</b> (le scénariste sur le scénario, le compositeur sur la musique…).</p>
+<p><b>Présomption de cession au producteur</b> — ${A('L. 132-24')} : par dérogation à l’exigence de délimitation précise des droits cédés (interprétation stricte des contrats d’exploitation), <q>le contrat qui lie le producteur aux auteurs d’une œuvre audiovisuelle, <b>autres que l’auteur de la composition musicale avec ou sans paroles</b>, emporte, <b>sauf clause contraire</b>, cession au profit du producteur des droits exclusifs d’exploitation de l’œuvre audiovisuelle</q>.</p>
+${fix(`<p>Le support cite « l’article L. 131-1 » pour l’exigence de détermination du périmètre des droits cédés. Dans le code, cette exigence (mention distincte de chaque droit cédé ; domaine d’exploitation délimité quant à son <b>étendue</b>, sa <b>destination</b>, le <b>lieu</b> et la <b>durée</b>) figure à l’article <b>L. 131-3</b> ; L. 131-1 pose, lui, la nullité de la <b>cession globale des œuvres futures</b>. Retiens le principe ; si tu cites un numéro, tu peux écrire « art. L. 131-1 et s. ».</p>`)}
+${trap(`<p>La présomption de L. 132-24 <b>exclut le compositeur</b> de la musique (ses droits sont gérés collectivement, par la SACEM) et ne joue que <b>sauf clause contraire</b>. Autre piège : dans une collaboration, « plusieurs personnes <b>physiques</b> » — une société ne peut pas être coauteur.</p>`)}
+${plus(`<p>L. 113-3 ajoute : en cas de <b>désaccord</b>, il appartient à la <b>juridiction civile</b> de statuer ; et lorsque les contributions relèvent de <b>genres différents</b>, chacun peut exploiter séparément la sienne, <b>sans porter préjudice à l’exploitation de l’œuvre commune</b>. Durée : 70 ans après le décès du <b>dernier vivant</b> des collaborateurs (L. 123-2).</p>`)}
+
+<h3>B. L’œuvre collective</h3>
+<p>${A('L. 113-2, al. 3')} : <q>Est dite collective l’œuvre créée sur l’<b>initiative</b> d’une personne physique ou morale qui l’<b>édite</b>, la <b>publie</b> et la <b>divulgue</b> sous sa <b>direction</b> et son <b>nom</b> et dans laquelle la contribution personnelle des divers auteurs participant à son élaboration <b>se fond dans l’ensemble</b> en vue duquel elle est conçue, <b>sans qu’il soit possible d’attribuer à chacun d’eux un droit distinct sur l’ensemble réalisé</b>.</q></p>
+<p><b>Deux caractéristiques</b> :</p>
+<ul>
+<li><b>initiative et direction</b> : le rôle du <b>coordinateur</b>, personne physique ou morale ;</li>
+<li><b>fusion</b> des contributions individuelles en un seul ensemble <b>indistinct</b>.</li>
+</ul>
+<p><b>Terrain d’élection</b> : <b>dictionnaires, encyclopédies, journaux</b> — œuvres pour lesquelles la propriété commune est matériellement impossible (contributeurs nombreux, concertation très faible).</p>
+<p><b>Titularité</b> — ${A('L. 113-5')} : <q>L’œuvre collective est, sauf preuve contraire, la propriété de la personne physique ou morale sous le nom de laquelle elle est divulguée. <b>Cette personne est investie des droits de l’auteur.</b></q></p>
+<ul>
+<li>Ce régime <b>avantage les entreprises</b>, qui y recourent au-delà de son champ d’origine — un <b>dévoiement</b>. Elles se voient reconnaître <b>dès l’origine</b> les droits patrimoniaux sur l’ensemble, ce qui les <b>dispense de tout contrat de cession</b>.</li>
+<li>Mieux : elles se voient aussi attribuer le <b>droit moral</b> — <b>Cass. 1<sup>re</sup> civ., 22 mars 2012, n° 11-10.132</b>.</li>
+<li>C’est <b>la seule hypothèse où le droit d’auteur ne naît pas sur la tête de l’auteur, mais sur celle de l’investisseur</b> — un <b>non-sens</b> au regard de la définition de l’œuvre de l’esprit.</li>
+</ul>
+
+<h3>C. L’œuvre composite</h3>
+<p>${A('L. 113-2, al. 2')} : <q>l’œuvre nouvelle à laquelle est incorporée une œuvre préexistante <b>sans la collaboration de l’auteur de cette dernière</b></q>. La doctrine parle d’<b>œuvre dérivée</b>.</p>
+<ul>
+<li>Ce n’est pas vraiment une œuvre « à plusieurs » : c’est une <b>succession dans le temps</b> de processus créatifs d’auteurs différents. La dernière œuvre <b>se greffe</b> sur la précédente.</li>
+<li>L’œuvre composite est la <b>propriété exclusive du dernier auteur</b>, qui en est le <b>seul auteur</b>.</li>
+<li><b>Mais</b> il doit <b>impérativement obtenir au préalable l’autorisation</b> de l’auteur de l’œuvre première dont il reprend des <b>éléments formels</b>. À défaut, il ne peut exercer ses droits et s’expose à des poursuites (plagiat / contrefaçon).</li>
+<li><b>Champ de prédilection</b> : la <b>production musicale</b> (sample, remix, reprise arrangée) ; aussi traduction, adaptation, anthologie.</li>
+</ul>
+${plus(`<p>${A('L. 113-4')} : <q>L’œuvre composite est la propriété de l’auteur qui l’a réalisée, sous réserve des droits de l’auteur de l’œuvre préexistante.</q> Si l’œuvre première est tombée dans le <b>domaine public</b>, aucune autorisation patrimoniale n’est requise — mais le <b>droit moral</b> de l’auteur d’origine (perpétuel) doit toujours être respecté.</p>`)}
+
+<h3>Le tableau qui tombe</h3>
+<div class="tw"><table class="t">
+<tr><th></th><th>Collaboration</th><th>Collective</th><th>Composite</th></tr>
+<tr><th>Critère</th><td>Concours de plusieurs <b>personnes physiques</b>, concertation</td><td><b>Initiative et direction</b> d’une personne (physique ou <b>morale</b>) ; contributions <b>fondues</b></td><td>Incorporation d’une œuvre <b>préexistante</b>, <b>sans collaboration</b> de son auteur</td></tr>
+<tr><th>Titulaire</th><td>Les <b>coauteurs</b>, en propriété commune</td><td>La personne <b>sous le nom de laquelle</b> elle est divulguée</td><td>Le <b>dernier auteur</b>, seul</td></tr>
+<tr><th>Exercice</th><td><b>Commun accord</b> (+ droit propre sur sa contribution)</td><td>Le promoteur seul, y compris le <b>droit moral</b> (2012)</td><td>Sous réserve de l’<b>autorisation préalable</b> du premier auteur</td></tr>
+<tr><th>Textes</th><td>L. 113-2 al. 1, L. 113-3, L. 113-7, L. 132-24</td><td>L. 113-2 al. 3, L. 113-5</td><td>L. 113-2 al. 2, L. 113-4</td></tr>
+<tr><th>Exemples</th><td>Film, série, chanson (paroles + musique), BD à deux</td><td>Dictionnaire, encyclopédie, journal</td><td>Traduction, adaptation, sample musical</td></tr>
+</table></div>
+` }
+];
+/* =========================================================
+   ARTICLES & ARRÊTS (mémento + flashcards + QCM « numéros »)
+   [référence, contenu, chapitre]
+   ========================================================= */
+const ARTS = [
+['L. 111-1, al. 1', 'Droit de propriété incorporelle, exclusif et opposable à tous, né du seul fait de la création', 'oeuvre'],
+['L. 111-1, al. 3', 'Le contrat de travail n’emporte pas dérogation à la jouissance du droit d’auteur (auteur salarié)', 'titu'],
+['L. 111-2', 'L’œuvre est réputée créée du seul fait de la réalisation, même inachevée, indépendamment de toute divulgation', 'qualite'],
+['L. 112-1', 'Protection de toutes les œuvres, quels que soient le genre, la forme d’expression, le mérite ou la destination', 'qualite'],
+['L. 112-2', 'Liste indicative (« notamment ») des œuvres de l’esprit — 14 rubriques', 'qualite'],
+['L. 113-1', 'Présomption (simple) de la qualité d’auteur : celui sous le nom de qui l’œuvre est divulguée', 'titu'],
+['L. 113-2', 'Définitions des œuvres de collaboration, composite et collective', 'plural'],
+['L. 113-3', 'Œuvre de collaboration : propriété commune des coauteurs, exercice d’un commun accord', 'plural'],
+['L. 113-4', 'Œuvre composite : propriété de son auteur, sous réserve des droits de l’auteur de l’œuvre préexistante', 'plural'],
+['L. 113-5', 'Œuvre collective : propriété de la personne sous le nom de laquelle elle est divulguée, investie des droits de l’auteur', 'plural'],
+['L. 113-7', 'Coauteurs présumés de l’œuvre audiovisuelle (réalisateur, scénariste, adaptateur, dialoguiste, compositeur)', 'plural'],
+['L. 113-9', 'Logiciel créé par un salarié : droits patrimoniaux dévolus à l’employeur', 'titu'],
+['L. 121-1', 'Droit moral : respect du nom, de la qualité et de l’œuvre ; perpétuel, inaliénable, imprescriptible ; transmissible à cause de mort', 'moral'],
+['L. 121-2', 'Droit de divulgation : l’auteur a seul le droit de divulguer et en fixe le procédé et les conditions', 'moral'],
+['L. 121-3', 'Abus notoire des héritiers dans l’usage ou le non-usage du droit de divulgation', 'moral'],
+['L. 121-4', 'Droit de repentir et de retrait (droit commun), à charge d’indemnisation préalable du cessionnaire', 'moral'],
+['L. 121-7', 'Logiciel : droit au respect limité à l’atteinte à l’honneur ou à la réputation ; repentir et retrait exclus', 'titu'],
+['L. 121-7-1', 'Agent public : restrictions du droit moral (modification dans l’intérêt du service ; repentir et retrait sur accord hiérarchique)', 'titu'],
+['L. 122-1', 'Le droit d’exploitation comprend le droit de représentation et le droit de reproduction', 'patri'],
+['L. 122-2', 'Représentation : communication de l’œuvre au public par un procédé quelconque', 'patri'],
+['L. 122-3', 'Reproduction : fixation matérielle de l’œuvre permettant une communication indirecte au public', 'patri'],
+['L. 122-4', 'Est illicite toute représentation ou reproduction sans le consentement de l’auteur (texte cité pour le plagiat)', 'intro'],
+['L. 122-5', 'Exceptions au monopole d’exploitation (cercle de famille, copie privée, citation, parodie…)', 'patri'],
+['L. 122-7', 'Le droit d’exploitation est cessible à titre gratuit ou onéreux', 'suite'],
+['L. 122-8', 'Droit de suite (œuvres graphiques et plastiques), inaliénable', 'suite'],
+['L. 123-1', 'Durée des droits patrimoniaux : vie de l’auteur + 70 ans', 'suite'],
+['L. 123-2', 'Œuvre de collaboration : 70 ans après la mort du dernier vivant des collaborateurs', 'suite'],
+['L. 123-3', 'Œuvres collectives, anonymes, pseudonymes : 70 ans à compter du 1er janvier suivant la publication', 'suite'],
+['L. 131-3-1', 'Agent de l’État : cession de plein droit à l’État, dans la mesure strictement nécessaire à la mission de service public', 'titu'],
+['L. 132-24', 'Œuvre audiovisuelle : présomption de cession des droits au producteur (sauf compositeur, sauf clause contraire)', 'plural'],
+['L. 132-36', 'Journaliste : cession à titre exclusif à l’entreprise de presse, sauf stipulation contraire', 'titu'],
+['L. 335-2', 'Sanction pénale de la contrefaçon de droit d’auteur : 3 ans d’emprisonnement et 300 000 € d’amende', 'intro'],
+['L. 335-3', 'Définition du délit de contrefaçon : reproduction, représentation ou diffusion en violation des droits de l’auteur', 'intro'],
+['L. 331-1-3', 'Action civile en contrefaçon de droit d’auteur : évaluation des dommages et intérêts', 'intro']
+];
+const CASES_LAW = [
+['CE, avis, 21 nov. 1972, n° 309721, OFRATEME', 'Ancien régime des fonctionnaires : l’Administration est investie des droits d’auteur sur les œuvres « dont la création fait l’objet même du service »', 'titu'],
+['Cass. 1re civ., 22 mars 2012, n° 11-10.132', 'Œuvre collective : la personne (même morale) qui en a l’initiative est investie aussi du droit moral', 'plural'],
+['Cass. 1re civ., 28 mai 1991, Huston', 'Colorisation d’Asphalt Jungle : le droit moral relève de lois d’application impérative (ordre public international)', 'moral'],
+['Cass. 1re civ., 28 janv. 2003, « On va fluncher »', 'L’inaliénabilité du droit au respect, d’ordre public, interdit tout abandon préalable et général au cessionnaire', 'moral'],
+['Cass. 1re civ., 13 juin 2006 (parfum)', 'La fragrance d’un parfum procède d’un simple savoir-faire : pas de droit d’auteur', 'oeuvre'],
+['Cass. ass. plén., 7 mars 1986, Pachot', 'Logiciel : l’originalité est la marque d’un apport intellectuel (conception objective / moderne)', 'qualite'],
+['Convention de Berne, 9 sept. 1886 (OMPI)', 'Traité international fondateur du droit d’auteur ; consacre le droit de paternité (art. 6 bis)', 'moral']
+];
+
+/* =========================================================
+   FLASHCARDS (définitions, listes, chiffres)
+   ========================================================= */
+const DEFS = [
+['Définition doctrinale de l’œuvre de l’esprit', '« Une création intellectuelle se concrétisant dans une forme perceptible aux sens » (Lucas, Lucas-Schloetter, Bernault, Traité de la PLA, 5e éd. 2017, p. 68).', 'oeuvre'],
+['Les 2 composantes du droit d’auteur', 'Attributs d’ordre intellectuel et moral (droit moral) + attributs d’ordre patrimonial (exploitation, suite).', 'patri'],
+['Les 2 branches de la PI', 'Propriété littéraire et artistique (droit d’auteur, droits voisins, bases de données) · Propriété industrielle (brevets, marques, dessins et modèles, AO/IG).', 'intro'],
+['Plagiat vs contrefaçon (formule du cours)', 'Plagiat = emprunt + appropriation de la paternité, sans consentement ni sources (L. 122-4). Contrefaçon = reproduction + utilisation sans autorisation ; atteinte à la forme (L. 335-3).', 'intro'],
+['Exclus du champ de la PI', 'Droit à l’image (Code civil / Code pénal) ; dénomination sociale, logo, enseigne, nom commercial, nom de domaine ; savoir-faire. Protection possible : concurrence déloyale.', 'intro'],
+['Pourquoi une idée n’est pas protégée ?', 'Les idées sont libres (« de libre parcours ») ; seule la forme qui les exprime est protégée.', 'oeuvre'],
+['Qui ne peut PAS être auteur ?', 'Une personne morale, un animal, une machine autonome (IA). L’auteur est nécessairement une personne physique.', 'oeuvre'],
+['IA : France/UE · USA · Royaume-Uni', 'UE : pas de protection sans intervention humaine créative. USA : le copyright refuse l’enregistrement. UK : plus favorable, droit reconnu à la personne à l’origine de l’œuvre générée par ordinateur.', 'oeuvre'],
+['Les 2 conceptions de l’originalité', 'Classique : empreinte de la personnalité de l’auteur. Moderne : est original ce qui est nouveau (rapprochement avec le brevet).', 'qualite'],
+['Les 4 indifférences (L. 112-1)', 'Genre, forme d’expression, mérite, destination.', 'qualite'],
+['Ajouts jurisprudentiels à L. 112-2', 'Compositions florales, modèles de coiffure, jeux de lumière, jeux télévisés, sonorité d’un orgue.', 'qualite'],
+['À quoi servent dépôt légal et visa d’exploitation ?', 'Pas à faire naître le droit d’auteur : conservation, sauvegarde, preuve (date), contrôle (dangerosité).', 'qualite'],
+['Ayants droit / ayants cause', 'Ayants droit : héritiers. Ayants cause : tiers ayant acquis le droit d’exploitation (éditeur, producteur).', 'patri'],
+['Reproduction vs représentation', 'Reproduction : fixation matérielle sur un support, communication indirecte. Représentation : communication directe au public par un procédé quelconque.', 'patri'],
+['Les 6 formes de représentation du cours', 'Récitation publique, exécution lyrique, représentation dramatique, exposition, projection publique, télédiffusion (ondes, câble, satellite, Internet).', 'patri'],
+['Réserve générale des exceptions', 'Ne pas porter atteinte à l’exploitation normale de l’œuvre ni causer un préjudice injustifié aux intérêts légitimes de l’auteur.', 'patri'],
+['Exceptions soumises à l’indication du nom de l’auteur et de la source', 'Analyses et courtes citations, revues de presse, diffusion à titre d’actualité, catalogues de ventes judiciaires, fins pédagogiques.', 'patri'],
+['Copie privée : 3 points', 'Usage privé du copiste, source licite, pas pour les logiciels (ni bases de données électroniques).', 'patri'],
+['Droit de suite : définition', 'Droit de l’auteur d’une œuvre graphique ou plastique de participer au produit de toute revente après la première cession, quand intervient un professionnel du marché de l’art.', 'suite'],
+['Droit de suite : chiffres (texte)', 'Seuil 750 € · 4 % jusqu’à 50 000 € puis 3 %, 1 %, 0,5 %, 0,25 % · plafond 12 500 € · exclu si acquis de l’auteur depuis moins de 3 ans et prix ≤ 10 000 €. (Notes de cours : 3 %.)', 'suite'],
+['Durée des droits patrimoniaux', 'Vie de l’auteur + 70 ans. Collaboration : 70 ans après le décès du dernier coauteur. Ensuite : domaine public (le droit moral subsiste).', 'suite'],
+['Exploitation / suite / moral : régime', 'Exploitation : aliénable, temporaire. Suite : inaliénable, temporaire. Moral : inaliénable, perpétuel, imprescriptible.', 'suite'],
+['Les 4 attributs du droit moral', 'Divulgation · repentir et retrait · paternité · respect de l’œuvre.', 'moral'],
+['Repentir vs retrait', 'Repentir : imposer des modifications à l’œuvre publiée. Retrait : la retirer de la circulation. Condition : indemnisation préalable du cessionnaire.', 'moral'],
+['Paternité : acceptions positive et négative', 'Positive : exiger la mention de son nom, ses titres, sa qualité. Négative : exiger l’anonymat ou un pseudonyme.', 'moral'],
+['Respect de l’œuvre : 3 atteintes', 'À la forme, à l’esprit, au support. Limite : corrections d’orthographe, coquilles, dates, noms.', 'moral'],
+['4 atténuations du droit au respect', 'Œuvres architecturales, œuvre collective, œuvre de fonctionnaire, adaptation.', 'moral'],
+['Caractère discrétionnaire du droit moral', 'L’auteur n’a pas à se justifier. Les héritiers, eux, sont contrôlés en cas d’abus notoire (divulgation).', 'moral'],
+['Intérêt de l’inaliénabilité/perpétuité', 'Protéger l’œuvre, l’auteur (même contre lui-même) et surtout le public (accès à la version originale).', 'moral'],
+['Salarié : principe', 'Le salarié reste auteur et titulaire ; pas de cession automatique ; l’employeur doit conclure un contrat de cession distinct du contrat de travail.', 'titu'],
+['2 exceptions de cession automatique à l’employeur', 'Journalistes (L. 132-36) et logiciels (L. 113-9).', 'titu'],
+['Logiciel : où naît le droit ?', 'Sur la tête de l’employé (titulaire initial). Les droits patrimoniaux sont seulement dévolus à l’employeur ; le droit moral reste à l’employé, restreint.', 'titu'],
+['Fonctionnaire : l’exception des enseignants-chercheurs', 'Pas de cession automatique ni de restriction du droit moral quand la divulgation n’est soumise à aucun contrôle préalable de l’autorité hiérarchique.', 'titu'],
+['Œuvre de collaboration', 'Œuvre à la création de laquelle ont concouru plusieurs personnes physiques ; propriété commune ; commun accord.', 'plural'],
+['Œuvre collective : 2 caractéristiques', 'Initiative et direction d’une personne (physique ou morale) ; fusion des contributions dans un ensemble indistinct.', 'plural'],
+['Œuvre composite', 'Œuvre nouvelle incorporant une œuvre préexistante sans la collaboration de son auteur ; propriété du dernier auteur, sous réserve de l’autorisation préalable du premier.', 'plural'],
+['La « seule hypothèse » du cours', 'L’œuvre collective : seule hypothèse où le droit d’auteur naît sur la tête de l’investisseur et non de l’auteur.', 'plural']
+];
+
+/* =========================================================
+   QCM — la 1re option est la bonne (mélangée à l’affichage)
+   ========================================================= */
+const CH_LABEL = { intro: 'Introduction', oeuvre: 'Œuvre de l’esprit & IA', qualite: 'Originalité & formalités', patri: 'Exploitation & exceptions', suite: 'Droit de suite & durée', moral: 'Droit moral', titu: 'Salarié & fonctionnaire', plural: 'Pluralité d’auteurs' };
+const QB = [];
+function q(ch, text, opts, exp) { QB.push({ id: ch + '-' + QB.filter(x => x.ch === ch).length, ch, text, opts, exp }); }
+
+/* --- Introduction --- */
+q('intro', 'Selon le cours, quel article du CPI définit la contrefaçon ?', ['L. 335-3', 'L. 122-4', 'L. 335-2', 'L. 331-1-3'], 'L. 335-3 définit le délit ; L. 122-4 est le texte cité pour le plagiat (usage illicite) ; L. 335-2 fixe les peines ; L. 331-1-3 concerne l’action civile.');
+q('intro', 'Ce qui distingue le plagiat de la contrefaçon, dans le cours, c’est avant tout :', ['L’appropriation de la paternité (plagiat) face à la reprise non autorisée de la forme (contrefaçon)', 'Le caractère gratuit (plagiat) ou payant (contrefaçon) de l’usage', 'Le plagiat vise les livres, la contrefaçon les objets', 'Le plagiat est civil, la contrefaçon uniquement pénale'], 'Plagiat = emprunt en s’attribuant la paternité, sans consentement ni sources. Contrefaçon = reproduction + utilisation sans autorisation, atteinte à la forme (composition, structure).');
+q('intro', 'Le droit patrimonial de l’auteur peut être :', ['Transmis à titre gratuit ou onéreux, ou concédé sous forme de licence', 'Uniquement vendu, jamais donné', 'Transmis seulement à cause de mort', 'Cédé avec le droit moral qui le suit'], 'Le droit patrimonial est cessible (gratuit ou onéreux) et peut être concédé en licence. Le droit moral, lui, reste à l’auteur.');
+q('intro', 'Lequel de ces droits ne relève PAS de la propriété littéraire et artistique ?', ['Le droit des dessins et modèles', 'Les droits voisins du droit d’auteur', 'Le droit spécial des producteurs de bases de données', 'Le droit d’auteur sur les logiciels'], 'Dessins et modèles = propriété industrielle. La PLA regroupe droit d’auteur (logiciels compris), droits voisins et droit des producteurs de bases de données.');
+q('intro', 'Comment s’acquiert un droit de propriété industrielle, par opposition au droit d’auteur ?', ['Par un dépôt, l’antériorité du dépôt départageant les concurrents', 'Du seul fait de la création', 'Par la première exploitation commerciale', 'Par une décision du juge'], 'Propriété industrielle : dépôt (INPI) et antériorité. Droit d’auteur : aucune formalité, seul fait de la création.');
+q('intro', 'Pourquoi le droit à l’image est-il exclu de la propriété intellectuelle ?', ['Parce qu’il est attaché à la personne humaine dont il prolonge la personnalité ; il relève du Code civil et du Code pénal', 'Parce qu’une image n’est jamais originale', 'Parce qu’il relève exclusivement du droit des marques', 'Parce qu’il n’est protégé par aucun texte'], 'Le droit à l’image est un droit de la personnalité (Code civil, Code pénal), pas un droit sur une création.');
+q('intro', 'Parmi ces éléments, lequel le cours range-t-il HORS du champ de la PI ?', ['Le nom de domaine', 'L’appellation d’origine', 'La marque commerciale', 'Le logiciel'], 'Exclus : dénomination sociale, logo, enseigne, nom commercial, nom de domaine, savoir-faire (protégeables par la concurrence déloyale).');
+q('intro', 'L’action en contrefaçon est dite de « double nature » car elle est :', ['Pénale et civile', 'Nationale et européenne', 'Patrimoniale et morale', 'Individuelle et collective'], 'Pénale (ex. L. 335-2 : 3 ans et 300 000 €) et civile (ex. L. 331-1-3 : dommages et intérêts).');
+q('intro', 'Parmi ces articles, lequel fonde l’action CIVILE en matière de droit d’auteur ?', ['L. 331-1-3', 'L. 335-2', 'L. 716-10', 'L. 615-14'], 'L. 331-1-3 = civil, droit d’auteur. L. 335-2 = pénal, droit d’auteur. L. 716-10 = pénal, marques. L. 615-14 = pénal, brevets.');
+q('intro', 'L’article L. 615-14, cité au titre de l’action pénale, concerne :', ['Les brevets', 'Les marques', 'Les dessins et modèles', 'Les bases de données'], 'Repère : L. 6xx = brevets ; L. 7xx = marques ; L. 5xx = dessins et modèles ; L. 343-4 = bases de données.');
+q('intro', 'Quelle peine encourt l’auteur d’une contrefaçon de droit d’auteur (L. 335-2) ?', ['3 ans d’emprisonnement et 300 000 € d’amende', '1 an d’emprisonnement et 15 000 € d’amende', '5 ans d’emprisonnement et 75 000 € d’amende', 'Une simple amende contraventionnelle'], 'Trois ans et 300 000 €, sans préjudice des dommages et intérêts dus à l’auteur.');
+
+/* --- Œuvre de l’esprit --- */
+q('oeuvre', 'Une société de production peut-elle être l’auteur initial d’un roman écrit par ses salariés ?', ['Non : seule une personne physique peut être auteur ; la société peut seulement être titulaire de droits patrimoniaux', 'Oui, dès lors qu’elle a financé l’écriture', 'Oui, si le contrat de travail le prévoit', 'Oui, mais seulement pour le droit moral'], 'Une personne morale n’est jamais auteur initial. Elle peut acquérir le droit patrimonial ou être à l’initiative d’une œuvre collective.');
+q('oeuvre', 'La définition « création intellectuelle se concrétisant dans une forme perceptible aux sens » provient :', ['De la doctrine (Lucas, Lucas-Schloetter et Bernault)', 'De l’article L. 111-1 du CPI', 'De la Convention de Berne', 'D’un arrêt de la Cour de cassation de 2012'], 'Il n’y a pas de définition légale de l’œuvre de l’esprit : elle est doctrinale.');
+q('oeuvre', 'Un photographe pose son appareil ; un singe déclenche et obtient un cliché saisissant. Le cliché :', ['N’est pas une œuvre de l’esprit : ni création animale, ni résultat hasardeux ne sont protégés', 'Appartient au photographe, propriétaire de l’appareil', 'Appartient au singe', 'Est protégé s’il est publié'], 'La création suppose une personne physique qui maîtrise le processus et n’est pas « surprise » par le résultat.');
+q('oeuvre', 'Selon le cours, créer suppose que l’auteur :', ['Maîtrise le processus et ait conscience, dès le départ, du résultat recherché', 'Achève son œuvre', 'Publie son œuvre', 'Soit un professionnel reconnu'], 'L’auteur ne doit pas être surpris par son œuvre. Sont exclus le hasard, la spontanéité pure, la découverte.');
+q('oeuvre', 'Un entrepreneur a l’idée d’un concept d’émission mais n’a rien rédigé. Un concurrent la réalise. Sur le terrain du droit d’auteur :', ['Aucune protection : l’idée non mise en forme est libre', 'Protection, car l’idée est originale', 'Protection, à condition de prouver l’antériorité', 'Protection pendant 70 ans'], 'Les idées sont de libre parcours ; seule la forme est protégée. (Reste éventuellement la concurrence déloyale.)');
+q('oeuvre', 'Pourquoi le parfum n’est-il pas protégé par le droit d’auteur ?', ['Parce qu’il procède de la mise en œuvre d’un savoir-faire', 'Parce que l’odorat n’est pas un sens', 'Parce qu’il est protégé par un brevet obligatoire', 'Parce qu’il n’est pas vendu comme une œuvre'], 'Solution de la Cour de cassation (13 juin 2006), reprise dans le cours : savoir-faire ≠ création d’une forme.');
+q('oeuvre', 'Une image générée par une IA sur une consigne de trois mots, sans retouche, est en France :', ['Non protégée par le droit d’auteur, faute de création humaine', 'Protégée au profit de l’éditeur de l’IA', 'Protégée au profit de l’utilisateur pendant 70 ans', 'Protégée par un droit sui generis déjà en vigueur'], 'Le droit d’auteur ne protège que la création humaine. Le droit sui generis n’est qu’une proposition.');
+q('oeuvre', 'Quel pays est présenté dans le cours comme le plus favorable aux œuvres générées par l’IA ?', ['Le Royaume-Uni', 'Les États-Unis', 'La France', 'L’Allemagne'], 'Le Royaume-Uni reconnaît un droit à la personne à l’origine de l’œuvre générée par ordinateur ; les États-Unis refusent l’enregistrement sans concours humain.');
+q('oeuvre', 'Une œuvre non protégée par le droit d’auteur :', ['Relève du domaine public, mais peut éventuellement être protégée par d’autres droits', 'Appartient à l’État', 'Ne peut être utilisée par personne', 'Est protégée 10 ans par défaut'], 'Domaine public = sans protection par le droit d’auteur ; d’autres voies restent possibles (contrat, concurrence déloyale, marque…).');
+q('oeuvre', 'Laquelle de ces affirmations sur la « forme » est exacte ?', ['La forme est indépendante de l’achèvement : une œuvre inachevée est protégée', 'La forme doit être fixée sur un support durable', 'La forme doit avoir été communiquée au public', 'La forme doit être écrite'], 'Il faut une forme perceptible aux sens, pas une œuvre achevée, ni publiée, ni écrite (œuvres orales).');
+
+/* --- Originalité & formalités --- */
+q('qualite', 'Dans la conception classique, l’originalité est :', ['L’empreinte de la personnalité de l’auteur', 'La nouveauté objective de l’œuvre', 'La valeur artistique reconnue par les experts', 'L’antériorité de la création'], 'Classique = subjective = empreinte de la personnalité. Moderne = nouveauté, qui rapproche le droit d’auteur du brevet.');
+q('qualite', 'Deux peintres peignent le même paysage, le même jour. Selon la conception classique :', ['Les deux tableaux sont protégés, chacun portant l’empreinte de son auteur', 'Seul le premier terminé est protégé', 'Aucun n’est protégé, le sujet étant identique', 'Ils forment une œuvre de collaboration'], 'L’originalité s’apprécie dans la forme, pas dans le sujet.');
+q('qualite', 'Quel critère n’est PAS cité par l’article L. 112-1 parmi les éléments indifférents à la protection ?', ['La nouveauté', 'Le mérite', 'La destination', 'Le genre'], 'L. 112-1 : genre, forme d’expression, mérite, destination.');
+q('qualite', 'Un tribunal refuse de protéger une chanson au motif qu’elle est « de piètre qualité ». Ce raisonnement :', ['Viole L. 112-1 : le mérite est indifférent', 'Est fondé : l’originalité suppose une plus-value', 'Est fondé si l’auteur est amateur', 'Viole L. 111-2 : la divulgation est indifférente'], 'Originalité ne veut pas dire plus-value ni qualité esthétique.');
+q('qualite', 'Selon L. 111-2, l’œuvre est réputée créée :', ['Du seul fait de la réalisation, même inachevée, de la conception de l’auteur', 'À compter de sa première publication', 'À compter de son dépôt légal', 'Une fois achevée et signée'], 'Indépendamment de toute divulgation publique ; d’où la protection des brouillons et des œuvres secrètes.');
+q('qualite', 'Une plaidoirie d’avocat, jamais écrite ni enregistrée :', ['Est protégée : les œuvres orales le sont', 'N’est pas protégée, faute de support', 'N’est protégée que si elle est publiée', 'Appartient à la juridiction'], 'L. 112-2 cite les conférences, allocutions, sermons, plaidoiries.');
+q('qualite', 'Le mot « notamment » à l’article L. 112-2 signifie que :', ['La liste est indicative et la jurisprudence peut y ajouter', 'La liste est limitative', 'Seules les œuvres listées bénéficient du droit moral', 'Les œuvres non listées doivent être déposées'], 'La jurisprudence a ajouté compositions florales, modèles de coiffure, jeux de lumière, jeux télévisés, sonorité d’un orgue.');
+q('qualite', 'Lequel de ces éléments n’est PAS un ajout de la jurisprudence cité au cours ?', ['Les recettes de cuisine', 'Les modèles de coiffure', 'La sonorité d’un orgue', 'Les jeux de lumière'], 'Les cinq ajouts du cours : compositions florales, modèles de coiffure, jeux de lumière, jeux télévisés, sonorité d’un orgue.');
+q('qualite', 'Pour quelles œuvres L. 112-2 exige-t-il que la mise en œuvre soit « fixée par écrit ou autrement » ?', ['Œuvres chorégraphiques, numéros et tours de cirque, pantomimes', 'Compositions musicales', 'Logiciels', 'Œuvres photographiques'], 'C’est la seule rubrique qui impose une fixation.');
+q('qualite', 'Le dépôt légal d’un livre à la BnF :', ['Sert à la conservation et à la preuve, pas à faire naître le droit d’auteur', 'Est la condition de la protection par le droit d’auteur', 'Transfère les droits à l’État', 'Fait courir le délai de 70 ans'], 'Protection sans formalité. Le dépôt assure sauvegarde, pérennité et preuve de la date.');
+q('qualite', 'Le visa d’exploitation d’un film a pour fonction :', ['Un contrôle préalable (dangerosité de l’œuvre pour le public)', 'D’attribuer le droit d’auteur au producteur', 'De prouver l’originalité du film', 'De faire entrer le film dans le domaine public'], 'Formalité de contrôle, sans effet sur l’existence du droit d’auteur.');
+
+/* --- Exploitation & exceptions --- */
+q('patri', 'Le droit d’exploitation comprend :', ['Le droit de reproduction et le droit de représentation', 'Le droit de suite et le droit de divulgation', 'Le droit de paternité et le droit de retrait', 'Le droit de reproduction et le droit de suite'], 'L. 122-1. Le droit de suite est l’autre droit patrimonial, distinct du droit d’exploitation.');
+q('patri', 'Qu’est-ce qui caractérise la reproduction par rapport à la représentation ?', ['Une fixation matérielle permettant une communication indirecte au public', 'Une communication directe au public', 'Le caractère payant', 'L’intervention d’un professionnel du marché de l’art'], 'Reproduction : support, indirect (L. 122-3). Représentation : direct, procédé quelconque (L. 122-2).');
+q('patri', 'La diffusion d’un film à la télévision par satellite est :', ['Une représentation', 'Une reproduction', 'Un droit de suite', 'Une divulgation au sens du droit moral uniquement'], 'La télédiffusion (ondes, câble, satellite, Internet) est une représentation.');
+q('patri', 'Un fan recopie un roman entier dans un carnet qu’il garde chez lui. Selon le cours :', ['La fixation n’est pas en soi une violation ; c’est l’exploitation publique, gratuite ou payante, qui la caractérise', 'C’est une contrefaçon dès la copie', 'C’est un plagiat car il n’a pas cité l’auteur', 'C’est licite seulement avec l’accord de l’éditeur'], 'Il y a contrefaçon ou plagiat à partir de la mise en circulation.');
+q('patri', 'Qui sont les « ayants cause » de l’auteur ?', ['Les tiers qui ont acquis le droit d’exploitation (éditeur, producteur)', 'Ses héritiers', 'Ses coauteurs', 'Les sociétés de gestion collective uniquement'], 'Ayants droit = héritiers ; ayants cause = acquéreurs du droit d’exploitation.');
+q('patri', 'Un éditeur titulaire des droits « livre papier » commercialise le roman en livre audio sans nouvel accord. C’est :', ['Une violation : mise en vente d’un support non visé par l’auteur', 'Licite : le contrat d’édition couvre tous les supports', 'Licite, sous réserve d’une rémunération équitable', 'Une simple atteinte au droit de suite'], 'Exemple du cours de fixation caractéristique d’une violation du droit de reproduction.');
+q('patri', 'Face à une exploitation non autorisée de son œuvre, l’auteur peut, selon le cours :', ['Faire interdire l’exploitation pour l’avenir ou réclamer des droits d’auteur', 'Uniquement demander la destruction des exemplaires', 'Uniquement porter plainte au pénal', 'Seulement exercer son droit de retrait'], 'Deux choix : empêcher l’exploitation future ou demander une rémunération.');
+q('patri', 'L’exception de représentation dans le cercle de famille suppose une représentation :', ['Privée et gratuite', 'Gratuite, même publique', 'Privée, même payante', 'Autorisée par l’auteur'], 'Deux conditions cumulatives : privée ET gratuite, exclusivement dans un cercle de famille.');
+q('patri', 'La copie privée :', ['Ne s’applique pas aux logiciels', 'Suppose l’accord préalable de l’auteur', 'Peut être mise à disposition d’un groupe d’amis en ligne', 'Peut provenir d’une source illicite'], 'Exception = sans accord ; mais usage privé du copiste, source licite, et exclusion des logiciels.');
+q('patri', 'Pour quelle exception l’indication du nom de l’auteur et de la source n’est-elle PAS exigée ?', ['La copie privée', 'La courte citation', 'La revue de presse', 'L’usage pédagogique'], 'La mention du nom et de la source conditionne le bloc « intérêt public » (citations, revues de presse, actualité, catalogues, pédagogie).');
+q('patri', 'Un enseignant photocopie l’intégralité d’un manuel pour sa classe. L’exception pédagogique :', ['Ne joue pas : elle ne couvre que des extraits', 'Joue, puisque l’usage est pédagogique', 'Joue si le manuel est cité', 'Joue si les copies sont gratuites'], 'Les enseignants ne peuvent reproduire qu’une partie des ouvrages.');
+q('patri', 'L’exception de parodie, pastiche et caricature s’apprécie :', ['Compte tenu des lois du genre', 'Sous réserve de l’accord de l’auteur parodié', 'À condition de citer la source', 'Uniquement dans la presse'], 'Formule légale : « compte tenu des lois du genre ».');
+q('patri', 'La réserve générale qui encadre toutes les exceptions tient à ce qu’elles :', ['Ne portent pas atteinte à l’exploitation normale de l’œuvre ni ne causent un préjudice injustifié aux intérêts légitimes de l’auteur', 'Soient autorisées au cas par cas par le juge', 'Soient compensées par une redevance', 'Ne concernent que les œuvres du domaine public'], 'C’est le « test en trois étapes ».');
+q('patri', 'L’exception relative aux œuvres architecturales et sculptures placées sur la voie publique bénéficie :', ['Aux personnes physiques, à l’exclusion de tout usage commercial', 'À tous, y compris pour un usage publicitaire', 'Aux seules collectivités territoriales', 'Aux seuls architectes'], 'Dite « liberté de panorama » : œuvres placées en permanence sur la voie publique.');
+
+/* --- Suite & durée --- */
+q('suite', 'Le droit de suite s’applique :', ['Aux œuvres graphiques et plastiques', 'À toutes les œuvres de l’esprit', 'Aux œuvres littéraires et musicales', 'Aux logiciels'], 'Tableaux, dessins, sculptures, photographies… C’est sa différence avec le droit d’exploitation, de portée générale.');
+q('suite', 'Le droit de suite suppose l’intervention :', ['D’un professionnel du marché de l’art, comme vendeur, acheteur ou intermédiaire', 'D’un notaire', 'De deux particuliers exclusivement', 'D’une société de gestion collective'], 'Une vente directe entre particuliers n’y donne pas lieu.');
+q('suite', 'Quelle est la justification du droit de suite ?', ['L’équité : associer l’artiste à la valorisation ultérieure de son œuvre', 'Financer les musées', 'Compenser la copie privée', 'Sanctionner la spéculation'], 'L’artiste vend souvent avant d’être connu ; rares sont ceux qui connaissent la gloire de leur vivant.');
+q('suite', 'Selon le CPI, à partir de quel prix de vente le droit de suite est-il dû ?', ['750 €', '10 000 €', '3 000 €', '50 000 €'], 'Seuil de 750 €. Le chiffre de 10 000 € appartient à l’exception (œuvre acquise de l’auteur depuis moins de 3 ans).');
+q('suite', 'Un galeriste achète une toile à l’artiste en 2025 et la revend 8 000 € en 2026. Selon L. 122-8 :', ['Pas de droit de suite : acquise directement de l’auteur depuis moins de 3 ans et prix ≤ 10 000 €', 'Droit de suite de 3 % soit 240 €', 'Droit de suite de 4 % soit 320 €', 'Droit de suite uniquement si l’artiste est célèbre'], 'C’est l’exception légale. Attention : tes notes l’avaient transformée en condition.');
+q('suite', 'Selon le barème réglementaire, quel taux s’applique à la tranche du prix jusqu’à 50 000 € ?', ['4 %', '3 %', '1 %', '0,25 %'], '4 % jusqu’à 50 000 € ; 3 % de 50 000 à 200 000 € ; 1 % ; 0,5 % ; 0,25 % ; plafond 12 500 €. Tes notes mentionnent « 3 % ».');
+q('suite', 'Le droit de suite est :', ['Inaliénable : l’auteur ne peut ni le céder ni y renoncer', 'Librement cessible comme le droit d’exploitation', 'Perpétuel comme le droit moral', 'Réservé aux auteurs vivants'], 'Inaliénable (L. 122-8), d’ordre public, mais temporaire : vie + 70 ans.');
+q('suite', 'Pourquoi le droit de suite est-il inaliénable ?', ['Pour éviter qu’un artiste inconnu y renonce sous la pression d’un marchand d’art expérimenté', 'Parce qu’il fait partie du droit moral', 'Parce qu’il appartient à l’État', 'Parce qu’il est perpétuel'], 'Le droit de suite est un droit patrimonial, mais protégé contre la cession.');
+q('suite', 'Les droits patrimoniaux durent :', ['La vie de l’auteur et 70 ans après son décès', '70 ans à compter de la création', '50 ans après le décès', 'Perpétuellement'], 'L. 123-1.');
+q('suite', 'Pour une œuvre de collaboration, le délai de 70 ans court à compter :', ['Du décès du dernier vivant des coauteurs', 'Du décès du premier coauteur', 'De la publication', 'De la création'], 'L. 123-2. (Tes notes parlaient à tort d’« œuvre collective ».)');
+q('suite', 'Une œuvre « tombée dans le domaine public » :', ['Peut être exploitée librement et gratuitement, mais le droit moral subsiste', 'N’a plus d’auteur', 'Peut être modifiée et signée par n’importe qui', 'Appartient à l’État'], 'Seule la part patrimoniale est purgée ; le droit moral est perpétuel.');
+q('suite', 'Classe correctement : droit inaliénable ET temporaire.', ['Le droit de suite', 'Le droit d’exploitation', 'Le droit de paternité', 'Le droit de divulgation'], 'Exploitation : aliénable, temporaire. Suite : inaliénable, temporaire. Moral : inaliénable, perpétuel.');
+
+/* --- Droit moral --- */
+q('moral', 'Quel article énonce que le droit moral est « perpétuel, inaliénable et imprescriptible » ?', ['L. 121-1', 'L. 123-1', 'L. 111-1', 'L. 122-4'], 'L. 121-1. L. 123-1 = durée des droits patrimoniaux (erreur présente dans tes notes).');
+q('moral', 'Lequel n’est PAS un attribut du droit moral ?', ['Le droit de suite', 'Le droit de divulgation', 'Le droit de repentir et de retrait', 'Le droit au respect de l’œuvre'], 'Le droit de suite est patrimonial. Attributs moraux : divulgation, repentir/retrait, paternité, respect.');
+q('moral', 'Un auteur a signé un contrat d’édition puis refuse finalement que son manuscrit paraisse. Il invoque :', ['Son droit de divulgation', 'Son droit de retrait', 'Son droit de suite', 'Son droit de reproduction'], 'L’œuvre n’est pas encore publiée : c’est la divulgation (L. 121-2). Le retrait concerne une œuvre déjà publiée.');
+q('moral', 'Le « bon à publier » traduit en pratique :', ['Le droit de divulgation de l’auteur', 'Le droit de l’éditeur de corriger le texte', 'Le droit de suite', 'Le dépôt légal'], 'Il s’ajoute au contrat d’édition : l’auteur garde le dernier mot sur la publication et son procédé.');
+q('moral', 'Quelle est la différence entre repentir et retrait ?', ['Le repentir impose des modifications ; le retrait fait cesser la circulation de l’œuvre', 'Le repentir est gratuit ; le retrait est payant', 'Le repentir appartient à l’éditeur ; le retrait à l’auteur', 'Aucune : ce sont des synonymes'], 'Les deux supposent l’indemnisation préalable du cessionnaire.');
+q('moral', 'Pourquoi le droit de retrait est-il très rarement exercé ?', ['Parce que l’auteur doit indemniser préalablement le cessionnaire', 'Parce qu’il faut l’accord du juge', 'Parce qu’il se prescrit par 5 ans', 'Parce qu’il est réservé aux héritiers'], 'Contrainte financière : l’éditeur ou le producteur a investi.');
+q('moral', 'Après l’exercice du droit de repentir par l’auteur, les exemplaires déjà imprimés :', ['Continuent de circuler dans leur état initial', 'Doivent être détruits', 'Doivent être rappelés et corrigés', 'Deviennent la propriété de l’auteur'], 'Les modifications valent pour les nouveaux tirages.');
+q('moral', 'Un écrivain exige de publier sous pseudonyme. Il exerce :', ['Le droit de paternité, dans son acception négative', 'Le droit de paternité, dans son acception positive', 'Le droit de divulgation', 'Le droit de retrait'], 'Négative = ne pas voir son nom associé à l’œuvre (anonymat, pseudonyme).');
+q('moral', 'La Convention de Berne, qui consacre le droit de paternité, date du :', ['9 septembre 1886', '14 juillet 1789', '11 mars 1957', '1er août 2006'], 'Convention de Berne, 9 septembre 1886, administrée par l’OMPI.');
+q('moral', 'Quelle organisation administre la Convention de Berne ?', ['L’OMPI', 'L’OMI', 'L’OMC', 'L’INPI'], 'Organisation mondiale de la propriété intellectuelle (tes notes écrivaient « OMI »).');
+q('moral', 'Un éditeur corrige de sa propre initiative des fautes d’orthographe et une date erronée. L’auteur :', ['Ne peut pas s’y opposer au titre du droit au respect', 'Peut faire retirer le livre sans indemnité', 'Peut invoquer une atteinte à l’esprit de l’œuvre', 'Peut exiger un nouveau bon à publier'], 'Limite du droit au respect : orthographe, coquilles, dates, noms de personnes existantes et connues.');
+q('moral', 'Une chaîne de télévision coupe 15 minutes d’un film pour insérer de la publicité, sans l’accord du réalisateur. C’est une atteinte :', ['Au droit au respect de l’œuvre (atteinte à la forme)', 'Au droit de divulgation', 'Au droit de suite', 'Au droit de paternité'], 'Exemple du cours : coupes réalisées par une chaîne.');
+q('moral', 'Le droit de l’architecte au respect de son œuvre :', ['N’est pas absolu : il se concilie avec le droit du propriétaire de l’immeuble', 'Est absolu et interdit toute transformation', 'Disparaît à la livraison du bâtiment', 'Est transféré au propriétaire'], 'Atténuation tenant à la nature de l’œuvre architecturale.');
+q('moral', 'En matière d’adaptation d’un roman au cinéma :', ['La cession ne vaut pas renonciation au droit au respect, mais une certaine liberté est reconnue à l’adaptateur', 'L’adaptateur est libre de tout modifier', 'L’auteur ne peut plus rien contester', 'L’adaptation est interdite sans réécriture par l’auteur'], 'Équilibre posé par la jurisprudence.');
+q('moral', 'Un auteur signe une clause autorisant l’éditeur à « modifier l’œuvre comme il l’entend, à l’avenir ». Cette clause :', ['Est inefficace : l’inaliénabilité du droit au respect, d’ordre public, interdit tout abandon préalable et général', 'Est valable, l’auteur ayant consenti', 'Est valable si elle est rémunérée', 'Est valable pendant 70 ans'], 'Solution « On va fluncher » (2003). Seule une validation a posteriori de modifications précises est possible.');
+q('moral', 'Un prête-plume peut-il revendiquer plus tard la paternité du livre ?', ['Oui : le droit moral étant inaliénable, il n’a pas pu y renoncer', 'Non : le contrat fait la loi des parties', 'Oui, mais seulement dans les 5 ans', 'Non, sauf fraude'], 'Le droit moral protège l’auteur même contre lui-même.');
+q('moral', 'Comment le droit moral se transmet-il ?', ['Uniquement à cause de mort (héritiers ou dispositions testamentaires)', 'Par contrat de cession', 'Par donation entre vifs', 'Il ne se transmet jamais'], 'Sans décès, pas de transmission.');
+q('moral', 'Dans l’affaire du film américain colorisé, la jurisprudence a reconnu au droit moral :', ['Un caractère d’ordre public international, permettant aux héritiers de s’opposer à la diffusion en France', 'Une durée limitée à 70 ans', 'Un caractère cessible entre professionnels', 'Une application limitée aux œuvres créées en France'], 'Arrêt Huston (1991) : le film est américain, c’est sa diffusion en France qui était en cause.');
+q('moral', 'L’exercice du droit moral par les héritiers :', ['Peut être contrôlé en cas d’abus notoire, contrairement à celui de l’auteur', 'Est discrétionnaire comme celui de l’auteur', 'Est interdit', 'Suppose l’accord de l’éditeur'], 'L’auteur n’a pas à se justifier ; les héritiers ne sont pas à l’abri de l’abus (droit de divulgation).');
+q('moral', 'Selon le cours, les caractères impératifs du droit moral protègent surtout :', ['Le public, dans son intérêt d’accéder à la version originale de l’œuvre', 'Les éditeurs', 'L’État', 'Les sociétés de gestion collective'], 'Ils protègent l’œuvre et l’auteur, mais surtout le public.');
+
+/* --- Salarié & fonctionnaire --- */
+q('titu', 'La présomption de l’article L. 113-1 est :', ['Simple : elle cède devant la preuve contraire', 'Irréfragable', 'Réservée aux personnes morales', 'Subordonnée à un dépôt'], 'La qualité d’auteur appartient, sauf preuve contraire, à celui sous le nom de qui l’œuvre est divulguée.');
+q('titu', 'Une graphiste salariée crée une affiche dans le cadre de son contrat de travail. Les droits d’auteur :', ['Lui appartiennent ; l’employeur doit obtenir une cession distincte du contrat de travail', 'Appartiennent à l’employeur dès la création', 'Sont partagés par moitié', 'Appartiennent à l’employeur en contrepartie du salaire'], 'L. 111-1, al. 3 : le contrat de travail n’emporte pas dérogation. Pas de cession automatique.');
+q('titu', 'Quelles sont les deux exceptions de cession automatique à l’employeur vues en cours ?', ['Journalistes des entreprises de presse et logiciels', 'Logiciels et œuvres photographiques', 'Journalistes et enseignants-chercheurs', 'Arts appliqués et bases de données'], 'L. 132-36 (presse) et L. 113-9 (logiciels).');
+q('titu', 'Selon L. 132-36, la cession des droits du journaliste à l’employeur :', ['Est exclusive, joue sauf stipulation contraire, que les œuvres soient ou non publiées', 'Suppose un contrat de cession séparé', 'Ne vaut que pour les œuvres publiées', 'Ne concerne que les journalistes permanents'], 'Elle vise le journaliste contribuant de manière permanente ou occasionnelle ; la contrepartie est le salaire, pendant une période fixée par accord collectif.');
+q('titu', 'Un développeur salarié écrit un logiciel sur instructions de son employeur. Qui est titulaire INITIAL du droit d’auteur ?', ['Le développeur ; seuls les droits patrimoniaux sont dévolus à l’employeur', 'L’employeur', 'Les deux, en indivision', 'Personne : un logiciel relève du brevet'], 'Le droit ne naît pas sur la tête de l’employeur : il lui est dévolu.');
+q('titu', 'La dévolution de L. 113-9 porte sur :', ['Les logiciels et leur documentation', 'Toutes les créations informatiques du salarié', 'Les logiciels, sites web et bases de données', 'Le seul code source'], 'Texte : « les logiciels et leur documentation », créés dans l’exercice des fonctions ou d’après les instructions de l’employeur.');
+q('titu', 'Quel est le sort du droit de repentir et de retrait de l’auteur salarié d’un logiciel ?', ['Il est purement et simplement exclu', 'Il s’exerce avec l’accord de l’employeur', 'Il s’exerce contre indemnisation', 'Il est intact'], 'L. 121-7. Pour le fonctionnaire (L. 121-7-1), il reste possible avec l’accord hiérarchique : ne confonds pas.');
+q('titu', 'L’auteur d’un logiciel peut s’opposer à sa modification par l’employeur :', ['Seulement en prouvant une atteinte à son honneur ou à sa réputation', 'Dans tous les cas', 'Jamais', 'Seulement dans l’année de la création'], 'Droit au respect restreint (L. 121-7).');
+q('titu', 'Que disait l’avis OFRATEME du Conseil d’État (21 nov. 1972) ?', ['L’Administration est investie des droits de l’auteur sur les œuvres dont la création fait l’objet même du service', 'Le fonctionnaire est seul titulaire de tous ses droits', 'Les fonctionnaires ne peuvent pas créer d’œuvres', 'L’État doit racheter les droits de ses agents'], 'Situation antérieure : les agents avaient mis leurs droits à la disposition du service.');
+q('titu', 'Aujourd’hui, le droit d’exploitation de l’œuvre d’un agent de l’État est cédé à l’État :', ['De plein droit, dès la création, dans la mesure strictement nécessaire à la mission de service public', 'Totalement, y compris pour les exploitations commerciales', 'Uniquement par contrat', 'Après un délai de 70 ans'], 'L. 131-3-1. La cession ne couvre pas les exploitations commerciales.');
+q('titu', 'Un fonctionnaire veut exercer son droit de repentir sur un rapport rédigé dans ses fonctions :', ['Il lui faut l’accord de l’autorité investie du pouvoir hiérarchique', 'C’est totalement exclu', 'Il doit indemniser l’État', 'Il est entièrement libre'], 'L. 121-7-1.');
+q('titu', 'Pourquoi un enseignant-chercheur échappe-t-il au régime restrictif des agents publics ?', ['Parce que la divulgation de ses œuvres n’est soumise à aucun contrôle préalable de l’autorité hiérarchique', 'Parce qu’il n’est pas fonctionnaire', 'Parce que ses œuvres ne sont pas originales', 'Parce qu’il est rémunéré en droits d’auteur'], 'Ni cession automatique, ni restrictions du droit moral.');
+q('titu', 'Quel article fonde les restrictions du droit moral de l’agent public ?', ['L. 121-7-1', 'L. 121-7', 'L. 131-3-1', 'L. 113-9'], 'L. 121-7 = logiciel ; L. 131-3-1 = cession du droit patrimonial à l’État ; L. 113-9 = dévolution des logiciels.');
+
+/* --- Pluralité d’auteurs --- */
+q('plural', 'L’œuvre de collaboration est celle à la création de laquelle ont concouru :', ['Plusieurs personnes physiques', 'Plusieurs personnes physiques ou morales', 'Un auteur et son éditeur', 'Un auteur et une IA'], 'L. 113-2 : « plusieurs personnes physiques ».');
+q('plural', 'Lequel n’est PAS cité parmi les coauteurs de l’œuvre audiovisuelle ?', ['Le producteur', 'Le réalisateur', 'Le dialoguiste', 'Le compositeur de la musique spécialement composée'], 'Coauteurs : réalisateur, scénariste, adaptateur, dialoguiste, compositeur. Le producteur est cessionnaire présumé des droits, pas auteur.');
+q('plural', 'La liste des coauteurs de l’œuvre audiovisuelle est :', ['Non limitative : d’autres intervenants peuvent prouver leur contribution créative', 'Limitative', 'Réservée aux salariés du producteur', 'Fixée par le contrat de production'], 'L. 113-7.');
+q('plural', 'Les coauteurs d’une œuvre de collaboration exercent leurs droits :', ['D’un commun accord', 'À la majorité', 'Chacun librement sur l’ensemble', 'Par l’intermédiaire du producteur uniquement'], 'L. 113-3 : propriété commune ; chacun garde en outre un droit propre sur sa contribution.');
+q('plural', 'La présomption de cession au producteur (L. 132-24) ne s’applique pas :', ['À l’auteur de la composition musicale', 'Au réalisateur', 'Au scénariste', 'Au dialoguiste'], '« … autres que l’auteur de la composition musicale avec ou sans paroles », et sauf clause contraire.');
+q('plural', 'Quels sont les deux critères de l’œuvre collective ?', ['Initiative et direction d’une personne ; fusion des contributions dans un ensemble', 'Concertation des auteurs ; propriété commune', 'Incorporation d’une œuvre préexistante ; autorisation', 'Contrat de travail ; rémunération au salaire'], 'L. 113-2, al. 3.');
+q('plural', 'Quel est le terrain d’élection originel de l’œuvre collective ?', ['Dictionnaires, encyclopédies, journaux', 'Films et séries', 'Logiciels', 'Chansons'], 'Contributeurs nombreux, concertation faible : la propriété commune y est impraticable.');
+q('plural', 'Que décide Cass. 1re civ., 22 mars 2012, n° 11-10.132 ?', ['La personne à l’initiative de l’œuvre collective est investie aussi du droit moral', 'L’œuvre collective est toujours une œuvre de collaboration', 'Une personne morale ne peut jamais exercer de droit d’auteur', 'Le droit moral de l’œuvre collective appartient à l’État'], 'D’où la critique du cours : un « non-sens » au regard de la définition de l’œuvre de l’esprit.');
+q('plural', 'Pourquoi le cours parle-t-il de « dévoiement » de l’œuvre collective ?', ['Les entreprises y recourent au-delà de son champ initial pour obtenir les droits sans contrat de cession', 'Elle prive les auteurs de salaire', 'Elle est contraire à la Convention de Berne', 'Elle ne dure que 5 ans'], 'Elle leur donne dès l’origine droits patrimoniaux et droit moral.');
+q('plural', 'Quelle est, selon le cours, la seule hypothèse où le droit d’auteur ne naît pas sur la tête de l’auteur ?', ['L’œuvre collective', 'Le logiciel de salarié', 'L’œuvre du journaliste', 'L’œuvre de l’agent de l’État'], 'Pour le logiciel, le journaliste et l’agent public, le droit naît sur la tête de l’auteur puis est cédé/dévolu.');
+q('plural', 'Un DJ intègre un extrait reconnaissable d’une chanson existante dans son morceau, sans associer l’auteur d’origine. Son morceau est :', ['Une œuvre composite', 'Une œuvre de collaboration', 'Une œuvre collective', 'Une œuvre du domaine public'], 'Œuvre nouvelle incorporant une œuvre préexistante sans la collaboration de son auteur.');
+q('plural', 'L’auteur d’une œuvre composite :', ['En est seul propriétaire, mais doit obtenir au préalable l’autorisation de l’auteur de l’œuvre première', 'Partage la propriété avec le premier auteur', 'N’a aucun droit sur son œuvre', 'N’a besoin d’aucune autorisation s’il cite sa source'], 'L. 113-4 : sous réserve des droits de l’auteur de l’œuvre préexistante.');
+q('plural', 'Ce qui distingue fondamentalement l’œuvre composite de l’œuvre de collaboration, c’est :', ['L’absence de collaboration de l’auteur de l’œuvre préexistante (succession dans le temps)', 'Le nombre d’auteurs', 'Le genre de l’œuvre', 'L’intervention d’une personne morale'], 'La composite est une succession de processus créatifs, non un travail concerté.');
+
+/* =========================================================
+   QUESTIONS DE COURS & CAS PRATIQUES (rappel libre + grille)
+   ========================================================= */
+const OPEN = [
+{ t: 'Définissez l’œuvre de l’esprit et ses éléments constitutifs.', pts: ['Absence de définition légale ; définition doctrinale citée (création intellectuelle se concrétisant dans une forme perceptible aux sens)', 'Création intellectuelle : personne physique, réflexion, maîtrise du processus (pas de hasard, d’animal, de machine)', 'Concrétisation dans une forme : les idées sont libres ; inachèvement indifférent', 'Perceptible aux sens ; exception du parfum (savoir-faire)', 'Qualité requise : originalité (deux conceptions)'] },
+{ t: 'Distinguez plagiat et contrefaçon.', pts: ['Plagiat : s’attribuer la paternité de ce qu’on a puisé chez autrui, sans consentement ni sources — L. 122-4', 'Contrefaçon : reproduction, représentation ou diffusion en violation des droits de l’auteur — L. 335-3', 'Critère : paternité (plagiat) / forme, composition, structure (contrefaçon)', 'Sanctions : action pénale (L. 335-2 : 3 ans, 300 000 €) et civile (L. 331-1-3 : dommages et intérêts)'] },
+{ t: 'Présentez les droits patrimoniaux de l’auteur et leur régime.', pts: ['Droit d’exploitation (portée générale) : reproduction + représentation', 'Droit de suite : œuvres graphiques et plastiques, revente avec professionnel du marché de l’art', 'Durée : vie + 70 ans, puis domaine public (droit moral intact)', 'Exploitation aliénable (gratuit/onéreux) ; suite inaliénable, d’ordre public, et sa justification', 'Exceptions au monopole (L. 122-5) et réserve générale'] },
+{ t: 'Présentez les attributs et les caractères du droit moral.', pts: ['Définition : lien intime auteur/œuvre ; L. 121-1', 'Divulgation (L. 121-2) ; bon à publier', 'Repentir et retrait ; indemnisation préalable', 'Paternité : acceptions positive et négative ; Convention de Berne 1886', 'Respect : forme, esprit, support ; atténuations (architecture, collective, fonctionnaire, adaptation)', 'Caractères : perpétuel, inaliénable (ordre public), imprescriptible ; transmission à cause de mort ; discrétionnaire (sauf héritiers, abus notoire)', 'Finalité : protéger l’œuvre, l’auteur, surtout le public'] },
+{ t: 'L’auteur salarié est-il titulaire des droits sur ses créations ?', pts: ['Principe : oui — L. 111-1 al. 3, le contrat de travail n’emporte pas dérogation', 'Pas de cession automatique ; contrat de cession distinct nécessaire', 'Exception presse : L. 132-36 (exclusif, sauf stipulation contraire, publiées ou non, salaire seule contrepartie)', 'Exception logiciel : L. 113-9 (dévolution des droits patrimoniaux ; l’employé reste titulaire initial)', 'Droit moral restreint sur le logiciel : L. 121-7'] },
+{ t: 'Comparez œuvre de collaboration, œuvre collective et œuvre composite.', pts: ['Fondement commun : L. 113-2', 'Collaboration : plusieurs personnes physiques ; propriété commune, commun accord (L. 113-3) ; exemple audiovisuel (L. 113-7, L. 132-24)', 'Collective : initiative/direction + fusion ; propriété du promoteur (L. 113-5) ; droit moral (Cass. 22 mars 2012) ; critique (dévoiement, non-sens)', 'Composite : incorporation sans collaboration ; propriété du dernier auteur sous réserve d’autorisation préalable ; production musicale'] }
+];
+const CASES = [
+{ t: 'Cas 1 — Le logiciel de Karim', facts: 'Karim, développeur salarié de la société LogiSud, conçoit pendant ses heures de travail et sur instructions de son chef un logiciel de facturation et sa documentation. Deux ans plus tard, LogiSud modifie l’interface. Karim, mécontent du résultat, exige le retrait du logiciel du marché et réclame par ailleurs que son nom figure dans les crédits.', qs: [
+  { q: 'Qui détient les droits patrimoniaux ? Karim peut-il obtenir le retrait ? Peut-il s’opposer à la modification ? Et son nom ?', pts: ['Principe : le salarié reste auteur (L. 111-1 al. 3) — mais exception du logiciel', 'L. 113-9 : droits patrimoniaux sur le logiciel et sa documentation dévolus à l’employeur (exercice des fonctions / instructions) → LogiSud seule habilitée à exploiter', 'Karim reste titulaire initial et conserve un droit moral, mais restreint (L. 121-7)', 'Retrait : exclu purement et simplement pour le logiciel', 'Modification : opposition possible seulement s’il prouve une atteinte à son honneur ou à sa réputation — un simple désaccord esthétique ne suffit pas', 'Paternité : non supprimée par L. 121-7 → il peut exiger la mention de son nom'] }] },
+{ t: 'Cas 2 — La toile de Maya', facts: 'Maya, peintre inconnue, vend en 2018 une toile 400 € à un particulier, M. Roux. En 2026, devenue célèbre, elle apprend que M. Roux a revendu la toile 60 000 € par l’intermédiaire d’une maison de ventes aux enchères. Par ailleurs, au moment de la vente de 2018, elle avait signé un papier par lequel elle « renonçait à tout droit futur sur l’œuvre ».', qs: [
+  { q: 'Maya peut-elle prétendre à quelque chose ? Sa renonciation lui est-elle opposable ? Combien ?', pts: ['Qualification : droit de suite (L. 122-8), droit patrimonial sur une œuvre graphique/plastique', 'Conditions : revente après la première cession + intervention d’un professionnel du marché de l’art (maison de ventes) → remplies', 'Seuil de 750 € atteint ; l’exception « moins de 3 ans et ≤ 10 000 € » ne joue pas', 'Renonciation inopposable : droit inaliénable, d’ordre public — justification (protection de l’artiste inconnu face au marchand)', 'Montant selon le barème légal : 4 % × 50 000 + 3 % × 10 000 = 2 300 € (si l’on applique le taux unique de 3 % donné en cours : 1 800 €)', 'Droit à la charge du vendeur ; durée : vie + 70 ans'] }] },
+{ t: 'Cas 3 — L’encyclopédie et le film', facts: 'Les éditions Savoir lancent une encyclopédie : elles fixent le plan, recrutent 80 rédacteurs, harmonisent les textes et publient l’ensemble sous leur nom. Léa, rédactrice, s’oppose à la réécriture de sa notice. En parallèle, Léa a coécrit un film avec un réalisateur ; le producteur exploite le film en streaming alors que le contrat de production ne dit rien sur ce mode d’exploitation. Le compositeur de la bande originale conteste aussi.', qs: [
+  { q: 'Qualifiez l’encyclopédie et tranchez la demande de Léa.', pts: ['Œuvre collective (L. 113-2 al. 3) : initiative et direction de l’éditeur ; contributions fondues dans l’ensemble', 'L. 113-5 : propriété de la personne sous le nom de laquelle elle est divulguée, investie des droits de l’auteur', 'Droit moral aussi au promoteur (Cass. 1re civ., 22 mars 2012)', 'Droit au respect de Léa atténué par la nécessité de coordonner et d’harmoniser → sa demande a peu de chances d’aboutir, sauf dénaturation'] },
+  { q: 'Qualifiez le film et tranchez les contestations de Léa et du compositeur.', pts: ['Œuvre de collaboration (L. 113-2 al. 1) ; coauteurs présumés (L. 113-7) : scénariste, réalisateur, compositeur…', 'L. 132-24 : le contrat de production emporte, sauf clause contraire, cession au producteur des droits exclusifs d’exploitation → Léa (scénariste) ne peut s’opposer au streaming', 'Exception : l’auteur de la composition musicale n’est pas couvert par la présomption → le compositeur est fondé à contester', 'Chaque coauteur garde un droit propre sur sa contribution et son droit moral'] }] },
+{ t: 'Cas 4 — Le rapport de l’agent et l’article du professeur', facts: 'Mme Diallo, attachée dans un ministère, rédige sur instruction un guide pratique destiné aux usagers. Sa hiérarchie en modifie le plan, puis une maison d’édition privée propose à l’État de le commercialiser en librairie. M. Petit, professeur des universités, publie de son côté un article scientifique que son université veut diffuser en le raccourcissant.', qs: [
+  { q: 'Quels sont les droits de Mme Diallo et de l’État ? Et ceux de M. Petit ?', pts: ['Mme Diallo est auteur et titulaire (L. 111-1) — fin de la solution OFRATEME (CE, 21 nov. 1972)', 'L. 131-3-1 : cession de plein droit à l’État, dès la création, dans la mesure strictement nécessaire à la mission de service public', 'Exploitation commerciale en librairie : hors de la cession automatique → accord de l’agent nécessaire', 'Modification du plan : elle ne peut s’y opposer si elle est décidée dans l’intérêt du service et ne porte pas atteinte à son honneur ou à sa réputation (L. 121-7-1)', 'Repentir/retrait : seulement avec l’accord de l’autorité hiérarchique', 'M. Petit : enseignant-chercheur, divulgation non soumise à contrôle hiérarchique préalable → ni cession automatique ni restriction du droit moral ; il peut s’opposer au raccourcissement'] }] },
+{ t: 'Cas 5 — Le roman, le sample et l’IA', facts: 'Hugo publie un roman. (a) Son éditeur change la fin « pour la rendre plus vendeuse » en s’appuyant sur une clause du contrat l’autorisant à « toute modification utile ». (b) Un rappeur reprend, sans rien demander, trois phrases du roman en refrain. (c) Une blogueuse cite deux lignes du roman dans une critique, avec le nom d’Hugo et le titre. (d) Une agence génère la couverture d’un livre concurrent avec une IA, en tapant « couverture roman policier ».', qs: [
+  { q: 'Analysez chacune des quatre situations.', pts: ['(a) Atteinte au droit au respect (forme et esprit) ; la clause générale et préalable est inefficace : inaliénabilité d’ordre public (« On va fluncher », 2003) ; seule une validation a posteriori et précise serait possible', '(b) Œuvre composite sans autorisation préalable de l’auteur de l’œuvre première → contrefaçon (reproduction/représentation, L. 122-4 et L. 335-3) ; atteinte possible à la paternité', '(b) Hugo peut faire interdire l’exploitation ou réclamer des droits ; action pénale et civile', '(c) Exception de courte citation (L. 122-5) : brève, justifiée par le caractère critique, nom de l’auteur et source indiqués → licite', '(d) Pas d’œuvre de l’esprit : création sans intervention humaine créative ; domaine public ; protection éventuelle par d’autres droits'] }] }
+];
+
+/* =========================================================
+   PIÈGES
+   ========================================================= */
+const TRAPS = [
+['Le nom du professeur', 'Il s’écrit <b>Abdoulaye Mbotaingar</b> (pas « Botindar »). Utile si tu dois l’écrire sur la copie.'],
+['Droit de suite : l’exception prise pour la condition', 'Le texte fixe un seuil de <b>750 €</b>. « Moins de 3 ans et ≤ 10 000 € » est le cas où le droit de suite <b>ne s’applique pas</b>. Taux légal dégressif (4 % puis 3 %…), plafond 12 500 € ; tes notes disent « 3 % ».'],
+['L. 121-1 et non L. 123-1', 'Perpétuel, inaliénable, imprescriptible = <b>L. 121-1</b>. L. 123-1 = durée de 70 ans des droits <b>patrimoniaux</b>.'],
+['Les numéros du diaporama', 'Le plan indique L. 121-7 (repentir/retrait) et L. 121-7-1 (respect). Dans le code : droit commun en <b>L. 121-4</b> et <b>L. 121-1</b> ; L. 121-7 = logiciel ; L. 121-7-1 = agents publics.'],
+['Collaboration ≠ collective pour la durée', '« 70 ans après le décès du dernier coauteur » vaut pour l’œuvre de <b>collaboration</b>.'],
+['Copie privée', 'C’est une exception : <b>pas besoin de l’accord</b> de l’auteur. Mais source licite, usage privé, et <b>jamais pour les logiciels</b>.'],
+['Logiciel : dévolution ≠ titularité initiale', 'Le droit <b>naît sur la tête du salarié</b> ; seuls les droits patrimoniaux sont dévolus à l’employeur. La seule hypothèse de naissance sur la tête de l’investisseur est l’<b>œuvre collective</b>.'],
+['Repentir/retrait : logiciel vs fonctionnaire', 'Logiciel : <b>exclu</b>. Fonctionnaire : possible <b>avec accord hiérarchique</b>. Droit commun : possible <b>contre indemnisation préalable</b>.'],
+['Divulgation vs retrait', 'Œuvre <b>pas encore publiée</b> → divulgation. Œuvre <b>déjà publiée</b> → repentir ou retrait.'],
+['Le producteur n’est pas un auteur', 'Il est cessionnaire présumé (L. 132-24), <b>sauf pour la musique</b> et sauf clause contraire.'],
+['Personne morale', 'Jamais auteur. Titulaire possible : par cession, ou par le régime de l’œuvre collective.'],
+['Domaine public', 'Fin des droits patrimoniaux seulement. Le droit moral (paternité, respect) reste <b>perpétuel</b>.'],
+['Originalité', 'Une qualité, deux conceptions (classique : personnalité ; moderne : nouveauté). Le <b>mérite</b> est indifférent.'],
+['OMPI', 'La Convention de Berne (9 sept. 1886) est administrée par l’<b>OMPI</b>, pas l’« OMI ».'],
+['Exclusions', 'Droit à l’image, dénomination sociale, logo, enseigne, nom de domaine, savoir-faire : hors PI selon le cours → concurrence déloyale.']
+];
+
+/* =========================================================
+   FICHE EXPRESS — l’essentiel à savoir réciter
+   ========================================================= */
+const EXPRESS = `
+<div class="grid g2">
+<div class="card"><h3 style="margin-top:0">1. Les définitions à réciter</h3><ul>
+<li><b>Œuvre de l’esprit</b> : création intellectuelle se concrétisant dans une forme perceptible aux sens (doctrine).</li>
+<li><b>Droit d’auteur</b> : propriété incorporelle, exclusive, opposable à tous, du seul fait de la création (L. 111-1).</li>
+<li><b>Plagiat</b> (L. 122-4) : paternité usurpée. <b>Contrefaçon</b> (L. 335-3) : forme reprise sans autorisation.</li>
+<li><b>Reproduction</b> : fixation matérielle, indirect. <b>Représentation</b> : communication directe.</li>
+<li><b>Droit de suite</b> : participation aux reventes d’œuvres graphiques et plastiques.</li>
+</ul></div>
+<div class="card"><h3 style="margin-top:0">2. Les chiffres</h3><ul>
+<li><b>70 ans</b> après le décès (L. 123-1) ; dernier coauteur pour la collaboration.</li>
+<li><b>3 ans / 300 000 €</b> (L. 335-2).</li>
+<li>Droit de suite : seuil <b>750 €</b>, <b>4 %</b> puis dégressif, plafond <b>12 500 €</b> ; exception 3 ans / 10 000 € (notes : 3 %).</li>
+<li><b>9 septembre 1886</b> : Convention de Berne (OMPI).</li>
+<li><b>21 novembre 1972</b> : avis CE OFRATEME. <b>22 mars 2012</b> : droit moral de l’œuvre collective.</li>
+</ul></div>
+<div class="card"><h3 style="margin-top:0">3. Les listes</h3><ul>
+<li>Indifférences : <b>genre, forme, mérite, destination</b>.</li>
+<li>Droit moral : <b>divulgation, repentir/retrait, paternité, respect</b>.</li>
+<li>Caractères : <b>perpétuel, inaliénable, imprescriptible</b>, discrétionnaire, d’ordre public.</li>
+<li>Coauteurs audiovisuels : <b>réalisateur, scénariste, adaptateur, dialoguiste, compositeur</b>.</li>
+<li>Ajouts jurisprudentiels : fleurs, coiffure, lumière, jeux télévisés, orgue.</li>
+</ul></div>
+<div class="card"><h3 style="margin-top:0">4. Les régimes spéciaux</h3><ul>
+<li><b>Salarié</b> : reste titulaire (L. 111-1 al. 3).</li>
+<li><b>Journaliste</b> : cession exclusive (L. 132-36).</li>
+<li><b>Logiciel</b> : dévolution (L. 113-9) ; moral restreint (L. 121-7).</li>
+<li><b>Fonctionnaire</b> : cession pour le service public (L. 131-3-1) ; moral restreint (L. 121-7-1) ; sauf enseignants-chercheurs.</li>
+<li><b>Collaboration</b> L. 113-3 · <b>Collective</b> L. 113-5 · <b>Composite</b> L. 113-4.</li>
+</ul></div>
+</div>`;
+/* =========================================================
+   MOTEUR
+   ========================================================= */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('pi_' + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('pi_' + k, JSON.stringify(v)); } catch (e) { } },
+  del(k) { try { localStorage.removeItem('pi_' + k); } catch (e) { } }
+};
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('on'), 1800); }
+const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
+
+/* Questions « numéros d’articles » générées depuis le mémento */
+const ALLREF = ARTS.concat(CASES_LAW);
+ALLREF.forEach(([ref, txt], i) => {
+  const others = shuffle(ALLREF.filter((x, j) => j !== i));
+  QB.push({ id: 'art-a' + i, ch: 'art', text: 'Quelle référence correspond à : « ' + txt + ' » ?', opts: [ref, ...others.slice(0, 3).map(x => x[0])], exp: ref + ' — ' + txt + '.' });
+  QB.push({ id: 'art-b' + i, ch: 'art', text: 'Que prévoit / décide : ' + ref + ' ?', opts: [txt, ...others.slice(3, 6).map(x => x[1])], exp: ref + ' — ' + txt + '.' });
+});
+const LABELS = Object.assign({}, CH_LABEL, { art: 'Numéros d’articles & arrêts' });
+const CARDS = DEFS.map(([f, b, ch]) => ({ f, b, ch })).concat(ALLREF.map(([ref, txt, ch]) => ({ f: ref, b: txt, ch, art: 1 })), ALLREF.map(([ref, txt, ch]) => ({ f: 'Quel texte ? ' + txt, b: ref, ch, art: 1 })));
+
+const app = $('#app');
+let cleanup = null;
+const read = () => store.get('read', {});
+const known = () => store.get('known', {});
+const best = () => store.get('best', {});
+const wrongSet = () => store.get('wrong', {});
+const done = () => store.get('done', {});
+function mark(k) { const d = done(); d[k] = 1; store.set('done', d); }
+
+/* ---------- Accueil ---------- */
+function viewHome() {
+  const r = read(), kn = known(), b = best(), d = done();
+  const nRead = CHAPTERS.filter(c => r[c.id]).length, nKnown = CARDS.filter((c, i) => kn[i]).length;
+  const nWrong = Object.keys(wrongSet()).length;
+  const tonight = [
+    ['Diagnostic à froid — 16 questions, avant toute relecture. Se tromper d’abord fait mieux retenir ensuite.', '#quiz/diag', !!d.diag, '8 min'],
+    ['Fiche express, puis lecture du cours en commençant par tes chapitres les plus faibles au diagnostic. Lis surtout les encadrés orange : ce sont les erreurs de tes notes.', '#fiche', nRead >= CHAPTERS.length, '50 min'],
+    ['QCM thème par thème, corrigé immédiat. Viser 80 % partout ; refaire tout thème en dessous.', '#quiz', Object.keys(CH_LABEL).every(k => (b[k] || 0) >= 80), '35 min'],
+    ['Flashcards : les cartes ratées reviennent jusqu’à ce que tu les saches. Numéros d’articles inclus.', '#cartes', nKnown >= CARDS.length * .8, '20 min'],
+    ['Pause de 10 minutes, sans écran. Elle fait partie du programme.', '#home', false, '10 min'],
+    ['Deux questions de cours et deux cas pratiques : rédige de tête, puis corrige-toi avec la grille.', '#cas', (d.cas || 0) >= 4, '30 min'],
+    ['Examen blanc chronométré, puis reprise de « Mes erreurs ».', '#examen', b.exam != null && b.exam >= 14, '30 min']
+  ];
+  const morning = [
+    ['Mes erreurs : refaire uniquement les questions ratées hier', '#quiz/wrong'],
+    ['Fiche express, récitée à voix haute, écran caché', '#fiche'],
+    ['Pièges : dernière lecture', '#pieges']
+  ];
+  app.innerHTML = `
+<div class="hero">
+  <div class="card">
+    <span class="pill acc">R5.02 · Environnement juridique · A. Mbotaingar</span>
+    <h1 style="margin-top:10px">Réviser la propriété intellectuelle</h1>
+    <p class="muted">Introduction, droit d’auteur (conditions, droits patrimoniaux, droit moral) et titularité. Tes notes ont été complétées et confrontées au Code de la propriété intellectuelle : chaque écart est signalé.</p>
+    <div class="row" style="margin-top:14px"><a class="btn pri" href="#quiz/diag">Commencer par le diagnostic →</a><a class="btn" href="#fiche">Fiche express</a><a class="btn" href="#cours">Cours</a></div>
+  </div>
+  <div class="card grid" style="gap:16px">
+    <div class="stat"><span class="muted small">Chapitres lus</span><span class="v">${nRead} / ${CHAPTERS.length}</span><div class="bar"><i style="width:${pct(nRead, CHAPTERS.length)}%"></i></div></div>
+    <div class="stat"><span class="muted small">Flashcards sues</span><span class="v">${nKnown} / ${CARDS.length}</span><div class="bar"><i style="width:${pct(nKnown, CARDS.length)}%"></i></div></div>
+    <div class="stat"><span class="muted small">Meilleur examen blanc</span><span class="v">${b.exam == null ? '—' : String(b.exam.toFixed(1)).replace('.', ',') + ' / 20'}</span></div>
+    <div class="row"><span class="pill ${nWrong ? 'bad' : 'ok'}">${nWrong} question${nWrong > 1 ? 's' : ''} à revoir</span>${nWrong ? '<a class="btn sm" href="#quiz/wrong">Les refaire</a>' : ''}</div>
+  </div>
+</div>
+<h2 style="margin-top:28px">Programme de ce soir — environ 3 heures</h2>
+<p class="muted">L’ordre compte : on se teste d’abord, on lit ensuite, on se reteste. Relire sans se tester donne l’impression de savoir sans laisser de trace.</p>
+<ol class="steps">${tonight.map(([t, h, ok, time]) => `<li class="${ok ? 'done' : ''}"><div><a href="${h}" style="font-weight:600;color:var(--ink);text-decoration:none">${t}</a></div><span class="muted small" style="white-space:nowrap">${time}</span></li>`).join('')}</ol>
+<p class="muted small" style="margin-top:10px">Moins de temps ? Garde les étapes 1, 3, 4 et 7, et remplace la lecture du cours par la fiche express et les pièges. Et dors : la mémoire se consolide pendant le sommeil.</p>
+<h2 style="margin-top:28px">Demain matin — 15 minutes</h2>
+<ol class="steps">${morning.map(([t, h]) => `<li><div><a href="${h}" style="font-weight:600;color:var(--ink);text-decoration:none">${t}</a></div></li>`).join('')}</ol>
+<h2 style="margin-top:28px">Scores par thème</h2>
+<div class="grid g3">${Object.entries(LABELS).map(([k, l]) => `<a class="card" style="text-decoration:none;color:inherit;padding:14px" href="#quiz/${k}"><div class="row" style="justify-content:space-between"><b>${l}</b><span class="pill ${b[k] >= 80 ? 'ok' : b[k] != null ? 'bad' : ''}">${b[k] != null ? b[k] + ' %' : 'à faire'}</span></div><div class="bar" style="margin-top:10px"><i style="width:${b[k] || 0}%"></i></div></a>`).join('')}</div>
+<div class="card" style="margin-top:16px"><div class="row" style="justify-content:space-between"><span class="muted small">La progression est enregistrée dans ce navigateur uniquement.</span><button class="btn ghost" id="reset">Réinitialiser ma progression</button></div></div>`;
+  $('#reset').onclick = () => { if (confirm('Effacer toute la progression ?')) { ['read', 'known', 'best', 'wrong', 'done'].forEach(store.del); viewHome(); toast('Progression réinitialisée'); } };
+}
+
+/* ---------- Cours ---------- */
+function viewCours(arg) {
+  const r = read(), b = best();
+  const cur = CHAPTERS.find(c => c.id === arg) || CHAPTERS[0];
+  const i = CHAPTERS.indexOf(cur), nx = CHAPTERS[i + 1];
+  app.innerHTML = `<div class="course">
+<nav class="toc">${CHAPTERS.map(c => `<a href="#cours/${c.id}" class="${c === cur ? 'on' : ''} ${r[c.id] ? 'read' : ''}"><span class="n">${c.n}</span><span>${c.title}</span></a>`).join('')}</nav>
+<article class="ch">
+  <div class="row"><span class="pill acc">Chapitre ${cur.n}</span><span class="pill">${cur.time}</span>${b[cur.id] != null ? `<span class="pill ${b[cur.id] >= 80 ? 'ok' : 'bad'}">QCM : ${b[cur.id]} %</span>` : ''}</div>
+  <h2 style="margin-top:10px">${cur.title}</h2>
+  ${cur.html}
+  <div class="card" style="margin-top:24px"><b>Avant de passer à la suite</b><p class="muted" style="margin:.3em 0 .9em">Ferme les yeux et récite les trois idées du chapitre. Ce que tu n’arrives pas à redire, tu ne le sais pas encore.</p>
+  <div class="row"><a class="btn pri" href="#quiz/${cur.id}" id="mk">Me tester sur ce chapitre →</a>${nx ? `<a class="btn" href="#cours/${nx.id}" id="mk2">Chapitre suivant</a>` : ''}</div></div>
+</article></div>`;
+  const m = () => { const x = read(); x[cur.id] = 1; store.set('read', x); };
+  $('#mk').onclick = m; if ($('#mk2')) $('#mk2').onclick = m;
+}
+
+/* ---------- Fiche express ---------- */
+function viewFiche() {
+  app.innerHTML = `<h2>Fiche express</h2><p class="muted">Ce qu’il faut pouvoir réciter sans support. Lis un bloc, cache l’écran, redis-le à voix haute, vérifie.</p>${EXPRESS}
+<div class="row" style="justify-content:center;margin-top:18px"><a class="btn pri" href="#cartes">S’entraîner en flashcards →</a><a class="btn" href="#pieges">Voir les pièges</a></div>`;
+}
+
+/* ---------- Articles & arrêts ---------- */
+function viewArticles() {
+  const row = ([ref, txt, ch]) => `<tr data-s="${esc((ref + ' ' + txt).toLowerCase())}"><td><span class="art">${ref}</span></td><td>${txt}</td><td><a class="small" href="#cours/${ch}">${LABELS[ch]}</a></td></tr>`;
+  app.innerHTML = `<h2>Articles & arrêts</h2>
+<p class="muted">M. Mbotaingar est précis sur les références : voici toutes celles du cours. Masque la colonne de droite avec la main et retrouve le contenu ; puis l’inverse.</p>
+<div class="row" style="margin:10px 0"><input type="search" id="f" placeholder="Filtrer : « L. 121 », « logiciel », « 2012 »…" aria-label="Filtrer"><a class="btn sm" href="#quiz/art">QCM sur les numéros →</a></div>
+<div class="tw"><table class="t" id="tb"><tr><th style="width:190px">Référence</th><th>Contenu</th><th style="width:170px">Chapitre</th></tr>${ARTS.map(row).join('')}<tr><th colspan="3">Jurisprudence et textes internationaux</th></tr>${CASES_LAW.map(row).join('')}</table></div>
+<div class="box tip"><span class="bt">Astuce mémo</span><p><b>L. 111</b> nature du droit · <b>L. 112</b> œuvres protégées · <b>L. 113</b> titulaires · <b>L. 121</b> droit moral · <b>L. 122</b> droits patrimoniaux · <b>L. 123</b> durée · <b>L. 131-132</b> contrats · <b>L. 331-335</b> sanctions. Le numéro suit le plan du code : retrouve le thème, tu retrouves l’article.</p></div>`;
+  $('#f').oninput = e => { const v = e.target.value.toLowerCase(); $$('#tb tr[data-s]').forEach(tr => tr.style.display = tr.dataset.s.includes(v) ? '' : 'none'); };
+}
+
+/* ---------- Flashcards (les cartes ratées reviennent) ---------- */
+function viewCartes(arg) {
+  const mode = arg || 'todo';
+  const kn = known();
+  let idx = CARDS.map((c, i) => i).filter(i => mode === 'all' ? true : mode === 'art' ? CARDS[i].art && !kn[i] : !kn[i]);
+  let queue = shuffle(idx), flipped = false, seen = 0;
+  const head = `<h2>Flashcards</h2><div class="row" style="margin-bottom:6px">
+<a class="btn sm ${mode === 'todo' ? 'pri' : ''}" href="#cartes/todo">À apprendre</a><a class="btn sm ${mode === 'art' ? 'pri' : ''}" href="#cartes/art">Articles seulement</a><a class="btn sm ${mode === 'all' ? 'pri' : ''}" href="#cartes/all">Toutes (${CARDS.length})</a></div>
+<p class="muted small">Réponds à voix haute <b>avant</b> de retourner la carte. « À revoir » la remet dans la pile quelques cartes plus loin.</p>`;
+  function draw() {
+    if (!queue.length) { app.innerHTML = head + `<div class="card" style="text-align:center;max-width:640px;margin:18px auto"><h3 style="margin-top:0">Pile terminée</h3><p class="muted">${seen} carte${seen > 1 ? 's' : ''} vues. Reviens-y demain matin : c’est le rappel espacé qui fixe.</p><div class="row" style="justify-content:center"><a class="btn pri" href="#quiz">Passer aux QCM →</a><a class="btn" href="#cartes/all">Tout revoir</a></div></div>`; return; }
+    const i = queue[0], c = CARDS[i];
+    app.innerHTML = head + `<div class="row" style="justify-content:center"><span class="pill">${queue.length} restante${queue.length > 1 ? 's' : ''}</span><span class="pill acc">${LABELS[c.ch] || ''}</span></div>
+<div class="flash"><div class="in" id="card" tabindex="0" role="button" aria-label="Retourner la carte">${flipped
+        ? `<div class="f b"><span class="muted small">${esc(c.f)}</span><div style="font-size:1.08rem">${esc(c.b)}</div></div>`
+        : `<div class="f"><div class="big">${esc(c.f)}</div><span class="muted small">Toucher pour retourner</span></div>`}</div></div>
+<div class="row" style="justify-content:center">${flipped ? `<button class="btn" id="no">À revoir</button><button class="btn pri" id="yes">Je savais</button>` : `<button class="btn pri" id="flip">Retourner</button>`}</div>`;
+    const fl = () => { flipped = !flipped; draw(); };
+    $('#card').onclick = fl; if ($('#flip')) $('#flip').onclick = fl;
+    if ($('#yes')) $('#yes').onclick = () => { const k = known(); k[i] = 1; store.set('known', k); queue.shift(); seen++; flipped = false; draw(); };
+    if ($('#no')) $('#no').onclick = () => { const k = known(); delete k[i]; store.set('known', k); queue.shift(); queue.splice(Math.min(3, queue.length), 0, i); seen++; flipped = false; draw(); };
+  }
+  const onKey = e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); const b = $('#flip') || $('#yes'); if (b) b.click(); } };
+  document.addEventListener('keydown', onKey); cleanup = () => document.removeEventListener('keydown', onKey);
+  draw();
+}
+
+/* ---------- QCM ---------- */
+function prepQ(item) { const opts = shuffle(item.opts.map((t, i) => ({ t, ok: i === 0 }))); return Object.assign({}, item, { opts }); }
+function pick(ch, n) { return shuffle(QB.filter(x => x.ch === ch)).slice(0, n); }
+function viewQuiz(arg) {
+  if (!arg) return quizSetup();
+  if (arg === 'diag') return runQuiz(shuffle(Object.keys(CH_LABEL).flatMap(k => pick(k, 2))), 'diag', 'Diagnostic à froid');
+  if (arg === 'wrong') { const w = wrongSet(); const qs = QB.filter(x => w[x.id]); if (!qs.length) { app.innerHTML = `<div class="card"><h3 style="margin-top:0">Aucune erreur enregistrée</h3><p class="muted">Fais d’abord un QCM ; tes questions ratées se rangeront ici.</p><a class="btn pri" href="#quiz">Choisir un QCM</a></div>`; return; } return runQuiz(shuffle(qs), 'wrong', 'Mes erreurs'); }
+  if (arg === 'mix') return runQuiz(shuffle(QB).slice(0, 25), 'mix', 'Tout mélangé');
+  if (LABELS[arg]) return runQuiz(shuffle(QB.filter(x => x.ch === arg)).slice(0, arg === 'art' ? 20 : 99), arg, LABELS[arg]);
+  quizSetup();
+}
+function quizSetup() {
+  const b = best(), nW = Object.keys(wrongSet()).length;
+  app.innerHTML = `<h2>QCM</h2><p class="muted">Correction immédiate et expliquée. Chaque question ratée est gardée dans « Mes erreurs » jusqu’à ce que tu la réussisses.</p>
+<div class="grid g3" style="margin-bottom:14px">
+<a class="card" style="text-decoration:none;color:inherit" href="#quiz/diag"><b>Diagnostic à froid</b><p class="muted small" style="margin:.3em 0 0">16 questions, 2 par chapitre. À faire en premier.</p></a>
+<a class="card" style="text-decoration:none;color:inherit" href="#quiz/mix"><b>Tout mélangé</b><p class="muted small" style="margin:.3em 0 0">25 questions tirées dans tout le cours : mélanger les thèmes force à reconnaître de quoi on parle.</p></a>
+<a class="card" style="text-decoration:none;color:inherit" href="#quiz/wrong"><b>Mes erreurs</b> <span class="pill ${nW ? 'bad' : 'ok'}">${nW}</span><p class="muted small" style="margin:.3em 0 0">Uniquement ce que tu as raté.</p></a>
+</div>
+<h3>Par thème</h3>
+<div class="grid g3">${Object.entries(LABELS).map(([k, l]) => `<a class="card" style="text-decoration:none;color:inherit;padding:14px" href="#quiz/${k}"><div class="row" style="justify-content:space-between"><b>${l}</b><span class="pill ${b[k] >= 80 ? 'ok' : b[k] != null ? 'bad' : ''}">${b[k] != null ? b[k] + ' %' : QB.filter(x => x.ch === k).length + ' q.'}</span></div></a>`).join('')}</div>`;
+}
+function runQuiz(items, keyName, title) {
+  const qs = items.map(prepQ); let i = 0, score = 0; const per = {};
+  function draw() {
+    if (i >= qs.length) return end();
+    const it = qs[i];
+    app.innerHTML = `<div class="card" style="max-width:780px;margin:0 auto">
+<div class="row" style="justify-content:space-between"><span class="pill acc">${title}</span><span class="muted small">${i + 1} / ${qs.length} · ${score} bonne${score > 1 ? 's' : ''}</span></div>
+<div class="bar" style="margin-top:10px"><i style="width:${pct(i, qs.length)}%"></i></div>
+<p class="qtext">${esc(it.text)}</p>
+<div id="opts">${it.opts.map((o, k) => `<button class="opt" data-k="${k}">${esc(o.t)}</button>`).join('')}</div>
+<div id="fb"></div></div>`;
+    $$('#opts .opt').forEach(btn => btn.onclick = () => {
+      const o = it.opts[+btn.dataset.k], w = wrongSet();
+      $$('#opts .opt').forEach((b2, k) => { b2.disabled = true; if (it.opts[k].ok) b2.classList.add('good'); });
+      per[it.ch] = per[it.ch] || [0, 0]; per[it.ch][1]++;
+      if (o.ok) { score++; per[it.ch][0]++; delete w[it.id]; } else { btn.classList.add('wrong'); w[it.id] = 1; }
+      store.set('wrong', w);
+      $('#fb').innerHTML = `<div class="exp"><b>${o.ok ? 'Exact.' : 'Raté.'}</b> ${esc(it.exp)}</div><div class="row" style="margin-top:12px;justify-content:flex-end"><button class="btn pri" id="next">${i + 1 < qs.length ? 'Suivante →' : 'Voir le résultat'}</button></div>`;
+      $('#next').onclick = () => { i++; draw(); window.scrollTo(0, 0); }; $('#next').focus();
+    });
+  }
+  function end() {
+    const p = pct(score, qs.length), b = best();
+    if (LABELS[keyName]) { b[keyName] = Math.max(b[keyName] || 0, p); store.set('best', b); }
+    if (keyName === 'diag') mark('diag');
+    const weak = Object.entries(per).filter(([k, v]) => v[0] < v[1]).map(([k]) => k);
+    app.innerHTML = `<div class="card" style="max-width:780px;margin:0 auto;text-align:center">
+<span class="pill acc">${title}</span><h2 style="margin-top:10px">${score} / ${qs.length} — ${p} %</h2>
+<p class="muted">${keyName === 'diag' ? 'Ce score ne compte pas : il sert à choisir par où commencer.' : p >= 80 ? 'Thème tenu. Passe au suivant, et reviens-y demain matin.' : 'En dessous de 80 % : relis le chapitre concerné puis refais ce QCM.'}</p>
+${weak.length ? `<p><b>À travailler en priorité :</b></p><div class="row" style="justify-content:center">${weak.map(k => CH_LABEL[k] ? `<a class="btn sm" href="#cours/${k}">${LABELS[k]}</a>` : `<a class="btn sm" href="#articles">${LABELS[k]}</a>`).join('')}</div>` : ''}
+<div class="row" style="justify-content:center;margin-top:16px"><a class="btn pri" href="#quiz/wrong">Refaire mes erreurs</a><a class="btn" href="#quiz">Autre QCM</a><a class="btn" href="#home">Accueil</a></div></div>`;
+  }
+  draw();
+}
+
+/* ---------- Cas & questions de cours ---------- */
+function viewCas() {
+  const grid = (pts, id) => `<details class="ans"><summary>J’ai rédigé — voir la grille de correction</summary><div data-g="${id}">${pts.map(p => `<label class="chk"><input type="checkbox"><span>${p}</span></label>`).join('')}<p class="small muted" style="margin-top:8px">Coche ce que ta réponse contenait vraiment. <b class="sc"></b></p></div></details>`;
+  app.innerHTML = `<h2>Cas pratiques & questions de cours</h2>
+<p class="muted">Écris ta réponse sur papier, sans le cours, <b>avant</b> d’ouvrir la grille. Méthode du cas pratique : faits utiles → qualification → règle (avec l’article) → application → conclusion.</p>
+<h3>Cas pratiques</h3>
+${CASES.map((c, i) => `<details class="card case"><summary>${c.t}</summary><div class="facts">${c.facts}</div>${c.qs.map((x, j) => `<p><b>${x.q}</b></p>${grid(x.pts, 'c' + i + '-' + j)}`).join('')}</details>`).join('')}
+<h3>Questions de cours</h3>
+${OPEN.map((o, i) => `<details class="card case"><summary>${o.t}</summary><p class="muted small" style="margin-top:8px">10 minutes, un plan en deux parties, les articles cités.</p>${grid(o.pts, 'o' + i)}</details>`).join('')}`;
+  $$('[data-g]').forEach(g => {
+    const boxes = $$('input', g), sc = $('.sc', g); let counted = false;
+    const upd = () => { const n = boxes.filter(b => b.checked).length; sc.textContent = n + ' / ' + boxes.length + (n === boxes.length ? ' — complet.' : n >= boxes.length * .6 ? ' — correct, complète les manques.' : ' — à reprendre : relis le chapitre et recommence demain matin.'); if (!counted && n) { counted = true; const d = done(); d.cas = (d.cas || 0) + 1; store.set('done', d); } };
+    boxes.forEach(b => b.onchange = upd);
+  });
+}
+
+/* ---------- Pièges ---------- */
+function viewPieges() {
+  app.innerHTML = `<h2>Pièges et écarts entre tes notes et les textes</h2>
+<p class="muted">À relire en dernier ce soir et en premier demain matin.</p>
+<div class="grid g2">${TRAPS.map(([t, h]) => `<div class="box trap" style="margin:0"><span class="bt">${t}</span><p>${h}</p></div>`).join('')}</div>
+<div class="row" style="justify-content:center;margin-top:18px"><a class="btn pri" href="#examen">Passer l’examen blanc →</a></div>`;
+}
+
+/* ---------- Examen blanc ---------- */
+function viewExamen() {
+  const b = best();
+  app.innerHTML = `<div class="card" style="max-width:720px;margin:0 auto"><span class="pill acc">Examen blanc</span>
+<h2 style="margin-top:10px">30 questions · 25 minutes · note sur 20</h2>
+<ul><li>22 questions de fond réparties sur les 8 chapitres, 8 questions de références.</li><li>Aucune correction pendant l’épreuve ; corrigé détaillé à la fin.</li><li>Objectif : 14 / 20. En dessous, reprends « Mes erreurs ».</li></ul>
+${b.exam != null ? `<p class="muted">Meilleure note : <b>${String(b.exam.toFixed(1)).replace('.', ',')} / 20</b></p>` : ''}
+<button class="btn pri" id="go">Démarrer</button></div>`;
+  $('#go').onclick = startExam;
+}
+function startExam() {
+  const chs = Object.keys(CH_LABEL);
+  let items = chs.flatMap(k => pick(k, 3)).slice(0, 22);
+  items = shuffle(items.concat(pick('art', 8)));
+  const qs = items.map(prepQ), ans = {}; let i = 0, left = 25 * 60;
+  const timer = setInterval(() => { left--; const t = $('#tm'); if (t) t.textContent = fmt(left); if (left <= 0) finish(); }, 1000);
+  cleanup = () => clearInterval(timer);
+  const fmt = s => Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+  function draw() {
+    const it = qs[i];
+    app.innerHTML = `<div class="card" style="max-width:780px;margin:0 auto">
+<div class="row" style="justify-content:space-between"><span class="pill acc">Question ${i + 1} / ${qs.length}</span><span class="pill warn" id="tm">${fmt(left)}</span></div>
+<p class="qtext">${esc(it.text)}</p>
+<div id="opts">${it.opts.map((o, k) => `<button class="opt" data-k="${k}" style="${ans[i] === k ? 'border-color:var(--acc);background:var(--acc-soft)' : ''}">${esc(o.t)}</button>`).join('')}</div>
+<div class="row" style="justify-content:space-between;margin-top:12px"><button class="btn" id="prev" ${i ? '' : 'disabled'}>← Précédente</button><span class="muted small">${Object.keys(ans).length} répondue${Object.keys(ans).length > 1 ? 's' : ''}</span>${i + 1 < qs.length ? `<button class="btn pri" id="nx">Suivante →</button>` : `<button class="btn pri" id="fin">Rendre la copie</button>`}</div></div>`;
+    $$('#opts .opt').forEach(b2 => b2.onclick = () => { ans[i] = +b2.dataset.k; draw(); });
+    $('#prev').onclick = () => { i--; draw(); };
+    if ($('#nx')) $('#nx').onclick = () => { i++; draw(); };
+    if ($('#fin')) $('#fin').onclick = () => { const miss = qs.length - Object.keys(ans).length; if (!miss || confirm(miss + ' question(s) sans réponse. Rendre quand même ?')) finish(); };
+  }
+  function finish() {
+    clearInterval(timer); cleanup = null;
+    const w = wrongSet(); let ok = 0;
+    const rows = qs.map((it, k) => { const a = ans[k], good = a != null && it.opts[a].ok; if (good) { ok++; delete w[it.id]; } else w[it.id] = 1; return { it, a, good }; });
+    store.set('wrong', w);
+    const note = Math.round(ok / qs.length * 200) / 10, b = best();
+    b.exam = Math.max(b.exam == null ? 0 : b.exam, note); store.set('best', b);
+    app.innerHTML = `<div class="card" style="max-width:780px;margin:0 auto;text-align:center"><span class="pill acc">Examen blanc</span>
+<h2 style="margin-top:10px">${String(note.toFixed(1)).replace('.', ',')} / 20</h2><p class="muted">${ok} bonnes réponses sur ${qs.length}. ${note >= 14 ? 'Objectif atteint : relis seulement tes erreurs et la fiche express.' : 'Reprends tes erreurs ci-dessous, puis refais « Mes erreurs » jusqu’à zéro.'}</p>
+<div class="row" style="justify-content:center"><a class="btn pri" href="#quiz/wrong">Refaire mes erreurs</a><a class="btn" href="#home">Accueil</a></div></div>
+<h3 style="max-width:780px;margin:24px auto 8px">Corrigé</h3>
+${rows.map(({ it, a, good }, k) => `<div class="card" style="max-width:780px;margin:0 auto 10px;padding:14px"><div class="row" style="justify-content:space-between"><b>${k + 1}. ${esc(it.text)}</b><span class="pill ${good ? 'ok' : 'bad'}">${good ? 'juste' : a == null ? 'sans réponse' : 'faux'}</span></div>
+${!good && a != null ? `<p class="small" style="color:var(--bad);margin:.4em 0 0">Ta réponse : ${esc(it.opts[a].t)}</p>` : ''}<p class="small" style="margin:.4em 0 0"><b>Réponse :</b> ${esc(it.opts.find(o => o.ok).t)}</p><p class="small muted" style="margin:.3em 0 0">${esc(it.exp)}</p></div>`).join('')}`;
+    window.scrollTo(0, 0);
+  }
+  draw();
+}
+
+/* ---------- Routeur & thème ---------- */
+const VIEWS = { home: viewHome, cours: viewCours, fiche: viewFiche, articles: viewArticles, cartes: viewCartes, quiz: viewQuiz, cas: viewCas, pieges: viewPieges, examen: viewExamen };
+function route() {
+  if (cleanup) { cleanup(); cleanup = null; }
+  const [v, arg] = (location.hash.slice(1) || 'home').split('/');
+  const fn = VIEWS[v] || viewHome;
+  fn(arg ? decodeURIComponent(arg) : undefined);
+  $$('#tabs a').forEach(a => a.classList.toggle('on', a.dataset.v === (VIEWS[v] ? v : 'home')));
+  window.scrollTo(0, 0);
+}
+window.addEventListener('hashchange', route);
+(function theme() {
+  const saved = store.get('theme', null);
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  $('#themeBtn').onclick = () => {
+    const cur = document.documentElement.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const nx = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', nx); store.set('theme', nx);
+  };
+})();
+route();
+</script>
+</body>
+</html>
